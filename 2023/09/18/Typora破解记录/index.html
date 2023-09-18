@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   
   
-  <title>大创描述 | Kvancy</title>
-  <link rel="canonical" href="https://github.com/Kvancy/Kvancy.github.io/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/index.html">
+  <title>Typora破解复现 | Kvancy</title>
+  <link rel="canonical" href="https://github.com/Kvancy/Kvancy.github.io/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/index.html">
   <meta name="author" content="Kvancy" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,20 +15,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="项目" />
+    <meta name="keywords" content="破解" />
   
-  <meta name="description" content="GameHall有待完善： 按钮弹起和落下bug有待修复 Gamehall的UI界面有待美化 增加社交功能，例如好友，社区等 优化窗口最大化显示界面 窗口边框有待美化">
+  <meta name="description" content="复现Typora 1.0.4版本破解1. 找到app.asar文件解包得到License.js加密代码根据火绒剑在系统日志里监控Typore的启动，找到可疑的asar文件，程序访问并读取了该文件，并启动了其中的main.node模块，疑似开发者对加密源代码的解密过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大创描述">
-<meta property="og:url" content="https://github.com/Kvancy/Kvancy.github.io/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/index.html">
+<meta property="og:title" content="Typora破解复现">
+<meta property="og:url" content="https://github.com/Kvancy/Kvancy.github.io/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="Kvancy">
-<meta property="og:description" content="GameHall有待完善： 按钮弹起和落下bug有待修复 Gamehall的UI界面有待美化 增加社交功能，例如好友，社区等 优化窗口最大化显示界面 窗口边框有待美化">
+<meta property="og:description" content="复现Typora 1.0.4版本破解1. 找到app.asar文件解包得到License.js加密代码根据火绒剑在系统日志里监控Typore的启动，找到可疑的asar文件，程序访问并读取了该文件，并启动了其中的main.node模块，疑似开发者对加密源代码的解密过程">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/e4s2PY1TyhAXrIk.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/JxyY2PF5d4lrNHL.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/lYm6rybVpFfvK4t.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/5ETq62FWmXMR9bO.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/NKbAd5eZihwM8qF.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/btHy91Znh4e2wVM.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/HDY6RBW3cxdmQN9.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/4oCyluGSmhcUTjI.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/RwrV9q8z1NgAxGO.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/V8SGfCBUhyougvt.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/wzRSWaA4QHGi6Dx.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/hoJmVZz3klOMID4.png">
+<meta property="og:image" content="https://s2.loli.net/2023/09/18/3ZS9tyu4rl8f5hp.png">
 <meta property="article:published_time" content="2023-09-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-18T13:08:20.165Z">
+<meta property="article:modified_time" content="2023-09-18T13:25:48.878Z">
 <meta property="article:author" content="Kvancy">
-<meta property="article:tag" content="项目">
+<meta property="article:tag" content="破解">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2023/09/18/e4s2PY1TyhAXrIk.png">
   
   <!-- 站点验证相关 -->
   
@@ -156,11 +170,11 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="https://github.com/Kvancy/Kvancy.github.io/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/Kvancy/Kvancy.github.io/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">大创描述</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">Typora破解复现</h1>
             
             
             <ul class="kratos-post-meta text-center">
@@ -173,7 +187,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            766
+                            ~2.18K
                         
                         字
                     </li>
@@ -185,50 +199,80 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1695042500165"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1695043548878"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
                 <div class="kratos-post-inner-toc toc-div-class" >
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#GameHall"><span class="toc-number">1.</span> <span class="toc-text">GameHall</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BE%85%E5%AE%8C%E5%96%84%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">有待完善：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">开发日志：</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0Typora-1-0-4%E7%89%88%E6%9C%AC%E7%A0%B4%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">复现Typora 1.0.4版本破解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%89%BE%E5%88%B0app-asar%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8C%85%E5%BE%97%E5%88%B0License-js%E5%8A%A0%E5%AF%86%E4%BB%A3%E7%A0%81"><span class="toc-number">1.1.</span> <span class="toc-text">1. 找到app.asar文件解包得到License.js加密代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BB%8Emain-node%E6%96%87%E4%BB%B6%E6%89%BELicense-js%E7%9A%84%E8%A7%A3%E5%AF%86%E9%80%BB%E8%BE%91"><span class="toc-number">1.2.</span> <span class="toc-text">2. 从main.node文件找License.js的解密逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-CyberChef%E9%AA%8C%E8%AF%81%E7%8C%9C%E6%B5%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3. CyberChef验证猜测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9C%80%E7%BB%88%E7%9A%84Patch"><span class="toc-number">1.4.</span> <span class="toc-text">4. 最终的Patch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%A0%B4%E8%A7%A3%E6%88%90%E5%8A%9F"><span class="toc-number">1.5.</span> <span class="toc-text">5. 破解成功</span></a></li></ol></li></ol>
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><ol>
-<li><h1 id="GameHall"><a href="#GameHall" class="headerlink" title="GameHall"></a>GameHall</h1><h2 id="有待完善："><a href="#有待完善：" class="headerlink" title="有待完善："></a>有待完善：</h2><ol>
-<li>按钮弹起和落下bug有待修复</li>
-<li>Gamehall的UI界面有待美化</li>
-<li>增加社交功能，例如好友，社区等</li>
-<li>优化窗口最大化显示界面</li>
-<li>窗口边框有待美化<span id="more"></span></li>
-</ol>
-<h2 id="开发日志："><a href="#开发日志：" class="headerlink" title="开发日志："></a>开发日志：</h2><ul>
-<li><p>2023&#x2F;6&#x2F;9：完成Gamehall的界面基本布局</p>
-</li>
-<li><p>2023&#x2F;6&#x2F;13：完成gif的正常播放并放置控制播放按钮，实现左右循环播放</p>
-</li>
-<li><p>2023&#x2F;6&#x2F;19：构成hallbtn类，并实现游戏按钮的弹起落下效果</p>
-</li>
-<li><p>2023&#x2F;6&#x2F;24：基本实现了排行榜功能，用户可以点击排行榜进入游戏</p>
-</li>
-<li><p>2023&#x2F;6&#x2F;29：提供了上传头像的接口，对传输的文件进行检测，检测成功在数据库中保存图片格式，二进制文件，从而实现用户再次登录时显示之前上传的图片。</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;2：增加了返回Home按钮，实现返回大厅主界面功能。</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;6：基本实现了游戏搜索功能，可以对输入关键字进行包含检测，然后做出相应显示。</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;9：增加了用户通过邮箱注册功能，并对邮箱的输入进行必要检测，利用定时器实现60秒后才可重新发送功能。</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;14：增加了游戏启动关闭时隐藏和显示Gamehall的功能，初步完成hallbtn右键菜单功能</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;17：完成了右键hallbtn启动游戏菜单功能，增加downloadtools类，用户可通过菜单进行游戏的启动和下载，并增加download类实现可视的下载进度；增加了一个返回登录的功能。</p>
-</li>
-<li><p>2023&#x2F;9&#x2F;13：优化了部分冗长相似的代码，对之前堆空间内存管理不当进行了优化。</p>
-</li>
+            <div itemprop="articleBody"><h1 id="复现Typora-1-0-4版本破解"><a href="#复现Typora-1-0-4版本破解" class="headerlink" title="复现Typora 1.0.4版本破解"></a>复现Typora 1.0.4版本破解</h1><h2 id="1-找到app-asar文件解包得到License-js加密代码"><a href="#1-找到app-asar文件解包得到License-js加密代码" class="headerlink" title="1. 找到app.asar文件解包得到License.js加密代码"></a>1. 找到app.asar文件解包得到License.js加密代码</h2><p>根据火绒剑在系统日志里监控Typore的启动，找到可疑的asar文件，程序访问并读取了该文件，并启动了其中的main.node模块，疑似开发者对加密源代码的解密过程</p>
+<span id="more"></span>
+
+<p><img src="https://s2.loli.net/2023/09/18/e4s2PY1TyhAXrIk.png" alt="image-20230916115115006"></p>
+<p>找到app.asar文件，根据日志显示，可以猜测这个类似压缩包，问Bing得知 </p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/happydeer/article/details/123162612">asar是一种用于打包Electron应用程序源代码的文件格式，它可以让应用程序更容易分发和运行。asar文件的工作原理是将所有文件连接在一起，不进行压缩，但支持随机访问。asar文件可以使用asar命令行工具或者electron-packager等工具来创建或解压</a></p>
+</blockquote>
+<p>根据提示内容进行解压， <code>asar extract app.asar unpacked</code></p>
+<p>得到unpacked文件，貌似找到关于许可证的有关文件–License.js，Winhex打开看一眼</p>
+<img src="https://s2.loli.net/2023/09/18/JxyY2PF5d4lrNHL.png" alt="image-20230916115804959" style="zoom:67%;" />
+
+<p>有种base64编码的感觉，难道只是base64编码加密？拖进CyberChef解密一下</p>
+<img src="https://s2.loli.net/2023/09/18/lYm6rybVpFfvK4t.png" alt="image-20230916115944322" style="zoom:67%;" />
+
+<p>可能还有一层或几层加密</p>
+<h2 id="2-从main-node文件找License-js的解密逻辑"><a href="#2-从main-node文件找License-js的解密逻辑" class="headerlink" title="2. 从main.node文件找License.js的解密逻辑"></a>2. 从main.node文件找License.js的解密逻辑</h2><p>根据火绒剑日志显示，在app.asar解包后运行了main.node模块，又根据前面License.js被加密了，可以推测main.node有可能运行时解密了License.js文件，先DIE看一眼main.node，DLL64位，IDA64打开，先不管其他的，shift+f12查找字符串</p>
+<p><img src="https://s2.loli.net/2023/09/18/5ETq62FWmXMR9bO.png" alt="image-20230916120618916"></p>
+<p>疑似有base64解密过程，交叉引用找到引用处伪代码</p>
+<p><img src="https://s2.loli.net/2023/09/18/NKbAd5eZihwM8qF.png" alt="image-20230916120721264"></p>
+<p>根据Bing得知</p>
+<blockquote>
+<p>napi_get_named_property 是一个 Node-API 的函数，它的作用是从一个对象中获取一个指定名称的属性，并返回它的值。</p>
+</blockquote>
+<blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">napi_status <span class="title function_">napi_call_function</span><span class="params">(napi_env env, napi_value recv, napi_value func, <span class="type">size_t</span> argc, <span class="type">const</span> napi_value* argv, napi_value* result)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中，参数的含义是：</p>
+<ul>
+<li><code>env</code>: 当前调用 N-API 的环境。</li>
+<li><code>recv</code>: 要作为函数接收者的对象，通常是 <code>this</code> 的值。</li>
+<li><code>func</code>: 要调用的函数对象。</li>
+<li><code>argc</code>: 要传递的参数的个数。</li>
+<li><code>argv</code>: 要传递的参数的数组。</li>
+<li><code>result</code>: 用于接收函数返回值的指针。</li>
 </ul>
-</li>
-</ol>
+</blockquote>
+<p>分析得知，这段代码类似给v40进行解码，v40 &#x3D;  base64.from(v38)，v38又来自函数的第三个参数a3+8，猜测这个a3+8指向的就是密文的地址，继续分析</p>
+<img src="https://s2.loli.net/2023/09/18/btHy91Znh4e2wVM.png" alt="image-20230916133915462" style="zoom:67%;" />
+
+<p>找到类似加密算法的密钥初始化，用findcrypt看一眼发现了AES的S盒和逆S盒，推测这里应该是AES的密钥，而且长度为32个字节，猜测是256位模式</p>
+<p><img src="https://s2.loli.net/2023/09/18/HDY6RBW3cxdmQN9.png" alt="image-20230916134109117"></p>
+<p>接着找AES解密线索，找到F4E0偏移处函数</p>
+<p><img src="https://s2.loli.net/2023/09/18/4oCyluGSmhcUTjI.png" alt="image-20230916134740069"></p>
+<p>里面似乎有字节替代，按位异或的操作，猜测是AES第二轮操作（字节替代，行移位，列混淆，轮密钥加），继续分析，确定下ECB模式还是CBC模式</p>
+<p><img src="https://s2.loli.net/2023/09/18/RwrV9q8z1NgAxGO.png" alt="image-20230916140550963"></p>
+<p>进入3A8F偏移处函数分析，在这里先猜测block应该是密文（void 指针数组）</p>
+<p><img src="https://s2.loli.net/2023/09/18/V8SGfCBUhyougvt.png" alt="image-20230916141555652"></p>
+<p>函数里面又出现了一个循环异或，可以肯定这是个CBC模式下的异或偏移量了，那偏移量又是怎么来的呢，追踪a2（密文地址）进行判断的话，函数里面是复制了一份a2给v3，也就是说v3可能指向了密文</p>
+<p><img src="https://s2.loli.net/2023/09/18/wzRSWaA4QHGi6Dx.png" alt="image-20230916142530938"></p>
+<p>那么result就是偏移量了，偏移量来自密文地址+v5处，进行16次循环，也就是说偏移量可能来自密文的0-15个字节位？</p>
+<h2 id="3-CyberChef验证猜测"><a href="#3-CyberChef验证猜测" class="headerlink" title="3. CyberChef验证猜测"></a>3. CyberChef验证猜测</h2><p>依据之前的猜测，main.node通过base64解码，再AES，CBC模式解码，密钥IDA动调得到</p>
+<blockquote>
+<p>0x4E, 0xE1, 0xB3, 0x82, 0x94, 0x9A, 0x02, 0x4B, 0x80, 0x2F, 0x52, 0xB4, 0xB4, 0xFE, 0x57, 0xF1, 0xBE, 0xF4, 0x08, 0x53, 0x10, 0x92, 0x56, 0xE2, 0xC2, 0x0D, 0xEC, 0xA3, 0xDD, 0x8D, 0xD5, 0x6D</p>
+</blockquote>
+<p>偏移量为密文的前16个字节，带入CyberChef检验</p>
+<p><img src="https://s2.loli.net/2023/09/18/hoJmVZz3klOMID4.png" alt="image-20230916151516731"></p>
+<p>这下应该是得到了License.js源码，下载得到文件，找在线js美化工具美化</p>
+<h2 id="4-最终的Patch"><a href="#4-最终的Patch" class="headerlink" title="4. 最终的Patch"></a>4. 最终的Patch</h2><p>简单审计了下代码，不懂的找Bing问就是。首先应该patch掉网络验证类似request的东西，找到了几处</p>
+<p>patch后的License.js部分源码:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">doActivation = <span class="keyword">async</span> <span class="keyword">function</span>(<span class="params">e, n, t</span>) &#123;</span><br><span class="line">    hasLicense = !<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> [!<span class="number">0</span>, <span class="string">&quot;&quot;</span>]</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>patch掉网络验证(dorequest,sethost)，对doActivation的验证直接改成永恒真，使得邮箱和序列号随便填即可激活，再改写hasLicense的值，使得下次登录时访问许可证信息时得到软件已被激活的信息，再打包生成app.asar，打开软件随便输入序列号和邮箱即可</p>
+<h2 id="5-破解成功"><a href="#5-破解成功" class="headerlink" title="5. 破解成功"></a>5. 破解成功</h2><p><img src="https://s2.loli.net/2023/09/18/3ZS9tyu4rl8f5hp.png"></p>
 </div>
         </div>
         
@@ -282,7 +326,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "https://github.com/Kvancy/Kvancy.github.io/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/",
+                text: "https://github.com/Kvancy/Kvancy.github.io/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -294,14 +338,9 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "https://github.com/Kvancy/Kvancy.github.io/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/";
-            const title         = "「大创描述」";
-            const excerpt       = `GameHall有待完善：
-按钮弹起和落下bug有待修复
-Gamehall的UI界面有待美化
-增加社交功能，例如好友，社区等
-优化窗口最大化显示界面
-窗口边框有待美化`;
+            const hostUrl       = "https://github.com/Kvancy/Kvancy.github.io/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/";
+            const title         = "「Typora破解复现」";
+            const excerpt       = `复现Typora 1.0.4版本破解1. 找到app.asar文件解包得到License.js加密代码根据火绒剑在系统日志里监控Typore的启动，找到可疑的asar文件，程序访问并读取了该文件，并启动了其中的main.node模块，疑似开发者对加密源代码的解密过程`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -320,10 +359,10 @@ Gamehall的UI界面有待美化
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/Kvancy/Kvancy.github.io/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a>
+                    <a class="tag-none-link" href="/Kvancy/Kvancy.github.io/tags/%E7%A0%B4%E8%A7%A3/" rel="tag">破解</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-09-18T13:08:20.165Z" itemprop="dateModified">最后编辑：2023-09-18</time>
+                    <time datetime="2023-09-18T13:25:48.878Z" itemprop="dateModified">最后编辑：2023-09-18</time>
                 </div>
             </div>
         </footer>
@@ -332,12 +371,12 @@ Gamehall的UI界面有待美化
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" c++笔记" href="/Kvancy/Kvancy.github.io/笔记/c++/">&lt; 上一篇</a>
+                <a title=" c++笔记" href="/Kvancy/Kvancy.github.io/2023/09/18/c++/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" Typora破解复现" href="/Kvancy/Kvancy.github.io/逆向/Typora破解记录/">下一篇 &gt;</a>
+                <a title=" Rookie diary" href="/Kvancy/Kvancy.github.io/2023/09/18/Rookie diary/">下一篇 &gt;</a>
             </div>
             
         </nav>
@@ -406,7 +445,7 @@ Gamehall的UI界面有待美化
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#GameHall"><span class="toc-text">GameHall</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BE%85%E5%AE%8C%E5%96%84%EF%BC%9A"><span class="toc-text">有待完善：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97%EF%BC%9A"><span class="toc-text">开发日志：</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%8D%E7%8E%B0Typora-1-0-4%E7%89%88%E6%9C%AC%E7%A0%B4%E8%A7%A3"><span class="toc-text">复现Typora 1.0.4版本破解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%89%BE%E5%88%B0app-asar%E6%96%87%E4%BB%B6%E8%A7%A3%E5%8C%85%E5%BE%97%E5%88%B0License-js%E5%8A%A0%E5%AF%86%E4%BB%A3%E7%A0%81"><span class="toc-text">1. 找到app.asar文件解包得到License.js加密代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BB%8Emain-node%E6%96%87%E4%BB%B6%E6%89%BELicense-js%E7%9A%84%E8%A7%A3%E5%AF%86%E9%80%BB%E8%BE%91"><span class="toc-text">2. 从main.node文件找License.js的解密逻辑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-CyberChef%E9%AA%8C%E8%AF%81%E7%8C%9C%E6%B5%8B"><span class="toc-text">3. CyberChef验证猜测</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E6%9C%80%E7%BB%88%E7%9A%84Patch"><span class="toc-text">4. 最终的Patch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%A0%B4%E8%A7%A3%E6%88%90%E5%8A%9F"><span class="toc-text">5. 破解成功</span></a></li></ol></li></ol>
     </div>
 </aside>
                 
@@ -436,25 +475,25 @@ Gamehall的UI界面有待美化
         
           
           
-            <a class="list-group-item" href="/Kvancy/Kvancy.github.io/%E7%AC%94%E8%AE%B0/Rookie%20diary/"><i class="fa  fa-book"></i> Rookie diary</a>
+            <a class="list-group-item" href="/Kvancy/Kvancy.github.io/2023/09/18/Rookie%20diary/"><i class="fa  fa-book"></i> Rookie diary</a>
             
           
         
           
           
-            <a class="list-group-item" href="/Kvancy/Kvancy.github.io/%E9%80%86%E5%90%91/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/"><i class="fa  fa-book"></i> Typora破解复现</a>
+            <a class="list-group-item" href="/Kvancy/Kvancy.github.io/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/"><i class="fa  fa-book"></i> Typora破解复现</a>
             
           
         
           
           
-            <a class="list-group-item" href="/Kvancy/Kvancy.github.io/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/"><i class="fa  fa-book"></i> 大创描述</a>
+            <a class="list-group-item" href="/Kvancy/Kvancy.github.io/2023/09/18/c++/"><i class="fa  fa-book"></i> c++笔记</a>
             
           
         
           
           
-            <a class="list-group-item" href="/Kvancy/Kvancy.github.io/%E7%AC%94%E8%AE%B0/c++/"><i class="fa  fa-book"></i> c++笔记</a>
+            <a class="list-group-item" href="/Kvancy/Kvancy.github.io/2023/09/18/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/"><i class="fa  fa-book"></i> 大创描述</a>
             
           
         
