@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>PE文件笔记 | Kvancy</title>
+  <link rel="canonical" href="https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/index.html">
+  <meta name="author" content="Kvancy" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="笔记" />
+  
+  <meta name="description" content="PE文件笔记[TOC] 文件结构图：  1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL） PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PE文件笔记">
+<meta property="og:url" content="https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="Kvancy">
+<meta property="og:description" content="PE文件笔记[TOC] 文件结构图：  1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL） PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kvancy.github.io/images/favicon.ico">
+<meta property="article:published_time" content="2024-06-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-22T13:34:44.588Z">
+<meta property="article:author" content="Kvancy">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kvancy.github.io/images/favicon.ico">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://kvancy.github.io">作者博客</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/Kvancy">项目链接</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Kvancy</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Kvancy</h2> <br />
+                        <span>CTF,Re,逆向,懒</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">PE文件笔记</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-06-21T16:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-06-22</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Kvancy</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~12.10K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1719063284588"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PE%E6%96%87%E4%BB%B6%E7%AC%94%E8%AE%B0"><span class="toc-number">1.</span> <span class="toc-text">PE文件笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-PE%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1. PE文件简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dos%E5%A4%B4%E8%A7%A3%E6%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">2. Dos头解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-PE%E5%A4%B4%E8%A7%A3%E6%9E%90"><span class="toc-number">1.3.</span> <span class="toc-text">3. PE头解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8C%BA%E6%AE%B5%E5%A4%B4%E5%88%86%E6%9E%90"><span class="toc-number">1.4.</span> <span class="toc-text">4. 区段头分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AF%BC%E5%87%BA%E8%A1%A8%E5%88%86%E6%9E%90"><span class="toc-number">1.5.</span> <span class="toc-text">5. 导出表分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%AF%BC%E5%85%A5%E8%A1%A8%E5%88%86%E6%9E%90"><span class="toc-number">1.6.</span> <span class="toc-text">6. 导入表分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A1%A8"><span class="toc-number">1.7.</span> <span class="toc-text">7. 重定位表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%88%A9%E7%94%A8TEB%E5%92%8CPEB%E6%89%BE%E5%88%B0%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-number">1.8.</span> <span class="toc-text">8. 利用TEB和PEB找到核心模块的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%A2%9E%E5%8A%A0%E5%8C%BA%E6%AE%B5%E5%A4%B4%E5%90%91PE%E6%96%87%E4%BB%B6%E4%B8%AD%E6%A4%8D%E5%85%A5%E4%BB%A3%E7%A0%81"><span class="toc-number">1.9.</span> <span class="toc-text">9. 增加区段头向PE文件中植入代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%8C%E6%94%B6%E9%9B%86%E5%B8%B8%E8%A7%81%E6%AE%B5%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">附录，收集常见段的含义</span></a></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h1 id="PE文件笔记"><a href="#PE文件笔记" class="headerlink" title="PE文件笔记"></a>PE文件笔记</h1><p>[TOC]</p>
+<p>文件结构图：</p>
+<p><img src="K:/NormalApps/Typora/images/1379525-20191026162634249-935893360.jpg" alt="1379525-20191026162634249-935893360"></p>
+<h2 id="1-PE文件简介"><a href="#1-PE文件简介" class="headerlink" title="1. PE文件简介"></a>1. PE文件简介</h2><p>PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL）</p>
+<p>PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下几个部分组成：</p>
+<ul>
+<li>MS-DOS头部：这是为了兼容MS-DOS系统而保留的一个头部结构，它包含了一些基本信息，如EXE标志、重定位表偏移量、PE头偏移量等 </li>
+<li>DOS Stub：这是一个可选的字节块，它通常是一个显示“此程序不能在DOS模式下运行”的消息的程序 </li>
+<li>PE头标识：这是一个四字节的标识，其内容固定为“PE00”，用来表示这是一个PE文件 </li>
+<li>标准PE头：这是一个20字节的结构，它记录了PE文件的全局属性，如运行平台、节的数量、创建时间等 </li>
+<li>扩展PE头：这是一个224字节的结构，它记录了PE文件执行时的一些重要信息，如入口地址、装载基址、节对齐粒度、校验和等 </li>
+<li>数据目录：这是一个128字节的结构，它记录了PE文件中一些特殊数据的位置和大小，如导入表、导出表、资源表等 </li>
+<li>节表：这是一个由若干个40字节的结构组成的表格，它记录了PE文件中每个节的名称、位置、大小、属性等信息 </li>
+<li>节数据：这是PE文件中实际存放代码和数据的部分，它由若干个节组成，每个节对应于节表中的一项</li>
+</ul>
+<h2 id="2-Dos头解析"><a href="#2-Dos头解析" class="headerlink" title="2. Dos头解析"></a>2. Dos头解析</h2><p>DOS头是PE文件开头的一个固定长度的结构体，是为了兼容MS-DOS系统而保留的一个头部结构，大小0x40字节。包含如下信息</p>
+<blockquote>
+<ul>
+<li><strong>e_magic</strong>：一个WORD类型，值是一个常数0x4D5A，用文本编辑器查看该值位 MZ，可执行文件必须都是 MZ 开头</li>
+<li><strong>e_lfanew</strong>：为32位可执行文件扩展的域，用来表示DOS头之后的PE头相对文件起始地址的偏移</li>
+<li>e_cblp：最后一页中字节数</li>
+<li>e_cp：文件中页数</li>
+<li>e_crlc：重定位项数</li>
+<li>e_cparhdr：头部占用的内存段数</li>
+<li>e_minalloc：最小需要的附加内存段数</li>
+<li>e_maxalloc：最大需要的附加内存段数</li>
+<li>e_ss：初始SS值（相对于段起始地址）</li>
+<li>e_sp：初始SP值</li>
+<li>e_csum：校验和</li>
+<li>e_ip：初始IP值（相对于段起始地址）</li>
+<li>e_cs：初始CS值（相对于段起始地址）</li>
+<li>e_lfarlc：重定位表相对于文件起始地址的偏移</li>
+<li>e_ovno：覆盖号</li>
+<li>e_res：保留字</li>
+<li>e_oemid：OEM标识符</li>
+<li>e_oeminfo：OEM信息</li>
+<li>e_res2：保留字</li>
+</ul>
+</blockquote>
+<p>在DOS头中比较重要的两个参数是e_magic和e_lfanew，前者是PE文件标识头，后者是PE文件头的相对文件起始地址的偏移。</p>
+<p><img src="D:/app/Typora/images/Mxd4qKRPvurzFk5.png" alt="Typora卸载程序的DOS头"></p>
+<p>e_magic是前两个字节，对应的是字符串是MZ，e_ifanew是后四个字节，因为是小端序，所以对应的值是0x100，也就是说PE文件头对应偏移是0x100</p>
+<p><img src="D:/app/Typora/images/gEYiOwutNk7QfbT.png" alt="PE文件头偏移"></p>
+<p>在DOS头之后，还有一段DOS块，这段空间是由编译器生成，用来存储一些程序运行的信息，可以随意更改，对程序没有影响</p>
+<h2 id="3-PE头解析"><a href="#3-PE头解析" class="headerlink" title="3. PE头解析"></a>3. PE头解析</h2><p>PE头又叫NT头，是整个PE文件真正的头部，共有三个字段</p>
+<blockquote>
+<ol>
+<li><code>DWORD Signature</code> PE文件头标识，两个字节，一般是504500</li>
+<li><code>struct IMAGE_FILE_HEADER FileHeader</code> 结构体，文件头</li>
+<li><code>struct IMAGE_OPTIONAL_HEADER32 OptionalHeader</code>结构体， 可选文件头</li>
+</ol>
+</blockquote>
+<p>文件头结构体包含6个字段</p>
+<blockquote>
+<ol>
+<li><code>enum IMAGE_MACHINE Machine</code> WORD类型，程序允许的的CPU型号，为0则支持所有CPU</li>
+<li><code>WORD NumberOfSections</code> <strong>文件中区段的数量</strong></li>
+<li><code>time_t TimeDateStamp</code> 时间戳</li>
+<li><code>DWORD PointerToSymbolTable</code> </li>
+<li><code>DWORD NumberOfSymbols</code> </li>
+<li><code>WORD SizeOfOptionalHeader</code>  <strong>可选PE头的大小</strong>，32位默认0xE0，64位默认0xF0</li>
+<li><code>struct FILE_CHARACTERISTICS Characteristics</code> WORD，文件属性，通过16位二进制控制是否可执行，是否是dll之类的文件属性</li>
+</ol>
+</blockquote>
+<p>Typora卸载程序在DIE分析结果如下</p>
+<p><img src="D:/app/Typora/images/nDHEOiMP6CKJQXN.png" alt="在DIE下Typora卸载程序文件头"></p>
+<p>64位下可选PE头包含以下字段</p>
+<blockquote>
+<ol>
+<li><code>enum OPTIONAL_MAGIC Magic</code> 标识64位32位，前者20B，后者10B</li>
+<li><code>BYTE MajorLinkerVersion</code>  </li>
+<li><code>BYTE MinorLinkerVersion</code> </li>
+<li><code>DWORD SizeOfCode</code> 所有代码段的总大小，按照文件对齐后的大小</li>
+<li><code>DWORD SizeOfInitializedData</code> 已初始化的数据大小，按照文件对齐</li>
+<li><code>DWORD SizeOfUninitializedData</code> 未初始化的数据大小，按照文件对齐</li>
+<li><code>DWORD AddressOfEntryPoint</code> <strong>程序入口的OEP</strong> 存储的是一个偏移值，程序入口的<strong>内存偏移</strong></li>
+<li><code>DWORD BaseOfCode</code> 代码开始地址</li>
+<li><code>DWORD BaseOfData</code> 数据开始地址</li>
+<li><code>DWORD ImageBase</code> <strong>内存镜像地址</strong>，有可能是动态的，在<code>DLL_CHARACTERISTICS DllCharacteristics</code>中定义是否动态</li>
+<li><code>DWORD SectionAlignment</code> 内存对齐大小</li>
+<li><code>DWORD FileAlignment</code> 文件对齐大小</li>
+<li><code>WORD MajorOperatingSystemVersion</code></li>
+<li><code>WORD MinorOperatingSystemVersion</code></li>
+<li><code>WORD MajorImageVersion</code></li>
+<li><code>WORD MinorImageVersion</code></li>
+<li><code>WORD MajorSubsystemVersion</code></li>
+<li><code>WORD MinorSubsystemVersion</code></li>
+<li><code>DWORD Win32VersionValue</code></li>
+<li><code>DWORD SizeOfImage</code> 文件在内存中的大小，按照内存对齐后的大小</li>
+<li><code>DWORD SizeOfHeaders</code> DOS头+NT头+标准PE头+可选PE头+区段头，按照文件对齐后的大小</li>
+<li><code>DWORD CheckSum</code></li>
+<li><code>enum IMAGE_SUBSYSTEM Subsystem</code></li>
+<li><code>struct DLL_CHARACTERISTICS DllCharacteristics</code></li>
+<li><code>DWORD SizeOfStackReserve</code></li>
+<li><code>DWORD SizeOfStackCommit</code></li>
+<li><code>DWORD SizeOfHeapReserve</code></li>
+<li><code>DWORD SizeOfHeapCommit</code></li>
+<li><code>DWORD LoaderFlags</code></li>
+<li><code>DWORD NumberOfRvaAndSizes</code> 数据目录表的个数</li>
+<li><code>struct IMAGE_DATA_DIRECTORY_ARRAY DataDirArray</code> <strong>数据目录表数组</strong>在导出表导入表里分析</li>
+</ol>
+</blockquote>
+<p><img src="D:/app/Typora/images/1dtKCPqBrWm3cNM.png" alt="可选头中动静态地址分析"></p>
+<p>在VS中控制该属性的地方：</p>
+<p><img src="D:/app/Typora/images/aEJT1tjZH73UK4L.png" alt="动态基址生成文件"></p>
+<p>数据目录表数组以及数据目录表结构体：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数据目录表数组</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Export<span class="comment">//导出表</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Import<span class="comment">//导入表</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Resource<span class="comment">//资源</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Exception<span class="comment">//异常</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Security<span class="comment">//安全</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> BaseRelocationTable<span class="comment">//重定位表</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> DebugDirectory<span class="comment">//调试信息</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> CopyrightOrArchitectureSpecificData<span class="comment">//版权信息</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> GlobalPtr<span class="comment">//RVA OF GP</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> TLSDirectory<span class="comment">//TLS directory</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> LoadConfigurationDirectory</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> BoundImportDirectory</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> ImportAddressTable<span class="comment">//导入函数地址表</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> DelayLoadImportDescriptors</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> COMRuntimedescriptor</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Reserved</span><br><span class="line"></span><br><span class="line"><span class="comment">//表的结构体：</span></span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    DWORD   VirtualAddress;<span class="comment">//真正表结构体的内存偏移</span></span><br><span class="line">    DWORD   Size;<span class="comment">//大小，可被修改，没什么用</span></span><br><span class="line">&#125; IMAGE_DATA_DIRECTORY;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-区段头分析"><a href="#4-区段头分析" class="headerlink" title="4. 区段头分析"></a>4. 区段头分析</h2><p>010中exe模版下的区段头结构体，数量取决于PE文件头的NumberOfSections</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    BYTE    Name[<span class="number">8</span>] &lt;comment=<span class="string">&quot;can end without zero&quot;</span>&gt;;</span><br><span class="line">    <span class="comment">//区段名称，字符串不用以0结尾</span></span><br><span class="line">    <span class="keyword">union</span></span><br><span class="line">    &#123;</span><br><span class="line">        DWORD PhysicalAddress;</span><br><span class="line">        DWORD VirtualSize;</span><br><span class="line">    &#125; Misc;<span class="comment">//该区段在内存中的真实大小</span></span><br><span class="line">    DWORD   VirtualAddress;     <span class="comment">//区段在内存中的偏移地址    </span></span><br><span class="line">    DWORD   SizeOfRawData;    <span class="comment">//区段在对齐后的大小      </span></span><br><span class="line">    DWORD   PointerToRawData; <span class="comment">//区段在文件中的偏移位置       </span></span><br><span class="line">    DWORD   PointerToRelocations;<span class="comment">//</span></span><br><span class="line">    DWORD   PointerToLinenumbers;</span><br><span class="line">    WORD    NumberOfRelocations;</span><br><span class="line">    WORD    NumberOfLinenumbers;</span><br><span class="line">    SECTION_CHARACTERISTICS Characteristics;<span class="comment">//区段属性</span></span><br><span class="line">&#125; IMAGE_SECTION_HEADER </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在010中区段头数量和名称分析如下</p>
+<p><img src="D:/app/Typora/images/image-20230920194909946.png" alt="image-20230920194909946"></p>
+<h2 id="5-导出表分析"><a href="#5-导出表分析" class="headerlink" title="5. 导出表分析"></a>5. 导出表分析</h2><p>导出表结构体：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    DWORD   Characteristics;</span><br><span class="line">    <span class="type">time_t</span>  TimeDateStamp;<span class="comment">//时间戳</span></span><br><span class="line">    WORD    MajorVersion;</span><br><span class="line">    WORD    MinorVersion;</span><br><span class="line">    DWORD   Name;<span class="comment">//导出表名称</span></span><br><span class="line">    DWORD   Base;<span class="comment">//导出表起始序号</span></span><br><span class="line">    DWORD   NumberOfFunctions;<span class="comment">//导出函数数量 = 终止序号-起始序号+1</span></span><br><span class="line">    DWORD   NumberOfNames;<span class="comment">//以名称导出函数的个数</span></span><br><span class="line">    DWORD   AddressOfFunctions;<span class="comment">//EAT 导出函数地址表 </span></span><br><span class="line">    DWORD   AddressOfNames;<span class="comment">//ENT 导出函数名称表         </span></span><br><span class="line">    DWORD   AddressOfNameOrdinals; <span class="comment">//EOT 导出函数序号表  </span></span><br><span class="line">&#125; IMAGE_EXPORT_DIRECTORY ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>结构体中地址表。名称表，序号表都指的是内存偏移，也就是RVA，推到公式是RVA &#x3D; FOA +filebuff</p>
+<h2 id="6-导入表分析"><a href="#6-导入表分析" class="headerlink" title="6. 导入表分析"></a>6. 导入表分析</h2><p>跟导出表不同，导入表一个程序可以有多个</p>
+<p>导入表结构体：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">union</span></span><br><span class="line">    &#123;</span><br><span class="line">        ULONG   Characteristics;</span><br><span class="line">        ULONG   OriginalFirstThunk ;<span class="comment">//RVA，指向INT</span></span><br><span class="line">    &#125; DUMMYUNIONNAME;</span><br><span class="line">    ULONG   TimeDateStamp;<span class="comment">//时间戳，如果不与dll绑定时，为0</span></span><br><span class="line">    ULONG   ForwarderChain;<span class="comment">//</span></span><br><span class="line">    ULONG   Name;<span class="comment">//RVA dll的名称</span></span><br><span class="line">    ULONG   FirstThunk;<span class="comment">//RVA to IAT</span></span><br><span class="line">&#125; IMAGE_IMPORT_DESCRIPTOR </span><br></pre></td></tr></table></figure>
+
+<p>​                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           </p>
+<h2 id="7-重定位表"><a href="#7-重定位表" class="headerlink" title="7. 重定位表"></a>7. 重定位表</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    DWORD   VirtualAddress &lt;format=hex,comment=CommentRVA2FOA&gt;;</span><br><span class="line">    DWORD   SizeOfBlock;</span><br><span class="line"><span class="comment">//  WORD    TypeOffset[1];</span></span><br><span class="line">&#125; IMAGE_BASE_RELOCATION &lt;comment=CommentImageBaseRelocation&gt;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="8-利用TEB和PEB找到核心模块的信息"><a href="#8-利用TEB和PEB找到核心模块的信息" class="headerlink" title="8. 利用TEB和PEB找到核心模块的信息"></a>8. 利用TEB和PEB找到核心模块的信息</h2><p>PEB：Process Environment Block 进程环境块，存放进程相关信息</p>
+<p>TEB：Thread Environment Block  线程环境块</p>
+<blockquote>
+<p>PEB和TEB分别是进程环境块和线程环境块，它们是存放进程和线程信息的结构体。PEB和TEB的结构体成员有很多，其中一些是用于反调试技术的。PEB和TEB的访问方法有以下几种：</p>
+<ul>
+<li>通过FS段寄存器获取TEB的地址，然后通过TEB的ProcessEnvironmentBlock成员（偏移量为0x30）获取PEB的地址</li>
+<li>通过Ntdll.NtCurrentTeb()函数获取当前线程的TEB地址，然后通过TEB的ProcessEnvironmentBlock成员（偏移量为0x30）获取PEB的地址</li>
+<li>通过GetModuleHandle()函数获取进程的ImageBase地址，然后通过ImageBase地址加上偏移量获取PEB的地址</li>
+</ul>
+</blockquote>
+<p>PEB结构体定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">_PEB</span> &#123;</span><br><span class="line">  BYTE                          Reserved1[<span class="number">2</span>];</span><br><span class="line">  BYTE                          BeingDebugged;</span><br><span class="line">  BYTE                          Reserved2[<span class="number">1</span>];</span><br><span class="line">  PVOID                         Reserved3[<span class="number">2</span>];</span><br><span class="line">  PPEB_LDR_DATA                 Ldr;  <span class="comment">//偏移0xc</span></span><br><span class="line">  PRTL_USER_PROCESS_PARAMETERS  ProcessParameters;</span><br><span class="line">  PVOID                         Reserved4[<span class="number">3</span>];</span><br><span class="line">  PVOID                         AtlThunkSListPtr;</span><br><span class="line">  PVOID                         Reserved5;</span><br><span class="line">  ULONG                         Reserved6;</span><br><span class="line">  PVOID                         Reserved7;</span><br><span class="line">  ULONG                         Reserved8;</span><br><span class="line">  ULONG                         AtlThunkSListPtr32;</span><br><span class="line">  PVOID                         Reserved9[<span class="number">45</span>];</span><br><span class="line">  BYTE                          Reserved10[<span class="number">96</span>];</span><br><span class="line">  PPS_POST_PROCESS_INIT_ROUTINE PostProcessInitRoutine;</span><br><span class="line">  BYTE                          Reserved11[<span class="number">128</span>];</span><br><span class="line">  PVOID                         Reserved12[<span class="number">1</span>];</span><br><span class="line">  ULONG                         SessionId;</span><br><span class="line">&#125; PEB, *PPEB;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>PPEB_LDR_DATA结构体定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">_PEB_LDR_DATA</span> &#123;</span><br><span class="line">  BYTE Reserved1 [<span class="number">8</span>];</span><br><span class="line">  PVOID Reserved2 [<span class="number">3</span>];</span><br><span class="line">  LIST_ENTRY InMemoryOrderModuleList;<span class="comment">//载入顺序排序的dll</span></span><br><span class="line">  LIST_ENTRY InLoadOrderModuleList;<span class="comment">//内存排序的dll</span></span><br><span class="line">  LIST_ENTRY InInitializationOrderModuleList;<span class="comment">//初始化排序的dll，偏移0x1c</span></span><br><span class="line">&#125; PEB_LDR_DATA, *PPEB_LDR_DATA;</span><br></pre></td></tr></table></figure>
+
+<p>LIST_ENTRY结构体定义</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">_LIST_ENTRY</span> &#123;</span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">_LIST_ENTRY</span> *Flink;<span class="comment">//下一个节点的指针</span></span><br><span class="line">  <span class="keyword">struct</span> <span class="title class_">_LIST_ENTRY</span> *Blink;<span class="comment">//上一个节点的指针</span></span><br><span class="line">&#125; LIST_ENTRY, *PLIST_ENTRY, *PRLIST_ENTRY;</span><br></pre></td></tr></table></figure>
+
+<p>获取kernel32.dll或者kernerbase.dll的模块信息</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://bing.com/search?q=kernel32.dll%E6%88%96%E8%80%85kernerbase.dll%E9%83%BD%E4%BB%A3%E8%A1%A8%E4%BB%80%E4%B9%88%E6%A8%A1%E5%9D%97">kernel32.dll和kernerbase.dll都是Windows操作系统的重要文件，它们是NT内核系统的底层API接口的DLL文件，与其他应用程序和运行库进行交互。</a><a target="_blank" rel="noopener" href="https://bing.com/search?q=kernel32.dll%E6%88%96%E8%80%85kernerbase.dll%E9%83%BD%E4%BB%A3%E8%A1%A8%E4%BB%80%E4%B9%88%E6%A8%A1%E5%9D%97">1</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/242615448">kernel32.dll和kernerbase.dll有相同的功能，但是它们的区别在于，kernel32.dll是一个向后兼容的文件，它包含了一些旧版本的Windows API函数，而kernerbase.dll是一个新的文件，它包含了一些新版本的Windows API函数。</a></p>
+</blockquote>
+<p>kernel32.dll和kernerbase.dll包含<strong>GetProcAddress</strong>，<em><strong>LoadLibraryA</strong></em>，<em><strong>LoadModule</strong></em>等等</p>
+<p>更多API-&gt;<a target="_blank" rel="noopener" href="https://www.geoffchappell.com/">Geoff Chappell, Software Analyst</a></p>
+<p>user32.dll-&gt;<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38406587/article/details/105505007">User32大全详解-CSDN博客</a></p>
+<p> <code>mov esi,dword ptr fs:[0x30] </code> 获取PEB地址</p>
+<p><code>mov esi,[esi+0xc]</code> 获取Ldr地址</p>
+<p><code>mov esi,[esi+0x1c]</code> 获取InInitializationOrderModuleList</p>
+<p><code>mov esi,[esi]</code> 获取InInitializationOrderModuleList的第二项，esi既是LIST_ENTRY结构体地址，也是下一个节点指针的地址</p>
+<p><code>mov esi,[esi+0x8] </code> 模块信息，kernel32或者kernerbase模块基址</p>
+<blockquote>
+<p>拿到了dll模块基址，通过基址和固定偏移来访问导出表，再通过导出表和定义好的字符串（函数名称）比较来获取模块指定函数——<strong>GetProcAddress</strong>，<em><strong>LoadLibraryA</strong></em>等等，到这就可以利用函数地址调用指定函数了</p>
+</blockquote>
+<p><code>mov edx,esi</code> 保存模块基址<br><code>mov esi,[esi+0x3c]</code> 获取NT头偏移<br><code>lea esi,[edx+esi] </code> 得到NT头地址<br><code>mov esi,[esi+0x78]</code> 得到导出表RVA<br><code>lea esi,[edx+esi] </code> 得到导出表VA<br><code>mov edi,[esi+0x1c]</code> 得到EAT的RVA（地址表）<br><code>lea edi,[edi+edx]</code> 得到EAT的RA<br><code>mov [ebp-0x4],edi</code> 保存在栈中<br><code>mov edi,[esi+0x20]</code> 得到ENT的RVA（名称表）<br><code>lea edi,[edx+edi]</code> 得到ENT的VA<br><code>mov [ebp-0x8],edi</code> 保存在栈中<br><code>mov edi,[esi+0x24]</code> 得到EOT的RVA（序号表）<br><code>lea edi,[edx+edi]</code> 得到EOT的VA<br><code>mov [ebp-0xc],edi</code> 保存在栈中</p>
+<p><strong>LDR_DATA_TABLE_ENTRY</strong>结构体是一个用来存放模块信息的结构体，它的定义如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> <span class="title class_">_LDR_DATA_TABLE_ENTRY</span> &#123;</span><br><span class="line">  PVOID Reserved1[<span class="number">2</span>];</span><br><span class="line">  LIST_ENTRY InMemoryOrderLinks;<span class="comment">//双向链表连接所有模块信息</span></span><br><span class="line">  PVOID Reserved2[<span class="number">2</span>];</span><br><span class="line">  PVOID DllBase;<span class="comment">//模块基址</span></span><br><span class="line">  PVOID EntryPoint;<span class="comment">//模块入口点</span></span><br><span class="line">  PVOID Reserved3;</span><br><span class="line">  UNICODE_STRING FullDllName;<span class="comment">//模块完整名称</span></span><br><span class="line">  BYTE Reserved4[<span class="number">8</span>];</span><br><span class="line">  PVOID Reserved5[<span class="number">3</span>];</span><br><span class="line">  <span class="keyword">union</span> &#123;</span><br><span class="line">    ULONG CheckSum;</span><br><span class="line">    PVOID Reserved6;</span><br><span class="line">  &#125;;</span><br><span class="line">  ULONG TimeDateStamp;</span><br><span class="line">&#125; LDR_DATA_TABLE_ENTRY, *PLDR_DATA_TABLE_ENTRY;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/windows/win32/api/winternl/ns-winternl-peb_ldr_data">其中，Reserved1，Reserved2，Reserved3，Reserved4，Reserved5和Reserved6都是保留供操作系统内部使用的字段，不对外公开。DllBase是模块的基址，EntryPoint是模块的入口点，FullDllName是模块的完整名称，CheckSum是模块的校验和，TimeDateStamp是模块的时间戳。InMemoryOrderLinks是一个双向链表节点，它用来将所有的模块信息连接起来。</a></p>
+</blockquote>
+<p>通过导出表kernel32.dll获得其中的“LoadLibraryA” 和 “GetProAddress”</p>
+<h2 id="9-增加区段头向PE文件中植入代码"><a href="#9-增加区段头向PE文件中植入代码" class="headerlink" title="9. 增加区段头向PE文件中植入代码"></a>9. 增加区段头向PE文件中植入代码</h2><p><strong>ShellCode：</strong>–执行打印helloworld的代码<br>$$<br>“\x60\x8B\xEC\x6A\x00\x68\x72\x6C\x64\x21\x68\x6F\x20\x77\x6F\x68\x68\x65\x6C\x6C\x68\x73\x73\x00\x00\x68\x64\x64\x72\x65\x68\x72\x6F\x63\x41\x68\x47\x65\x74\x50\x6A\x00\x68\x61\x72\x79\x41\x68\x4C\x69\x62\x72\x68\x4C\x6F\x61\x64\x8B\xCC\x51\xE8\x8F\x00\x00\x00\x8B\xE5\x61\xE9\xF7\x70\xFB\xFF\xC3\x55\x8B\xEC\x83\xEC\x20\x56\x64\x8B\x35\x30\x00\x00\x00\x8B\x76\x0C\x8B\x76\x1C\x8B\x36\x8B\x76\x08\x8B\xC6\x5E\x8B\xE5\x5D\xC3\x55\x8B\xEC\x83\xEC\x20\x8B\x55\x08\x8B\x72\x3C\x8D\x34\x16\x8B\x76\x78\x8D\x34\x32\x8B\x7E\x1C\x8D\x3C\x17\x89\x7D\xFC\x8B\x7E\x20\x8D\x3C\x17\x89\x7D\xF8\x8B\x7E\x24\x8D\x3C\x17\x89\x7D\xF4\x33\xC0\xEB\x01\x40\x8B\x75\xF8\x8B\x34\x86\x8D\x34\x16\x8B\x7D\x0C\x8B\x4D\x10\xF3\xA6\x8B\x75\xF4\x75\xE9\x8B\x75\xF4\x33\xFF\x66\x8B\x3C\x46\x8B\x55\xFC\x8B\x34\xBA\x8B\x55\x08\x8D\x04\x16\x8B\xE5\x5D\xC2\x0C\x00\x55\x8B\xEC\x83\xEC\x10\xE8\x6F\xFF\xFF\xFF\x89\x45\xFC\x8D\x4D\x0C\x6A\x0C\x51\x50\xE8\x80\xFF\xFF\xFF\x89\x45\xF8\x6A\x0E\x8D\x4D\x1C\x51\xFF\x75\xFC\xE8\x6F\xFF\xFF\xFF\x89\x45\xF4\x68\x6C\x6C\x00\x00\x68\x72\x74\x2E\x64\x68\x6D\x73\x76\x63\x36\x8D\x4D\xE4\x51\xFF\x55\xF8\x68\x74\x66\x00\x00\x68\x70\x72\x69\x6E\x8D\x4D\xDC\x51\x50\xFF\x55\xF4\x8D\x4D\x2C\x51\xFF\xD0\x8B\xE5\x5D\xC3”<br>$$</p>
+<blockquote>
+<ol>
+<li><p>在文件末尾增加N字节给自己的代码提供空间</p>
+</li>
+<li><p>向最后一个区段后添加一个和text属性相同的区段</p>
+</li>
+<li><p>在union misc属性下填入N</p>
+</li>
+<li><p>在VirtualAddress属性下填入M</p>
+</li>
+</ol>
+<p>  M &#x3D; VirtualAddress(上一个区段)+内存对齐值*（max(SizeOfRawData,VirtualSize)&#x2F;内存对齐值)</p>
+<ol start="5">
+<li><p>在SizeOfRawData属性下填入N</p>
+</li>
+<li><p>在PointerToRawData属性下填入X</p>
+</li>
+</ol>
+<p>  X &#x3D; SizeOfRawData(上一个区段)+PointerToRawData(上一个区段)</p>
+<ol start="7">
+<li>在文件头的区段数量属性上加一</li>
+<li>在可选文件头的SizeOfImage属性上加N、</li>
+<li>文件末尾填入ShellCode</li>
+<li>修改OEP</li>
+</ol>
+</blockquote>
+<h1 id="附录，收集常见段的含义"><a href="#附录，收集常见段的含义" class="headerlink" title="附录，收集常见段的含义"></a>附录，收集常见段的含义</h1><p>rdata段</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.r-project.org/">rdata段是PE文件中的一个区段，它存储了程序用到的资源数据，如图标、字符串、位图等</a><a target="_blank" rel="noopener" href="https://www.r-project.org/">1</a><a target="_blank" rel="noopener" href="https://www.r-project.org/about.html">。rdata段也可以存储一些只读的常量数据，如函数名、类名、导入表等</a><a target="_blank" rel="noopener" href="https://www.r-project.org/about.html">2</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42458954/article/details/109286979">rdata段是可选的，不是所有的PE文件都有它。如果有rdata段，它通常位于text段和data段之间</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42458954/article/details/109286979">3</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/Simon798/article/details/96876910">。rdata段的属性是只读的，不能被修改</a><a target="_blank" rel="noopener" href="https://blog.csdn.net/Simon798/article/details/96876910">4</a>。</p>
+</blockquote>
+<p>bss段</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://bing.com/search?q=bss%E6%AE%B5">bss段是PE文件中的一个区段，它存储了程序中未初始化或初始化为零的全局变量和静态局部变量</a><a target="_blank" rel="noopener" href="https://bing.com/search?q=bss%E6%AE%B5">1</a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/BSS%E6%AE%B5">。bss段的大小从可执行文件中得到，然后链接器得到这个大小的内存块，紧跟在数据段后面</a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/BSS%E6%AE%B5">2</a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/BSS%E6%AE%B5">。当这个内存区进入程序的地址空间后全部清零，包含data和bss段的整个区段此时通常称为数据区</a><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/BSS%E6%AE%B5">2</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348026261">bss段是可选的，不是所有的PE文件都有它。如果有bss段，它通常位于text段和data段之间</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348026261">3</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/610583072">。bss段的属性是只读的，不能被修改</a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/610583072">4</a>。</p>
+</blockquote>
+</div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/";
+            const title         = "「PE文件笔记」";
+            const excerpt       = `PE文件笔记[TOC]
+文件结构图：
+
+1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-06-22T13:34:44.588Z" itemprop="dateModified">最后编辑：2024-06-22</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" windows内核开发" href="/2024/06/22/windows内核开发/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" smc总结" href="/2024/06/22/smc总结/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">一个二进制菜鸟的学习之路</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                9
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                2
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                2
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#PE%E6%96%87%E4%BB%B6%E7%AC%94%E8%AE%B0"><span class="toc-text">PE文件笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-PE%E6%96%87%E4%BB%B6%E7%AE%80%E4%BB%8B"><span class="toc-text">1. PE文件简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Dos%E5%A4%B4%E8%A7%A3%E6%9E%90"><span class="toc-text">2. Dos头解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-PE%E5%A4%B4%E8%A7%A3%E6%9E%90"><span class="toc-text">3. PE头解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%8C%BA%E6%AE%B5%E5%A4%B4%E5%88%86%E6%9E%90"><span class="toc-text">4. 区段头分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AF%BC%E5%87%BA%E8%A1%A8%E5%88%86%E6%9E%90"><span class="toc-text">5. 导出表分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%AF%BC%E5%85%A5%E8%A1%A8%E5%88%86%E6%9E%90"><span class="toc-text">6. 导入表分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E9%87%8D%E5%AE%9A%E4%BD%8D%E8%A1%A8"><span class="toc-text">7. 重定位表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%88%A9%E7%94%A8TEB%E5%92%8CPEB%E6%89%BE%E5%88%B0%E6%A0%B8%E5%BF%83%E6%A8%A1%E5%9D%97%E7%9A%84%E4%BF%A1%E6%81%AF"><span class="toc-text">8. 利用TEB和PEB找到核心模块的信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%A2%9E%E5%8A%A0%E5%8C%BA%E6%AE%B5%E5%A4%B4%E5%90%91PE%E6%96%87%E4%BB%B6%E4%B8%AD%E6%A4%8D%E5%85%A5%E4%BB%A3%E7%A0%81"><span class="toc-text">9. 增加区段头向PE文件中植入代码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%99%84%E5%BD%95%EF%BC%8C%E6%94%B6%E9%9B%86%E5%B8%B8%E8%A7%81%E6%AE%B5%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-text">附录，收集常见段的含义</span></a></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%86%E5%90%91/">逆向</a><span class="category-list-count">7</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/%E7%A0%B4%E8%A7%A3/" style="font-size: 0.6em;">破解</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.8em;">笔记</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/Rookie%20diary/"><i class="fa  fa-book"></i> Rookie diary</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/c++/"><i class="fa  fa-book"></i> c++笔记</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/smc%E6%80%BB%E7%BB%93/"><i class="fa  fa-book"></i> smc总结</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/"><i class="fa  fa-book"></i> PE文件笔记</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/"><i class="fa  fa-book"></i> windows内核开发</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Kvancy 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Kvancy.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <div>
+        <script async src="/js/boom.min.js"></script>
+    </div>
+
+
+    <div>
+        <canvas id="Suzhi"></canvas>
+        <script async src="/js/Suzhi.min.js"></script>
+    </div>
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>

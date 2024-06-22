@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <link rel="icon" href="/images/favicon.ico">
   
-  <title>大创描述 | Kvancy</title>
-  <link rel="canonical" href="https://kvancy.github.io/2023/09/18/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/index.html">
+  <title>windows内核开发 | Kvancy</title>
+  <link rel="canonical" href="https://kvancy.github.io/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/index.html">
   <meta name="author" content="Kvancy" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -15,20 +15,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="format-detection" content="telphone=no, email=no" />
   
-    <meta name="keywords" content="项目" />
+    <meta name="keywords" content="笔记" />
   
-  <meta name="description" content="GameHall有待完善： 按钮弹起和落下bug有待修复 Gamehall的UI界面有待美化 增加社交功能，例如好友，社区等 优化窗口最大化显示界面 窗口边框有待美化">
+  <meta name="description" content="双击调试环境搭建https:&#x2F;&#x2F;www.cnblogs.com&#x2F;dayq&#x2F;p&#x2F;16323537.html windbg命令https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010551008&#x2F;article&#x2F;details&#x2F;136555550 段寄存器段选择子大小16位  段选择子控制了段寄存器的所有属性,属性放在了一张表里  RPL:请求特权级别 请求访问者所使用的权限级别 TI:这个标志决定了我们">
 <meta property="og:type" content="article">
-<meta property="og:title" content="大创描述">
-<meta property="og:url" content="https://kvancy.github.io/2023/09/18/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/index.html">
+<meta property="og:title" content="windows内核开发">
+<meta property="og:url" content="https://kvancy.github.io/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="Kvancy">
-<meta property="og:description" content="GameHall有待完善： 按钮弹起和落下bug有待修复 Gamehall的UI界面有待美化 增加社交功能，例如好友，社区等 优化窗口最大化显示界面 窗口边框有待美化">
+<meta property="og:description" content="双击调试环境搭建https:&#x2F;&#x2F;www.cnblogs.com&#x2F;dayq&#x2F;p&#x2F;16323537.html windbg命令https:&#x2F;&#x2F;blog.csdn.net&#x2F;u010551008&#x2F;article&#x2F;details&#x2F;136555550 段寄存器段选择子大小16位  段选择子控制了段寄存器的所有属性,属性放在了一张表里  RPL:请求特权级别 请求访问者所使用的权限级别 TI:这个标志决定了我们">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kvancy.github.io/images/favicon.ico">
-<meta property="article:published_time" content="2023-09-17T16:00:00.000Z">
-<meta property="article:modified_time" content="2023-09-18T13:08:20.165Z">
+<meta property="article:published_time" content="2024-06-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-22T13:29:55.380Z">
 <meta property="article:author" content="Kvancy">
-<meta property="article:tag" content="项目">
+<meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://kvancy.github.io/images/favicon.ico">
   
@@ -158,15 +158,15 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="https://kvancy.github.io/2023/09/18/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/">
+    <link itemprop="mainEntityOfPage" href="https://kvancy.github.io/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
-                <h1 class="kratos-entry-title text-center" itemprop="name headline">大创描述</h1>
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">windows内核开发</h1>
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2023-09-17T16:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-09-18</time></li>
+                <li><time datetime="2024-06-21T16:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-06-22</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">Kvancy</span>
                 </li>
@@ -175,7 +175,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            766
+                            ~1.93K
                         
                         字
                     </li>
@@ -187,50 +187,52 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1695042500165"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1719062995380"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
             
                 <div class="kratos-post-inner-toc toc-div-class" >
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#GameHall"><span class="toc-number">1.</span> <span class="toc-text">GameHall</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BE%85%E5%AE%8C%E5%96%84%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">有待完善：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">开发日志：</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%87%BB%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-number">1.</span> <span class="toc-text">双击调试环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windbg%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">windbg命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">3.</span> <span class="toc-text">段寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E9%80%89%E6%8B%A9%E5%AD%90"><span class="toc-number">3.1.</span> <span class="toc-text">段选择子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-number">3.2.</span> <span class="toc-text">段描述符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E9%97%A8"><span class="toc-number">4.</span> <span class="toc-text">调用门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E9%97%A8"><span class="toc-number">5.</span> <span class="toc-text">中断门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%B7%E9%98%B1%E9%97%A8"><span class="toc-number">6.</span> <span class="toc-text">陷阱门:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E6%AE%B5"><span class="toc-number">7.</span> <span class="toc-text">任务段</span></a></li></ol>
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><ol>
-<li><h1 id="GameHall"><a href="#GameHall" class="headerlink" title="GameHall"></a>GameHall</h1><h2 id="有待完善："><a href="#有待完善：" class="headerlink" title="有待完善："></a>有待完善：</h2><ol>
-<li>按钮弹起和落下bug有待修复</li>
-<li>Gamehall的UI界面有待美化</li>
-<li>增加社交功能，例如好友，社区等</li>
-<li>优化窗口最大化显示界面</li>
-<li>窗口边框有待美化<span id="more"></span></li>
-</ol>
-<h2 id="开发日志："><a href="#开发日志：" class="headerlink" title="开发日志："></a>开发日志：</h2><ul>
-<li><p>2023&#x2F;6&#x2F;9：完成Gamehall的界面基本布局</p>
-</li>
-<li><p>2023&#x2F;6&#x2F;13：完成gif的正常播放并放置控制播放按钮，实现左右循环播放</p>
-</li>
-<li><p>2023&#x2F;6&#x2F;19：构成hallbtn类，并实现游戏按钮的弹起落下效果</p>
-</li>
-<li><p>2023&#x2F;6&#x2F;24：基本实现了排行榜功能，用户可以点击排行榜进入游戏</p>
-</li>
-<li><p>2023&#x2F;6&#x2F;29：提供了上传头像的接口，对传输的文件进行检测，检测成功在数据库中保存图片格式，二进制文件，从而实现用户再次登录时显示之前上传的图片。</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;2：增加了返回Home按钮，实现返回大厅主界面功能。</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;6：基本实现了游戏搜索功能，可以对输入关键字进行包含检测，然后做出相应显示。</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;9：增加了用户通过邮箱注册功能，并对邮箱的输入进行必要检测，利用定时器实现60秒后才可重新发送功能。</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;14：增加了游戏启动关闭时隐藏和显示Gamehall的功能，初步完成hallbtn右键菜单功能</p>
-</li>
-<li><p>2023&#x2F;7&#x2F;17：完成了右键hallbtn启动游戏菜单功能，增加downloadtools类，用户可通过菜单进行游戏的启动和下载，并增加download类实现可视的下载进度；增加了一个返回登录的功能。</p>
-</li>
-<li><p>2023&#x2F;9&#x2F;13：优化了部分冗长相似的代码，对之前堆空间内存管理不当进行了优化。</p>
-</li>
-</ul>
-</li>
-</ol>
+            <div itemprop="articleBody"><h2 id="双击调试环境搭建"><a href="#双击调试环境搭建" class="headerlink" title="双击调试环境搭建"></a>双击调试环境搭建</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dayq/p/16323537.html">https://www.cnblogs.com/dayq/p/16323537.html</a></p>
+<h2 id="windbg命令"><a href="#windbg命令" class="headerlink" title="windbg命令"></a>windbg命令</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u010551008/article/details/136555550">https://blog.csdn.net/u010551008/article/details/136555550</a></p>
+<h2 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h2><h3 id="段选择子"><a href="#段选择子" class="headerlink" title="段选择子"></a>段选择子</h3><p>大小16位</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240414192526959.png" alt="image-20240414192526959"></p>
+<p>段选择子控制了段寄存器的所有属性,属性放在了一张表里</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240414194604776.png" alt="image-20240414194604776"></p>
+<p>RPL:请求特权级别</p>
+<p>请求访问者所使用的权限级别</p>
+<p>TI:这个标志决定了我们要去哪个表查询数据 0:GDT 1:LDT</p>
+<p>GDT（Global Descriptor Table，全局描述符表）和LDT（Local Descriptor Table，局部描述符表）是在x86架构中使用的两种描述符表，用于定义内存段的属性和访问权限。GDT是全局性的描述符表，它存储了系统中所有任务共享的段描述符。GDT在系统启动时被加载到GDTR（GDT寄存器），全局有效，可由所有任务和进程共享。它适用于操作系统内核代码、全局共享的库和驱动程序等。LDT是每个任务（进程）独有的描述符表，它存储了每个任务独有的段描述符。每个任务都可以有自己的LDT，用于定义任务私有的内存段属性。总之，GDT和LDT的主要区别在于作用域和使用方式。GDT是全局性的，适用于所有任务和进程共享的内存段；而LDT是局部性的，每个任务都有自己的LDT，用于定义任务私有的内存段属性。</p>
+<p>INDEX:数据所在表的索引值</p>
+<p>GDTR:这个是一个伪寄存器,存储着GDT表的地址</p>
+<p>r gdtr 获取GDT的地址</p>
+<h3 id="段描述符"><a href="#段描述符" class="headerlink" title="段描述符"></a>段描述符</h3><p>通过GDT和INDEX来访问段描述符</p>
+<p>段描述符64位,表示属性如下</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240414201047044.png" alt="image-20240414201047044"></p>
+<p>DPL:段权限级别</p>
+<p>RPL:请求特权级别</p>
+<p>CPL:当前权限级别</p>
+<p>type表:</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240414210229106.png" alt="image-20240414210229106"></p>
+<h2 id="调用门"><a href="#调用门" class="headerlink" title="调用门"></a>调用门</h2><p>调用门（call gate）是Intel x86架构提供的一种进行系统调用的手段。它的作用是由低特权级代码调用高特权级代码，通常仅用于使用特权级保护机制的操作系统中。调用门在全局描述符表（GDT）或局部描述符表（LDT）中以描述符的形式存在，调用方式是通过call或jmp指令加上调用门的段选择子来实现。</p>
+<p>调用门描述符的格式包括了代码段的选择子、偏移量、门的类型、有效位以及特权级等字段。</p>
+<p>调用们存放在IDT</p>
+<p>IDTR存放IDT的地址</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240414210426972.png" alt="image-20240414210426972"></p>
+<h2 id="中断门"><a href="#中断门" class="headerlink" title="中断门"></a>中断门</h2><p>中断门实际上是一种特殊的段描述符，称为系统描述符，由段描述符的S位控制。中断门包含段选择符和中断或异常处理程序的段内偏移量。当控制权转移到一个适当的段时，处理器会清除IF标志，从而关闭将来可能会发生的可屏蔽中断。中断门主要用于实现中断或异常处理程序的跳转，以确保在处理中断或异常时，不会受到其他中断的干扰。中断门与陷阱门（trap gate）的主要区别在于，程序通过中断门跳转后，EFLAGS寄存器的IF位会自动清零，从而关闭中断。而陷阱门则没有这样的效果。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240414210432946.png" alt="image-20240414210432946"></p>
+<h2 id="陷阱门"><a href="#陷阱门" class="headerlink" title="陷阱门:"></a>陷阱门:</h2><p><img src="K:/NormalApps/Typora/images/image-20240414210454901.png" alt="image-20240414210454901"></p>
+<h2 id="任务段"><a href="#任务段" class="headerlink" title="任务段"></a>任务段</h2><p>从tr寄存器获得段选择子,根据段选择子和gdtr表来获取段描述符</p>
+<p>TSS段描述符的各位解析:</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240506214113678.png" alt="image-20240506214113678"></p>
+<p>TSS结构体:</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240506214414045.png" alt="image-20240506214414045"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">typedef struct TSS &#123;</span><br><span class="line">    DWORD link; // 保存前一个 TSS 段选择子，使用 call 指令切换寄存器的时候由CPU填写。</span><br><span class="line">    // 这 6 个值是固定不变的，用于提权，CPU 切换栈的时候用</span><br><span class="line">    DWORD esp0; // 保存 0 环栈指针</span><br><span class="line">    DWORD ss0;  // 保存 0 环栈段选择子</span><br><span class="line">    DWORD esp1; // 保存 1 环栈指针</span><br><span class="line">    DWORD ss1;  // 保存 1 环栈段选择子</span><br><span class="line">    DWORD esp2; // 保存 2 环栈指针</span><br><span class="line">    DWORD ss2;  // 保存 2 环栈段选择子</span><br><span class="line">    // 下面这些都是用来做切换寄存器值用的，切换寄存器的时候由CPU自动填写。</span><br><span class="line">    DWORD cr3; </span><br><span class="line">    DWORD eip;  </span><br><span class="line">    DWORD eflags;</span><br><span class="line">    DWORD eax;</span><br><span class="line">    DWORD ecx;</span><br><span class="line">    DWORD edx;</span><br><span class="line">    DWORD ebx;</span><br><span class="line">    DWORD esp;</span><br><span class="line">    DWORD ebp;</span><br><span class="line">    DWORD esi;</span><br><span class="line">    DWORD edi;</span><br><span class="line">    DWORD es;</span><br><span class="line">    DWORD cs;</span><br><span class="line">    DWORD ss;</span><br><span class="line">    DWORD ds;</span><br><span class="line">    DWORD fs;</span><br><span class="line">    DWORD gs;</span><br><span class="line">    DWORD ldt;</span><br><span class="line">    // 这个暂时忽略</span><br><span class="line">    DWORD io_map;</span><br><span class="line">&#125; TSS;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 </div>
         </div>
         
@@ -284,7 +286,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "https://kvancy.github.io/2023/09/18/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/",
+                text: "https://kvancy.github.io/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -296,14 +298,10 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "https://kvancy.github.io/2023/09/18/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/";
-            const title         = "「大创描述」";
-            const excerpt       = `GameHall有待完善：
-按钮弹起和落下bug有待修复
-Gamehall的UI界面有待美化
-增加社交功能，例如好友，社区等
-优化窗口最大化显示界面
-窗口边框有待美化`;
+            const hostUrl       = "https://kvancy.github.io/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/";
+            const title         = "「windows内核开发」";
+            const excerpt       = `双击调试环境搭建https://www.cnblogs.com/dayq/p/16323537.html
+windbg命令https://blog.csdn.net/u010551008/article/details/1365555...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -322,10 +320,10 @@ Gamehall的UI界面有待美化
             <div class="footer-tag clearfix">
                 <div class="pull-left">
                 <i class="fa fa-tags"></i>
-                    <a class="tag-none-link" href="/tags/%E9%A1%B9%E7%9B%AE/" rel="tag">项目</a>
+                    <a class="tag-none-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2023-09-18T13:08:20.165Z" itemprop="dateModified">最后编辑：2023-09-18</time>
+                    <time datetime="2024-06-22T13:29:55.380Z" itemprop="dateModified">最后编辑：2024-06-22</time>
                 </div>
             </div>
         </footer>
@@ -334,12 +332,12 @@ Gamehall的UI界面有待美化
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" Typora破解复现" href="/2023/09/18/Typora破解记录/">&lt; 上一篇</a>
+                <a title=" 扫雷辅助制作" href="/2024/06/22/扫雷辅助/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" c++笔记" href="/2023/09/18/c++/">下一篇 &gt;</a>
+                <a title=" PE文件笔记" href="/2024/06/22/PE文件解析/">下一篇 &gt;</a>
             </div>
             
         </nav>
@@ -376,7 +374,7 @@ Gamehall的UI界面有待美化
                 文章
             </span>
             <span class="count">
-                4
+                9
             </span>
         </a>
         <a class="meta-item" href="/categories/">
@@ -384,7 +382,7 @@ Gamehall的UI界面有待美化
                 分类
             </span>
             <span class="count">
-                3
+                2
             </span>
         </a>
         <a class="meta-item" href="/tags/">
@@ -392,7 +390,7 @@ Gamehall的UI界面有待美化
                 标签
             </span>
             <span class="count">
-                3
+                2
             </span>
         </a>
     </div>
@@ -408,14 +406,14 @@ Gamehall的UI界面有待美化
         <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
     </h4>
     <div class="textwidget">
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#GameHall"><span class="toc-text">GameHall</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E5%BE%85%E5%AE%8C%E5%96%84%EF%BC%9A"><span class="toc-text">有待完善：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97%EF%BC%9A"><span class="toc-text">开发日志：</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E5%87%BB%E8%B0%83%E8%AF%95%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">双击调试环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#windbg%E5%91%BD%E4%BB%A4"><span class="toc-text">windbg命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AE%B5%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">段寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E9%80%89%E6%8B%A9%E5%AD%90"><span class="toc-text">段选择子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AE%B5%E6%8F%8F%E8%BF%B0%E7%AC%A6"><span class="toc-text">段描述符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E9%97%A8"><span class="toc-text">调用门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E9%97%A8"><span class="toc-text">中断门</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%B7%E9%98%B1%E9%97%A8"><span class="toc-text">陷阱门:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E6%AE%B5"><span class="toc-text">任务段</span></a></li></ol>
     </div>
 </aside>
                 
                 
   <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
     <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%86%E5%90%91/">逆向</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/">项目经验</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%86%E5%90%91/">逆向</a><span class="category-list-count">7</span></li></ul>
   </aside>
 
 
@@ -424,7 +422,7 @@ Gamehall的UI界面有待美化
   <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
     <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
       <div class="tag-clouds">
-        <a href="/tags/%E7%A0%B4%E8%A7%A3/" style="font-size: 0.6em;">破解</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.8em;">笔记</a> <a href="/tags/%E9%A1%B9%E7%9B%AE/" style="font-size: 0.6em;">项目</a>
+        <a href="/tags/%E7%A0%B4%E8%A7%A3/" style="font-size: 0.6em;">破解</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.8em;">笔记</a>
       </div>
   </aside>
 
@@ -438,28 +436,42 @@ Gamehall的UI界面有待美化
         
           
           
-            <a class="list-group-item" href="/2023/09/18/Rookie%20diary/"><i class="fa  fa-book"></i> Rookie diary</a>
+            <a class="list-group-item" href="/2024/06/22/Rookie%20diary/"><i class="fa  fa-book"></i> Rookie diary</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2023/09/18/c++/"><i class="fa  fa-book"></i> c++笔记</a>
+            <a class="list-group-item" href="/2024/06/22/c++/"><i class="fa  fa-book"></i> c++笔记</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2023/09/18/%E5%A4%A7%E5%88%9B%E6%8F%8F%E8%BF%B0/"><i class="fa  fa-book"></i> 大创描述</a>
+            <a class="list-group-item" href="/2024/06/22/smc%E6%80%BB%E7%BB%93/"><i class="fa  fa-book"></i> smc总结</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/"><i class="fa  fa-book"></i> Typora破解复现</a>
+            <a class="list-group-item" href="/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/"><i class="fa  fa-book"></i> PE文件笔记</a>
             
           
         
+          
+          
+            <a class="list-group-item" href="/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/"><i class="fa  fa-book"></i> windows内核开发</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
       </ul>
   </div>
   </aside>
@@ -492,7 +504,7 @@ Gamehall的UI界面有待美化
                     </ul>
                     <ul class="kratos-copyright">
                         <div>
-                            <li>&copy; 2023 Kvancy 版权所有.</li>
+                            <li>&copy; 2024 Kvancy 版权所有.</li>
                             <li>本站已运行<span id="span_dt">Loading...</span></li>
                         </div>
                         <div>

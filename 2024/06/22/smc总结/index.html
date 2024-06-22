@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  <!-- 元数据 -->
+  <meta charset="utf-8">
+  <link rel="icon" href="/images/favicon.ico">
+  
+  <title>smc总结 | Kvancy</title>
+  <link rel="canonical" href="https://kvancy.github.io/2024/06/22/smc%E6%80%BB%E7%BB%93/index.html">
+  <meta name="author" content="Kvancy" />
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="format-detection" content="telphone=no, email=no" />
+  
+    <meta name="keywords" content="笔记" />
+  
+  <meta name="description" content="SMC加密技术总结前言SMC（Software-Based Memory Encryption）是一种局部代码加密技术，它可以提高恶意代码的抗分析能力，但也存在一些局限性。作为一名CTF比赛的爱好者，虽然经常接触SMC加密技术，但是对其原理和实现并不深入了解，只是停留在解题的层面。最近，在为新生出题的过程中，产生了将SMC加密技术应用在出题上的想法，于是决定深入探究这门技术的原理、实现和应用。本文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="smc总结">
+<meta property="og:url" content="https://kvancy.github.io/2024/06/22/smc%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Kvancy">
+<meta property="og:description" content="SMC加密技术总结前言SMC（Software-Based Memory Encryption）是一种局部代码加密技术，它可以提高恶意代码的抗分析能力，但也存在一些局限性。作为一名CTF比赛的爱好者，虽然经常接触SMC加密技术，但是对其原理和实现并不深入了解，只是停留在解题的层面。最近，在为新生出题的过程中，产生了将SMC加密技术应用在出题上的想法，于是决定深入探究这门技术的原理、实现和应用。本文">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kvancy.github.io/images/favicon.ico">
+<meta property="article:published_time" content="2024-06-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-22T13:42:03.567Z">
+<meta property="article:author" content="Kvancy">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://kvancy.github.io/images/favicon.ico">
+  
+  <!-- 站点验证相关 -->
+  
+    
+    
+    
+  
+  <!-- 样式表文件 -->
+  <link rel="stylesheet" id="kratos-css" href="/css/kratosr.min.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" id="highlight-css" href="/css/highlight/night-eighties.min.css" media="all"></script>
+  
+  <link rel="stylesheet" id="fontawe-css" href="/vendors/font-awesome@4.7.0/css/font-awesome.min.css" media="all"></script>
+  <link rel="stylesheet" id="nprogress-css" href="/vendors/nprogress@0.2.0/nprogress.css" media="all"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/aplayer@1.10.1/dist/APlayer.min.css"></script>
+  
+  
+    <link rel="stylesheet" href="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"></script>
+  
+  <!-- 不得不预先加载的一些JS文件 -->
+  <script src="/vendors/jquery@3.6.0/dist/jquery.min.js"></script>
+  
+    <script src="/vendors/qrcode_js@1.0.0/qrcode.min.js"></script>
+  
+  
+  <style>
+    
+    
+      @media(min-width:768px) {
+        body.custom-background {
+          background-image: url('/images/bg.jpg');
+        }
+      }
+    
+  </style>
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+    <body class="custom-background">
+        <div id="kratos-wrapper">
+    <div id="kratos-page">
+        <div id="kratos-header">
+            <header id="kratos-desktop-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="nav-header">
+                        <nav id="kratos-menu-wrap">
+                            <ul id="kratos-primary-menu" class="sf-menu">
+                                
+                                    
+                                    
+                                        
+                                            <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/archives/"><i class="fa fa-file"></i>档案馆</a></li>
+                                        
+                                    
+                                        
+                                            <li><a href="/friends/"><i class="fa fa-paw"></i>好伙伴</a></li>
+                                        
+                                    
+                                        
+                                            <li>
+                                                <a><i class="fa fa-link"></i>链接</a>
+                                                <ul class="sub-menu">
+                                                    
+                                                        
+                                                    
+                                                        
+                                                            <li><a href="https://kvancy.github.io">作者博客</a></li>
+                                                        
+                                                    
+                                                        
+                                                            <li><a target="_blank" rel="noopener" href="https://github.com/Kvancy">项目链接</a></li>
+                                                        
+                                                    
+                                                </ul>
+                                            </li>
+                                        
+                                    
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            <header id="kratos-mobile-topnav" class="kratos-topnav">
+                <div class="container">
+                    <div class="color-logo"><a href="/">Kvancy</a></div>
+                    <div class="nav-toggle">
+                        <a class="kratos-nav-toggle js-kratos-nav-toggle">
+                            <i></i>
+                        </a>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="kratos-start kratos-hero-2">
+            <!-- <div class="kratos-overlay"></div> -->
+            <div class="kratos-cover kratos-cover-2 text-center">
+                <div class="desc desc2 animate-box">
+                    <a href="/">
+                        <h2>Kvancy</h2> <br />
+                        <span>CTF,Re,逆向,懒</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="kratos-blog-post">
+            <div class="container">
+                <div id="main" class="row">
+                    
+
+        
+
+            <section class="col-md-8">
+
+        
+
+            <article itemscope itemtype="https://schema.org/Article">
+    
+    <link itemprop="mainEntityOfPage" href="https://kvancy.github.io/2024/06/22/smc%E6%80%BB%E7%BB%93/">
+    <div class="kratos-hentry kratos-post-inner clearfix">
+        <header class="kratos-entry-header">
+            
+                <h1 class="kratos-entry-title text-center" itemprop="name headline">smc总结</h1>
+            
+            
+            <ul class="kratos-post-meta text-center">
+                <li><time datetime="2024-06-21T16:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-06-22</time></li>
+                <li itemprop="author" itemscope itemtype="https://schema.org/Person">
+                    <i class="fa fa-user"></i> 作者 <span itemprop="name">Kvancy</span>
+                </li>
+                
+                    <li>
+                        <i class="fa fa-edit"></i> 
+                        
+                        
+                            ~15.67K
+                        
+                        字
+                    </li>
+                
+                
+            </ul>
+        </header>
+        <div class="kratos-post-content">
+            
+            <div id="expire-alert" class="alert alert-warning hidden" role="alert">
+                <div class="icon"><i class="fa fa-warning"></i></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1719063723567"></time> 前，其中的内容可能需要更新。</p></div>
+            </div>
+            
+            
+            
+                <div class="kratos-post-inner-toc toc-div-class" >
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SMC%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93"><span class="toc-number">1.</span> <span class="toc-text">SMC加密技术总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMC%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">SMC加密技术的基本概念和原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMC%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">SMC加密技术的实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E7%BB%84%E4%BF%9D%E5%AD%98%E5%AD%97%E8%8A%82%E7%A0%81-%E8%B0%83%E6%95%B4%E5%86%85%E5%AD%98%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E8%BF%90%E8%A1%8C"><span class="toc-number">1.3.1.</span> <span class="toc-text">1.数组保存字节码-&gt;调整内存执行权限-&gt;函数指针运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%96%B0%E5%BB%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84%E8%8A%82%E6%AE%B5%E5%AD%98%E5%82%A8%E5%8A%A0%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">2.新建可执行的节段存储加密函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CTF%E5%87%BA%E9%A2%98%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.4.</span> <span class="toc-text">CTF出题中的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">1.4.1.</span> <span class="toc-text">,</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+            <hr />
+            <div itemprop="articleBody"><h2 id="SMC加密技术总结"><a href="#SMC加密技术总结" class="headerlink" title="SMC加密技术总结"></a>SMC加密技术总结</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>SMC（Software-Based Memory Encryption）是一种局部代码加密技术，它可以提高恶意代码的抗分析能力，但也存在一些局限性。作为一名CTF比赛的爱好者，虽然经常接触SMC加密技术，但是对其原理和实现并不深入了解，只是停留在解题的层面。最近，在为新生出题的过程中，产生了将SMC加密技术应用在出题上的想法，于是决定深入探究这门技术的原理、实现和应用。本文旨在分享作者学习SMC加密技术的心得，以及介绍如何利用SMC加密技术设计出有趣和有挑战性的CTF题目<br>本文的结构如下：第一部分介绍SMC加密技术的基本概念和原理；第二部分介绍SMC加密技术的实现方法和工具；第三部分介绍SMC加密技术在CTF出题中的应用和案例</p>
+<h3 id="SMC加密技术的基本概念和原理"><a href="#SMC加密技术的基本概念和原理" class="headerlink" title="SMC加密技术的基本概念和原理"></a>SMC加密技术的基本概念和原理</h3><p>SMC（Software-Based Memory Encryption）是一种局部代码加密技术，它可以将一个可执行文件的指定区段进行加密，使得黑客无法直接分析区段内的代码，从而增加恶意代码分析难度和降低恶意攻击成功的可能性。<br>SMC的基本原理是在编译可执行文件时，将需要加密的代码区段（例如函数、代码块等）单独编译成一个section（段），并将其标记为可读、可写、不可执行（readable, writable, non-executable），然后通过某种方式在程序运行时将这个section解密为可执行代码，并将其标记为可读、可执行、不可写（readable, executable, non-writable）。这样，攻击者就无法在内存中找到加密的代码，从而无法直接执行或修改加密的代码。<br>具体介绍见原文:<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/624554464">https://zhuanlan.zhihu.com/p/624554464</a></p>
+<h3 id="SMC加密技术的实现方法"><a href="#SMC加密技术的实现方法" class="headerlink" title="SMC加密技术的实现方法"></a>SMC加密技术的实现方法</h3><p>PS:为了方便,部分示例代码省去了对字节码加密和解密的操作,请注意辨别</p>
+<h4 id="1-数组保存字节码-调整内存执行权限-函数指针运行"><a href="#1-数组保存字节码-调整内存执行权限-函数指针运行" class="headerlink" title="1.数组保存字节码-&gt;调整内存执行权限-&gt;函数指针运行"></a>1.数组保存字节码-&gt;调整内存执行权限-&gt;函数指针运行</h4><p>先提取加密段代码的字节码<br>写入加密段代码,通过调试工具获取加密代码对应的字节码,例如:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">byte addData[] = &#123;<span class="number">0x55</span>,<span class="number">0x89</span>,<span class="number">0xe5</span>,<span class="number">0x8b</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xc</span>,<span class="number">0x1</span>,<span class="number">0xd0</span>,<span class="number">0x5d</span>,<span class="number">0xc3</span>&#125;;</span><br><span class="line"><span class="comment">// int add(int a,int b)</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   return a+b;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br></pre></td></tr></table></figure>
+<p>通过VirtualProtect函数调整内存为可执行的,定义函数指针,指向addData,调用函数指针</p>
+<blockquote>
+<p>BOOL VirtualProtect(<br> [in] LPVOID lpAddress,  &#x2F;&#x2F; 要更改保护属性的页区域的起始地址<br> [in] SIZE_T dwSize,     &#x2F;&#x2F; 要更改保护属性的区域的大小（以字节为单位）<br> [in] DWORD flNewProtect,&#x2F;&#x2F; 新的保护属性值<br> [out] PDWORD lpflOldProtect &#x2F;&#x2F; 用于接收原来保护属性值的指针<br>);<br>第三个参数flNewProtect包括但不限于:<br>PAGE_EXECUTE 可执行<br>PAGE_EXECUTE_READ  可读可执行<br>PAGE_EXECUTE_READWRITE 可读可写可执行<br>最简单的一种实现方式,以add函数为例</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mytool.h&quot;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*FnAdd)</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>)</span>;</span><br><span class="line">byte addData[] = &#123;<span class="number">0x55</span>,<span class="number">0x89</span>,<span class="number">0xe5</span>,<span class="number">0x8b</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xc</span>,<span class="number">0x1</span>,<span class="number">0xd0</span>,<span class="number">0x5d</span>,<span class="number">0xc3</span>&#125;;</span><br><span class="line"><span class="comment">// int add(int a,int b)</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   return a+b;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;  </span><br><span class="line">  DWORD fOldProtect = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(!VirtualProtect(addData,<span class="keyword">sizeof</span>(addData),PAGE_EXECUTE,&amp;fOldProtect))</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;VirtualProtect failed&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  FnAdd add = (FnAdd)addData;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,add(<span class="number">3</span>,<span class="number">4</span>));<span class="comment">//7</span></span><br><span class="line">  system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行成功,在IDA中查看效果<br><img src="https://s2.loli.net/2024/06/22/dkv3X8WhFH4jawC.png" alt="Alt text"><br><img src="https://s2.loli.net/2024/06/22/rpFYDZmHQ5tA7oT.png" alt="Alt text"><br>(未加密的)函数如期的到了data段<br>通过这种方式即可实现大部分的加密算法,例如tea,base64,rc4等<br>但是对于一些复杂的逻辑加密,可能需要引入外界的库函数,比如说CTF中简单的输入输出提示,需要用到printf,scanf等库函数<br>举例如下,当add中嵌套了printf时</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mytool.h&quot;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*FnAdd)</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>)</span>;</span><br><span class="line">byte addData[] = &#123;<span class="number">0x55</span>,<span class="number">0x89</span>,<span class="number">0xe5</span>,<span class="number">0x83</span>,<span class="number">0xec</span>,<span class="number">0x28</span>,<span class="number">0x8b</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xc</span>,<span class="number">0x1</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0x89</span>,<span class="number">0x44</span>,<span class="number">0x24</span>,<span class="number">0x4</span>,<span class="number">0xc7</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x6a</span>,<span class="number">0x50</span>,<span class="number">0x40</span>,<span class="number">0x0</span>,<span class="number">0xe8</span>,<span class="number">0x21</span>,<span class="number">0x26</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0xc9</span>,<span class="number">0xc3</span>&#125;;</span><br><span class="line"><span class="comment">// int add(int a,int b)</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   int c = a+b;</span></span><br><span class="line"><span class="comment">//   printf(&quot;%d&quot;,c);</span></span><br><span class="line"><span class="comment">//   return c;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;  </span><br><span class="line">  DWORD fOldProtect = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(!VirtualProtect(addData,<span class="keyword">sizeof</span>(addData),PAGE_EXECUTE,&amp;fOldProtect))</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;VirtualProtect failed&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  FnAdd add = (FnAdd)addData;</span><br><span class="line">  add(<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">  system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正常生成但是运行失败,汇编窗口动调发现在call指令时发生了报错<br>分析可知,call指令后跟的是printf的相对地址,在转换到data段之后相对地址发生改变,访问到了非printf地址<br>第一种解决方法:可以定义函数指针,在加密函数内通过函数指针来利用库函数<br>如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mytool.h&quot;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*PRINTF)</span> <span class="params">(<span class="type">const</span> <span class="type">char</span> *__format, ...)</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*FnAdd)</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>,PRINTF)</span>;</span><br><span class="line">byte addData[] = &#123;<span class="number">0x55</span>,<span class="number">0x89</span>,<span class="number">0xe5</span>,<span class="number">0x83</span>,<span class="number">0xec</span>,<span class="number">0x28</span>,<span class="number">0x8b</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xc</span>,<span class="number">0x1</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0x66</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xf1</span>,<span class="number">0x25</span>,<span class="number">0x64</span>,<span class="number">0xc6</span>,<span class="number">0x45</span>,<span class="number">0xf3</span>,<span class="number">0x0</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0x89</span>,<span class="number">0x44</span>,<span class="number">0x24</span>,<span class="number">0x4</span>,<span class="number">0x8d</span>,<span class="number">0x45</span>,<span class="number">0xf1</span>,<span class="number">0x89</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0x10</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0xc9</span>,<span class="number">0xc3</span>&#125;;</span><br><span class="line"><span class="comment">// int add(int a,int b,PRINTF print)</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//   int c = a+b;</span></span><br><span class="line"><span class="comment">//   char format[] = &quot;%d&quot;;//原.rdata段数据,尽量使用栈来保存函数参数</span></span><br><span class="line"><span class="comment">//   print(format,c);</span></span><br><span class="line"><span class="comment">//   return c;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  DWORD fOldProtect = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(!VirtualProtect(addData,<span class="keyword">sizeof</span>(addData),PAGE_EXECUTE,&amp;fOldProtect))</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;VirtualProtect failed&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  FnAdd add = (FnAdd)addData;</span><br><span class="line">  add(<span class="number">3</span>,<span class="number">4</span>,<span class="built_in">printf</span>);</span><br><span class="line">  system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>IDA中伪代码:<br><img src="https://s2.loli.net/2024/06/22/YZny7G8vLoUbF2c.png" alt="Alt text"><br>从这个例子可以看出，这种传参方式很容易暴露自己的意图，此地无银三百两的感觉,并且会出现调用多个库函数时代码可读性差的问题<br>为了优化隐蔽性和可读性，我们可以利用kernel32.dll模块来获取LoadLibraryA和GetProcAddress函数的地址，进而动态加载我们需要的模块和函数。<br>具体的实现步骤在Get_Func函数中有详细说明。<br>下面是修改后的程序，可正常运行。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//mytool.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">HINSTANCE</span> <span class="params">(*LOADLIBRARY)</span><span class="params">(LPCSTR)</span>;<span class="comment">//LoadLibraryA的地址</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">FARPROC</span> <span class="params">(*GETPROCADDRESS)</span><span class="params">(HINSTANCE, LPCSTR)</span>;<span class="comment">//GetProcAddress的地址</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">Get_Func</span><span class="params">(<span class="type">int</span> fnNum)</span>&#123;<span class="comment">//通过传参来返回GetProcAddress函数地址和LoadLibraryA函数地址</span></span><br><span class="line"> <span class="keyword">asm</span>(</span><br><span class="line">    <span class="string">&quot;mov %esp, %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push $0\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push $0x7373\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push $0x65726464\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push $0x41636f72\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push $0x50746547\n&quot;</span> <span class="comment">// GetProcAddress</span></span><br><span class="line">    <span class="string">&quot;push $0\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push $0x41797261\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push $0x7262694c\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push $0x64616f4c\n&quot;</span> <span class="comment">// LoadLibraryA</span></span><br><span class="line">    <span class="string">&quot;mov %esp, %ecx\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push %ecx\n&quot;</span> <span class="comment">// esp传参过去</span></span><br><span class="line">    <span class="string">&quot;cmp $0,0x8(%ebp)\n&quot;</span><span class="comment">//传参是0就得到LoadLibraryA的地址</span></span><br><span class="line">    <span class="string">&quot;jnz label2\n&quot;</span></span><br><span class="line">    <span class="string">&quot;call Get_Load\n&quot;</span></span><br><span class="line">    <span class="string">&quot;jmp label1\n&quot;</span></span><br><span class="line"><span class="string">&quot;label2:&quot;</span></span><br><span class="line">    <span class="string">&quot;call Get_Proc\n&quot;</span><span class="comment">//传参是1就得到GetProcAddress的地址</span></span><br><span class="line"><span class="string">&quot;label1:&quot;</span></span><br><span class="line">    <span class="string">&quot;mov %ebp, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;pop %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;ret\n&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;Func_GetModule:&quot;</span></span><br><span class="line">    <span class="string">&quot;push %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov %esp, %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;sub $0x20, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push %esi\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov %fs:0x30, %esi\n&quot;</span> <span class="comment">// PEB结构体地址</span></span><br><span class="line">    <span class="string">&quot;mov 0xc(%esi), %esi\n&quot;</span> <span class="comment">// LDR结构体地址</span></span><br><span class="line">    <span class="string">&quot;mov 0x1c(%esi), %esi\n&quot;</span> <span class="comment">// list</span></span><br><span class="line">    <span class="string">&quot;mov (%esi), %esi\n&quot;</span> <span class="comment">// list 第二项kernel32或者kernelbase</span></span><br><span class="line">    <span class="string">&quot;mov 0x8(%esi), %esi\n&quot;</span> <span class="comment">// dllbase</span></span><br><span class="line">    <span class="string">&quot;mov %esi, %eax\n&quot;</span></span><br><span class="line">    <span class="string">&quot;pop %esi\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov %ebp, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;pop %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;ret\n&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;Func_GetAddr:&quot;</span></span><br><span class="line">    <span class="string">&quot;push %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov %esp, %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;sub $0x20, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov 0x8(%ebp), %edx\n&quot;</span> <span class="comment">// dllbase</span></span><br><span class="line">    <span class="string">&quot;mov 0x3c(%edx), %esi\n&quot;</span> <span class="comment">// if_anew</span></span><br><span class="line">    <span class="string">&quot;lea (%edx, %esi), %esi\n&quot;</span>  <span class="comment">// NT header</span></span><br><span class="line">    <span class="string">&quot;mov 0x78(%esi), %esi\n&quot;</span>  <span class="comment">// 导出表RVA</span></span><br><span class="line">    <span class="string">&quot;lea (%edx, %esi), %esi\n&quot;</span>  <span class="comment">// 导出表VA</span></span><br><span class="line">    <span class="string">&quot;mov 0x1c(%esi), %edi\n&quot;</span>  <span class="comment">// EAT RVA</span></span><br><span class="line">    <span class="string">&quot;lea (%edx, %edi), %edi\n&quot;</span>  <span class="comment">// EAT VA</span></span><br><span class="line">    <span class="string">&quot;mov %edi, -0x4(%ebp)\n&quot;</span>  <span class="comment">// 保存</span></span><br><span class="line">    <span class="string">&quot;mov 0x20(%esi), %edi\n&quot;</span>  <span class="comment">// ENT RVA</span></span><br><span class="line">    <span class="string">&quot;lea (%edx, %edi), %edi\n&quot;</span>  <span class="comment">// ENT VA</span></span><br><span class="line">    <span class="string">&quot;mov %edi, -0x8(%ebp)\n&quot;</span>  <span class="comment">// 保存</span></span><br><span class="line">    <span class="string">&quot;mov 0x24(%esi), %edi\n&quot;</span>  <span class="comment">// EOT RVA</span></span><br><span class="line">    <span class="string">&quot;lea (%edx, %edi), %edi\n&quot;</span>  <span class="comment">// EOT VA</span></span><br><span class="line">    <span class="string">&quot;mov %edi, -0xc(%ebp)\n&quot;</span>  <span class="comment">// 保存</span></span><br><span class="line">    <span class="string">&quot;xor %eax, %eax\n&quot;</span> </span><br><span class="line">    <span class="string">&quot;jmp tag_cmpfirst\n&quot;</span> </span><br><span class="line"><span class="string">&quot;tag_cmpLoop:&quot;</span></span><br><span class="line">    <span class="string">&quot;inc %eax\n&quot;</span> </span><br><span class="line"><span class="string">&quot;tag_cmpfirst:&quot;</span></span><br><span class="line">    <span class="string">&quot;mov -0x8(%ebp), %esi\n&quot;</span>  <span class="comment">// ENT</span></span><br><span class="line">    <span class="string">&quot;mov (%esi, %eax, 4), %esi\n&quot;</span> <span class="comment">// RVA</span></span><br><span class="line">    <span class="string">&quot;lea (%edx, %esi), %esi\n&quot;</span> <span class="comment">// 函数名称字符串地址</span></span><br><span class="line">    <span class="string">&quot;mov 0xc(%ebp), %edi\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov 0x10(%ebp), %ecx\n&quot;</span> <span class="comment">// 循环次数，ebp+0x10是传来的参数</span></span><br><span class="line">    <span class="string">&quot;repe cmpsb\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov -0xc(%ebp), %esi\n&quot;</span></span><br><span class="line">    <span class="string">&quot;jne tag_cmpLoop\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov -0xc(%ebp), %esi\n&quot;</span> <span class="comment">// EOT</span></span><br><span class="line">    <span class="string">&quot;xor %edi, %edi\n&quot;</span> <span class="comment">// 为了不影响结果清空edi</span></span><br><span class="line">    <span class="string">&quot;mov (%esi, %eax, 2), %di\n&quot;</span> <span class="comment">// word类型,EAT表索引</span></span><br><span class="line">    <span class="string">&quot;mov -0x4(%ebp), %edx\n&quot;</span> <span class="comment">// EAT</span></span><br><span class="line">    <span class="string">&quot;mov (%edx, %edi, 4), %esi\n&quot;</span> <span class="comment">// 函数地址RVA</span></span><br><span class="line">    <span class="string">&quot;mov 0x8(%ebp), %edx\n&quot;</span> <span class="comment">// dllbase</span></span><br><span class="line">    <span class="string">&quot;lea (%edx, %esi), %eax\n&quot;</span> <span class="comment">// 最终函数地址</span></span><br><span class="line">    <span class="string">&quot;mov %ebp, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;pop %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;ret $0xc\n&quot;</span> <span class="comment">// 在栈中弹出三个参数</span></span><br><span class="line"></span><br><span class="line"><span class="string">&quot;Get_Load:&quot;</span></span><br><span class="line">    <span class="string">&quot;push %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov %esp, %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;sub $0x10, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;call Func_GetModule\n&quot;</span> <span class="comment">// 获取kernel模块基址</span></span><br><span class="line">    <span class="string">&quot;mov %eax, -0x4(%ebp)\n&quot;</span> <span class="comment">// 保存模块基址</span></span><br><span class="line">    <span class="string">&quot;lea 0xc(%ebp), %ecx\n&quot;</span> <span class="comment">// load地址</span></span><br><span class="line">    <span class="string">&quot;push $0xc\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push %ecx\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push %eax\n&quot;</span></span><br><span class="line">    <span class="string">&quot;call Func_GetAddr\n&quot;</span> <span class="comment">// 三个参数，第一个模块基址，第二个字符串地址，第三个字符串长度 loadlibrarya</span></span><br><span class="line">    <span class="string">&quot;mov %ebp, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;pop %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;ret\n&quot;</span></span><br><span class="line"><span class="string">&quot;Get_Proc:&quot;</span></span><br><span class="line">    <span class="string">&quot;push %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;mov %esp, %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;sub $0x10, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;call Func_GetModule\n&quot;</span> <span class="comment">// 获取kernel模块基址</span></span><br><span class="line">    <span class="string">&quot;mov %eax, -0x4(%ebp)\n&quot;</span> <span class="comment">// 保存模块基址</span></span><br><span class="line">    <span class="string">&quot;push $0xe\n&quot;</span></span><br><span class="line">    <span class="string">&quot;lea 0x1c(%ebp), %ecx\n&quot;</span> <span class="comment">// Get字符串</span></span><br><span class="line">    <span class="string">&quot;push %ecx\n&quot;</span></span><br><span class="line">    <span class="string">&quot;push -0x4(%ebp)\n&quot;</span> <span class="comment">// 模块基址</span></span><br><span class="line">    <span class="string">&quot;call Func_GetAddr\n&quot;</span> <span class="comment">// 三个参数，第一个模块基址，第二个字符串地址，第三个字符串长度 GetProcAddress</span></span><br><span class="line">    <span class="string">&quot;mov %ebp, %esp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;pop %ebp\n&quot;</span></span><br><span class="line">    <span class="string">&quot;ret\n&quot;</span></span><br><span class="line">    );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> 	</span><br></pre></td></tr></table></figure>
+<p>这里就是通过Get_Func来获取GetProcAddress函数地址和LoadLibraryA函数地址<br>从而在加密函数内可以调用这两个函数来获取其他库函数地址<br>Get_Func函数具体实现方式大致是(大佬略过~~):<br>通过FS段寄存器获取TEB的地址，然后通过TEB的ProcessEnvironmentBlock成员（偏移量为0x30）获取PEB的地址,再通过PEB结构体获取其成员Ldr(加载模块列表)(偏移量为0xc),通过Ldr结构体访问InInitializationOrderModuleList成员(导入模块列表)(偏移量0x1c),InInitializationOrderModuleList的第二个成员即为kernel32.dll模块,我们想要的GetProcAddress函数地址和LoadLibraryA函数地址都在kernel32.dll里面了,通过了解PE文件结构访问其导出表即可</p>
+<p>好了,转成字节码试一下效果<br>原函数转成字节码之后代码如下:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mytool.h&quot;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*PRINTF)</span> <span class="params">(<span class="type">const</span> <span class="type">char</span> *__format, ...)</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*GET_FUNC)</span><span class="params">(<span class="type">int</span>)</span>; </span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*FnAdd)</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>,GET_FUNC)</span>;</span><br><span class="line">byte addData[] = &#123;<span class="number">0x55</span>,<span class="number">0x89</span>,<span class="number">0xe5</span>,<span class="number">0x83</span>,<span class="number">0xec</span>,<span class="number">0x48</span>,<span class="number">0xc7</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0x10</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0xc7</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x1</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0x10</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xf0</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xdd</span>,<span class="number">0x6d</span>,<span class="number">0x73</span>,<span class="number">0x76</span>,<span class="number">0x63</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xe1</span>,<span class="number">0x72</span>,<span class="number">0x74</span>,<span class="number">0x2e</span>,<span class="number">0x64</span>,<span class="number">0x66</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xe5</span>,<span class="number">0x6c</span>,<span class="number">0x6c</span>,<span class="number">0xc6</span>,<span class="number">0x45</span>,<span class="number">0xe7</span>,<span class="number">0x0</span>,<span class="number">0x8d</span>,<span class="number">0x45</span>,<span class="number">0xdd</span>,<span class="number">0x89</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xec</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xd6</span>,<span class="number">0x70</span>,<span class="number">0x72</span>,<span class="number">0x69</span>,<span class="number">0x6e</span>,<span class="number">0x66</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xda</span>,<span class="number">0x74</span>,<span class="number">0x66</span>,<span class="number">0xc6</span>,<span class="number">0x45</span>,<span class="number">0xdc</span>,<span class="number">0x0</span>,<span class="number">0x8d</span>,<span class="number">0x45</span>,<span class="number">0xd6</span>,<span class="number">0x89</span>,<span class="number">0x44</span>,<span class="number">0x24</span>,<span class="number">0x4</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xec</span>,<span class="number">0x89</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xf0</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xe8</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xd2</span>,<span class="number">0x25</span>,<span class="number">0x64</span>,<span class="number">0xa</span>,<span class="number">0x0</span>,<span class="number">0x8b</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xc</span>,<span class="number">0x1</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x44</span>,<span class="number">0x24</span>,<span class="number">0x4</span>,<span class="number">0x8d</span>,<span class="number">0x45</span>,<span class="number">0xd2</span>,<span class="number">0x89</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xe8</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x8b</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xc</span>,<span class="number">0x1</span>,<span class="number">0xd0</span>,<span class="number">0xc9</span>,<span class="number">0xc3</span>&#125;;<span class="comment">//add字节码</span></span><br><span class="line"><span class="comment">// int add(int a,int b,GET_FUNC get_func)</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     LOADLIBRARY load = (LOADLIBRARY)get_func(0);</span></span><br><span class="line"><span class="comment">//     GETPROCADDRESS ProcAddress = (GETPROCADDRESS)get_func(1);</span></span><br><span class="line"><span class="comment">//     char Module_name[] = &quot;msvcrt.dll&quot;;</span></span><br><span class="line"><span class="comment">//     HINSTANCE mAddress = load(Module_name);</span></span><br><span class="line"><span class="comment">//     char fnName[] = &quot;printf&quot;;</span></span><br><span class="line"><span class="comment">//     PRINTF print = (PRINTF)ProcAddress(mAddress,fnName);</span></span><br><span class="line"><span class="comment">//     char format[] = &quot;%d\n&quot;;</span></span><br><span class="line"><span class="comment">//     print(format,a+b);</span></span><br><span class="line"><span class="comment">//     return a+b;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">  DWORD fOldProtect = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(!VirtualProtect(addData,<span class="keyword">sizeof</span>(addData),PAGE_EXECUTE,&amp;fOldProtect))</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;VirtualProtect failed&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  FnAdd add = (FnAdd)addData;</span><br><span class="line">  add(<span class="number">3</span>,<span class="number">4</span>,Get_Func);</span><br><span class="line">  system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行成功,输出7<br>在IDA中的伪代码窗口如下:<br><img src="https://s2.loli.net/2024/06/22/UJTCFPotApOenDi.png" alt="Alt text"><br><img src="https://s2.loli.net/2024/06/22/5z2WBxpEe8hajJQ.png" alt="Alt text"></p>
+<p>隐藏性有所提升,但是还可以进一步提升<br>我们可以把Get_Func函数也通过SMC加密,从而进一步提高代码的隐藏性</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;mytool.h&quot;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*PRINTF)</span> <span class="params">(<span class="type">const</span> <span class="type">char</span> *__format, ...)</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*GET_FUNC)</span><span class="params">(<span class="type">int</span>)</span>; </span><br><span class="line"><span class="keyword">typedef</span> <span class="title function_">int</span> <span class="params">(*FnAdd)</span><span class="params">(<span class="type">int</span>,<span class="type">int</span>,GET_FUNC)</span>;</span><br><span class="line">byte addData[] = &#123;<span class="number">0x55</span>,<span class="number">0x89</span>,<span class="number">0xe5</span>,<span class="number">0x83</span>,<span class="number">0xec</span>,<span class="number">0x48</span>,<span class="number">0xc7</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0x10</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0xc7</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x1</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x0</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0x10</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xf0</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xdd</span>,<span class="number">0x6d</span>,<span class="number">0x73</span>,<span class="number">0x76</span>,<span class="number">0x63</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xe1</span>,<span class="number">0x72</span>,<span class="number">0x74</span>,<span class="number">0x2e</span>,<span class="number">0x64</span>,<span class="number">0x66</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xe5</span>,<span class="number">0x6c</span>,<span class="number">0x6c</span>,<span class="number">0xc6</span>,<span class="number">0x45</span>,<span class="number">0xe7</span>,<span class="number">0x0</span>,<span class="number">0x8d</span>,<span class="number">0x45</span>,<span class="number">0xdd</span>,<span class="number">0x89</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xf4</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xec</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xd6</span>,<span class="number">0x70</span>,<span class="number">0x72</span>,<span class="number">0x69</span>,<span class="number">0x6e</span>,<span class="number">0x66</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xda</span>,<span class="number">0x74</span>,<span class="number">0x66</span>,<span class="number">0xc6</span>,<span class="number">0x45</span>,<span class="number">0xdc</span>,<span class="number">0x0</span>,<span class="number">0x8d</span>,<span class="number">0x45</span>,<span class="number">0xd6</span>,<span class="number">0x89</span>,<span class="number">0x44</span>,<span class="number">0x24</span>,<span class="number">0x4</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xec</span>,<span class="number">0x89</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xf0</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x45</span>,<span class="number">0xe8</span>,<span class="number">0xc7</span>,<span class="number">0x45</span>,<span class="number">0xd2</span>,<span class="number">0x25</span>,<span class="number">0x64</span>,<span class="number">0xa</span>,<span class="number">0x0</span>,<span class="number">0x8b</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xc</span>,<span class="number">0x1</span>,<span class="number">0xd0</span>,<span class="number">0x89</span>,<span class="number">0x44</span>,<span class="number">0x24</span>,<span class="number">0x4</span>,<span class="number">0x8d</span>,<span class="number">0x45</span>,<span class="number">0xd2</span>,<span class="number">0x89</span>,<span class="number">0x4</span>,<span class="number">0x24</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xe8</span>,<span class="number">0xff</span>,<span class="number">0xd0</span>,<span class="number">0x8b</span>,<span class="number">0x55</span>,<span class="number">0x8</span>,<span class="number">0x8b</span>,<span class="number">0x45</span>,<span class="number">0xc</span>,<span class="number">0x1</span>,<span class="number">0xd0</span>,<span class="number">0xc9</span>,<span class="number">0xc3</span>&#125;;</span><br><span class="line">byte get_func[] = &#123;<span class="number">0x55</span>, <span class="number">0x89</span>, <span class="number">0xE5</span>, <span class="number">0x89</span>, <span class="number">0xE5</span>, <span class="number">0x6A</span>, <span class="number">0x00</span>, <span class="number">0x68</span>, <span class="number">0x73</span>, <span class="number">0x73</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x68</span>, <span class="number">0x64</span>, <span class="number">0x64</span>, <span class="number">0x72</span>, <span class="number">0x65</span>, <span class="number">0x68</span>, <span class="number">0x72</span>, <span class="number">0x6F</span>, <span class="number">0x63</span>, <span class="number">0x41</span>, <span class="number">0x68</span>, <span class="number">0x47</span>, <span class="number">0x65</span>, <span class="number">0x74</span>, <span class="number">0x50</span>, <span class="number">0x6A</span>, <span class="number">0x00</span>, <span class="number">0x68</span>, <span class="number">0x61</span>, <span class="number">0x72</span>, <span class="number">0x79</span>, <span class="number">0x41</span>, <span class="number">0x68</span>, <span class="number">0x4C</span>, <span class="number">0x69</span>, <span class="number">0x62</span>, <span class="number">0x72</span>, <span class="number">0x68</span>, <span class="number">0x4C</span>, <span class="number">0x6F</span>, <span class="number">0x61</span>, <span class="number">0x64</span>, <span class="number">0x89</span>, <span class="number">0xE1</span>, <span class="number">0x51</span>, <span class="number">0x83</span>, <span class="number">0x7D</span>, <span class="number">0x08</span>, <span class="number">0x00</span>, <span class="number">0x75</span>, <span class="number">0x07</span>, <span class="number">0xE8</span>, <span class="number">0x91</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0xEB</span>, <span class="number">0x05</span>, <span class="number">0xE8</span>, <span class="number">0xA8</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x89</span>, <span class="number">0xEC</span>, <span class="number">0x5D</span>, <span class="number">0xC3</span>, <span class="number">0x55</span>, <span class="number">0x89</span>, <span class="number">0xE5</span>, <span class="number">0x83</span>, <span class="number">0xEC</span>, <span class="number">0x20</span>, <span class="number">0x56</span>, <span class="number">0x64</span>, <span class="number">0x8B</span>, <span class="number">0x35</span>, <span class="number">0x30</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x00</span>, <span class="number">0x8B</span>, <span class="number">0x76</span>, <span class="number">0x0C</span>, <span class="number">0x8B</span>, <span class="number">0x76</span>, <span class="number">0x1C</span>, <span class="number">0x8B</span>, <span class="number">0x36</span>, <span class="number">0x8B</span>, <span class="number">0x76</span>, <span class="number">0x08</span>, <span class="number">0x89</span>, <span class="number">0xF0</span>, <span class="number">0x5E</span>, <span class="number">0x89</span>, <span class="number">0xEC</span>, <span class="number">0x5D</span>, <span class="number">0xC3</span>, <span class="number">0x55</span>, <span class="number">0x89</span>, <span class="number">0xE5</span>, <span class="number">0x83</span>, <span class="number">0xEC</span>, <span class="number">0x20</span>, <span class="number">0x8B</span>, <span class="number">0x55</span>, <span class="number">0x08</span>, <span class="number">0x8B</span>, <span class="number">0x72</span>, <span class="number">0x3C</span>, <span class="number">0x8D</span>, <span class="number">0x34</span>, <span class="number">0x32</span>, <span class="number">0x8B</span>, <span class="number">0x76</span>, <span class="number">0x78</span>, <span class="number">0x8D</span>, <span class="number">0x34</span>, <span class="number">0x32</span>, <span class="number">0x8B</span>, <span class="number">0x7E</span>, <span class="number">0x1C</span>, <span class="number">0x8D</span>, <span class="number">0x3C</span>, <span class="number">0x3A</span>, <span class="number">0x89</span>, <span class="number">0x7D</span>, <span class="number">0xFC</span>, <span class="number">0x8B</span>, <span class="number">0x7E</span>, <span class="number">0x20</span>, <span class="number">0x8D</span>, <span class="number">0x3C</span>, <span class="number">0x3A</span>, <span class="number">0x89</span>, <span class="number">0x7D</span>, <span class="number">0xF8</span>, <span class="number">0x8B</span>, <span class="number">0x7E</span>, <span class="number">0x24</span>, <span class="number">0x8D</span>, <span class="number">0x3C</span>, <span class="number">0x3A</span>, <span class="number">0x89</span>, <span class="number">0x7D</span>, <span class="number">0xF4</span>, <span class="number">0x31</span>, <span class="number">0xC0</span>, <span class="number">0xEB</span>, <span class="number">0x01</span>, <span class="number">0x40</span>, <span class="number">0x8B</span>, <span class="number">0x75</span>, <span class="number">0xF8</span>, <span class="number">0x8B</span>, <span class="number">0x34</span>, <span class="number">0x86</span>, <span class="number">0x8D</span>, <span class="number">0x34</span>, <span class="number">0x32</span>, <span class="number">0x8B</span>, <span class="number">0x7D</span>, <span class="number">0x0C</span>, <span class="number">0x8B</span>, <span class="number">0x4D</span>, <span class="number">0x10</span>, <span class="number">0xF3</span>, <span class="number">0xA6</span>, <span class="number">0x8B</span>, <span class="number">0x75</span>, <span class="number">0xF4</span>, <span class="number">0x75</span>, <span class="number">0xE9</span>, <span class="number">0x8B</span>, <span class="number">0x75</span>, <span class="number">0xF4</span>, <span class="number">0x31</span>, <span class="number">0xFF</span>, <span class="number">0x66</span>, <span class="number">0x8B</span>, <span class="number">0x3C</span>, <span class="number">0x46</span>, <span class="number">0x8B</span>, <span class="number">0x55</span>, <span class="number">0xFC</span>, <span class="number">0x8B</span>, <span class="number">0x34</span>, <span class="number">0xBA</span>, <span class="number">0x8B</span>, <span class="number">0x55</span>, <span class="number">0x08</span>, <span class="number">0x8D</span>, <span class="number">0x04</span>, <span class="number">0x32</span>, <span class="number">0x89</span>, <span class="number">0xEC</span>, <span class="number">0x5D</span>, <span class="number">0xC2</span>, <span class="number">0x0C</span>, <span class="number">0x00</span>, <span class="number">0x55</span>, <span class="number">0x89</span>, <span class="number">0xE5</span>, <span class="number">0x83</span>, <span class="number">0xEC</span>, <span class="number">0x10</span>, <span class="number">0xE8</span>, <span class="number">0x6F</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x89</span>, <span class="number">0x45</span>, <span class="number">0xFC</span>, <span class="number">0x8D</span>, <span class="number">0x4D</span>, <span class="number">0x0C</span>, <span class="number">0x6A</span>, <span class="number">0x0C</span>, <span class="number">0x51</span>, <span class="number">0x50</span>, <span class="number">0xE8</span>, <span class="number">0x80</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x89</span>, <span class="number">0xEC</span>, <span class="number">0x5D</span>, <span class="number">0xC3</span>, <span class="number">0x55</span>, <span class="number">0x89</span>, <span class="number">0xE5</span>, <span class="number">0x83</span>, <span class="number">0xEC</span>, <span class="number">0x10</span>, <span class="number">0xE8</span>, <span class="number">0x51</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x89</span>, <span class="number">0x45</span>, <span class="number">0xFC</span>, <span class="number">0x6A</span>, <span class="number">0x0E</span>, <span class="number">0x8D</span>, <span class="number">0x4D</span>, <span class="number">0x1C</span>, <span class="number">0x51</span>, <span class="number">0xFF</span>, <span class="number">0x75</span>, <span class="number">0xFC</span>, <span class="number">0xE8</span>, <span class="number">0x60</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0xFF</span>, <span class="number">0x89</span>, <span class="number">0xEC</span>, <span class="number">0x5D</span>, <span class="number">0xc3</span>&#125;;</span><br><span class="line"><span class="comment">// int add(int a,int b,GET_FUNC get_func)</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     LOADLIBRARY load = (LOADLIBRARY)get_func(0);</span></span><br><span class="line"><span class="comment">//     GETPROCADDRESS ProcAddress = (GETPROCADDRESS)get_func(1);</span></span><br><span class="line"><span class="comment">//     char Module_name[] = &quot;msvcrt.dll&quot;;</span></span><br><span class="line"><span class="comment">//     HINSTANCE mAddress = load(Module_name);</span></span><br><span class="line"><span class="comment">//     char fnName[] = &quot;printf&quot;;</span></span><br><span class="line"><span class="comment">//     PRINTF print = (PRINTF)ProcAddress(mAddress,fnName);</span></span><br><span class="line"><span class="comment">//     char format[] = &quot;%d\n&quot;;</span></span><br><span class="line"><span class="comment">//     print(format,a+b);</span></span><br><span class="line"><span class="comment">//     return a+b;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">  DWORD fOldProtect = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span>(!VirtualProtect(addData,<span class="keyword">sizeof</span>(addData),PAGE_EXECUTE,&amp;fOldProtect)||</span><br><span class="line">     !VirtualProtect(get_func,<span class="keyword">sizeof</span>(get_func),PAGE_EXECUTE,&amp;fOldProtect)   )</span><br><span class="line">  &#123;</span><br><span class="line">    perror(<span class="string">&quot;VirtualProtect failed&quot;</span>);</span><br><span class="line">    system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  FnAdd add = (FnAdd)addData;</span><br><span class="line">  GET_FUNC get_fn = (GET_FUNC)get_func;</span><br><span class="line">  add(<span class="number">3</span>,<span class="number">4</span>,get_fn);</span><br><span class="line">  system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>实现效果:<br><img src="https://s2.loli.net/2024/06/22/K3JQN64RGt1ieVo.png" alt="Alt text"></p>
+<h4 id="2-新建可执行的节段存储加密函数"><a href="#2-新建可执行的节段存储加密函数" class="headerlink" title="2.新建可执行的节段存储加密函数"></a>2.新建可执行的节段存储加密函数</h4><h4 id="3"><a href="#3" class="headerlink" title="3."></a>3.</h4><p>Linux下把加密代码放到数据段:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sys/mman.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个全局变量，用来存放机器指令</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> code[<span class="number">8</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 一个函数指针，用来指向机器指令的地址</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">int</span> <span class="params">(*func_ptr)</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 获取当前系统的内存页大小</span></span><br><span class="line">    <span class="type">int</span> pagesize = <span class="built_in">sysconf</span>(_SC_PAGESIZE);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;pagesize = %d\n&quot;</span>, pagesize);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算全局变量code的地址所在的内存页的起始地址</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> start = (<span class="type">unsigned</span> <span class="type">long</span>)code &amp; ~(pagesize - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;start = %p\n&quot;</span>, (<span class="type">void</span> *)start);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算全局变量code的地址所在的内存页的结束地址</span></span><br><span class="line">    <span class="type">unsigned</span> <span class="type">long</span> end = ((<span class="type">unsigned</span> <span class="type">long</span>)code + <span class="built_in">sizeof</span>(code) + pagesize - <span class="number">1</span>) &amp; ~(pagesize - <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;end = %p\n&quot;</span>, (<span class="type">void</span> *)end);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 计算全局变量code所占用的内存页的长度</span></span><br><span class="line">    <span class="type">size_t</span> len = end - start;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;len = %ld\n&quot;</span>, len);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 给全局变量code所在的内存页可执行权限</span></span><br><span class="line">    <span class="type">int</span> ret = <span class="built_in">mprotect</span>((<span class="type">void</span> *)start, len, PROT_READ | PROT_EXEC);</span><br><span class="line">    <span class="keyword">if</span> (ret == <span class="number">-1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">perror</span>(<span class="string">&quot;mprotect&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在全局变量code中写入一段机器指令，其功能是将rax加1并返回</span></span><br><span class="line">    <span class="comment">// 该指令的二进制码为：48 ff c0 c3</span></span><br><span class="line">    code[<span class="number">0</span>] = <span class="number">0x48</span>;</span><br><span class="line">    code[<span class="number">1</span>] = <span class="number">0xff</span>;</span><br><span class="line">    code[<span class="number">2</span>] = <span class="number">0xc0</span>;</span><br><span class="line">    code[<span class="number">3</span>] = <span class="number">0xc3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将函数指针指向全局变量code的地址</span></span><br><span class="line">    func_ptr f = (func_ptr)code;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 调用函数指针，执行机器指令</span></span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">f</span>();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;result = %d\n&quot;</span>, result);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="CTF出题中的应用"><a href="#CTF出题中的应用" class="headerlink" title="CTF出题中的应用"></a>CTF出题中的应用</h3><h4 id=""><a href="#" class="headerlink" title=","></a>,</h4></div>
+        </div>
+        
+            <div class="kratos-copyright text-center clearfix">
+                <h5 itemprop="copyrightNotice">本作品采用 <a rel="license nofollow" target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/">知识共享署名-相同方式共享 4.0 国际许可协议</a> 进行许可</h5>
+            </div>
+        
+        <footer class="kratos-entry-footer clearfix">
+            
+                <div class="post-like-donate text-center clearfix" id="post-like-donate">
+                
+                
+                    <a class="share" href="javascript:;"><i class="fa fa-share-alt"></i> 分享</a>
+                    <div class="share-wrap" style="display: none;">
+    <div class="share-group">
+        <a href="javascript:;" class="share-plain qq" onclick="share('qq');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-qq"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain qzone" onclick="share('qzone');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-star"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weixin pop style-plain" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weixin"></i>
+            </div>
+            <div class="share-int">
+                <div class="qrcode" id="wechat-qr"></div>
+                <p>打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</p>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain weibo" onclick="share('weibo');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-weibo"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain facebook style-plain" onclick="share('facebook');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-facebook"></i>
+            </div>
+        </a>
+        <a href="javascript:;" class="share-plain twitter style-plain" onclick="share('twitter');" rel="nofollow">
+            <div class="icon-wrap">
+                <i class="fa fa-twitter"></i>
+            </div>
+        </a>
+    </div>
+    <script type="text/javascript">
+        $(()=>{
+            new QRCode("wechat-qr", {
+                text: "https://kvancy.github.io/2024/06/22/smc%E6%80%BB%E7%BB%93/",
+                width: 150,
+                height: 150,
+                correctLevel : QRCode.CorrectLevel.H
+            });
+        });
+        function share(dest) {
+            const qqBase        = "https://connect.qq.com/widget/shareqq/index.html?";
+            const weiboBase     = "https://service.weibo.com/share/share.php?";
+            const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
+            const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
+            const twitterBase   = "https://twitter.com/intent/tweet?";
+            const hostUrl       = "https://kvancy.github.io/2024/06/22/smc%E6%80%BB%E7%BB%93/";
+            const title         = "「smc总结」";
+            const excerpt       = `SMC加密技术总结前言SMC（Software-Based Memory Encryption）是一种局部代码加密技术，它可以提高恶意代码的抗分析能力，但也存在一些局限性。作为一名CTF比赛的爱好者，虽然经常接触SMC加密技术，但是对...`;
+            let _URL;
+            switch (dest) {
+                case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
+                case "weibo"    : _URL = weiboBase+"url="+hostUrl+"&title="+title+excerpt;                                 break;
+                case "qzone"    : _URL = qzoneBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";  break;
+                case "facebook" : _URL = facebookBase+"u="+hostUrl;                                                        break;
+                case "twitter"  : _URL = twitterBase+"text="+title+excerpt+"&url="+hostUrl;                                break;
+            }
+            window.open(_URL);
+        };
+    </script>
+</div>
+                
+                </div>
+            
+            <div class="footer-tag clearfix">
+                <div class="pull-left">
+                <i class="fa fa-tags"></i>
+                    <a class="tag-none-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+                </div>
+                <div class="pull-date">
+                    <time datetime="2024-06-22T13:42:03.567Z" itemprop="dateModified">最后编辑：2024-06-22</time>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+        <nav class="navigation post-navigation clearfix" role="navigation">
+            
+            <div class="nav-previous clearfix">
+                <a title=" PE文件笔记" href="/2024/06/22/PE文件解析/">&lt; 上一篇</a>
+            </div>
+            
+            
+            <div class="nav-next clearfix">
+                <a title=" c++笔记" href="/2024/06/22/c++/">下一篇 &gt;</a>
+            </div>
+            
+        </nav>
+    
+    
+</article>
+
+        
+
+            </section>
+
+        
+
+                
+            
+
+<section id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm">
+    <!-- 文章和页面根据splitter来分割，没有的话就从头开始设置为sticky -->
+    
+    
+                <aside id="krw-about" class="widget widget-kratos-about clearfix">
+    <div class="photo-background"></div>
+    <div class="photo-wrapper clearfix">
+        <div class="photo-wrapper-tip text-center">
+            <img class="about-photo" src="/images/avatar.jpg" loading="lazy" decoding="auto" />
+        </div>
+    </div>
+    <div class="textwidget">
+        <p class="text-center">一个二进制菜鸟的学习之路</p>
+    </div>
+    <div class="site-meta">
+        <a class="meta-item" href="/archives/">
+            <span class="title">
+                文章
+            </span>
+            <span class="count">
+                9
+            </span>
+        </a>
+        <a class="meta-item" href="/categories/">
+            <span class="title">
+                分类
+            </span>
+            <span class="count">
+                2
+            </span>
+        </a>
+        <a class="meta-item" href="/tags/">
+            <span class="title">
+                标签
+            </span>
+            <span class="count">
+                2
+            </span>
+        </a>
+    </div>
+</aside>
+            
+                    <div class="sticky-area">
+                
+                    <aside id="krw-toc" class="widget widget-kratos-toc clearfix toc-div-class" >
+    <div class="photo-background"></div>
+    <h4 class="widget-title no-after">
+        <i class="fa fa-compass"></i>
+        文章目录
+        <span class="toc-progress-bar" role="progressbar" aria-label="阅读进度："></span>
+    </h4>
+    <div class="textwidget">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#SMC%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93"><span class="toc-text">SMC加密技术总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMC%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E5%8E%9F%E7%90%86"><span class="toc-text">SMC加密技术的基本概念和原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMC%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="toc-text">SMC加密技术的实现方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%95%B0%E7%BB%84%E4%BF%9D%E5%AD%98%E5%AD%97%E8%8A%82%E7%A0%81-%E8%B0%83%E6%95%B4%E5%86%85%E5%AD%98%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90-%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E8%BF%90%E8%A1%8C"><span class="toc-text">1.数组保存字节码-&gt;调整内存执行权限-&gt;函数指针运行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%96%B0%E5%BB%BA%E5%8F%AF%E6%89%A7%E8%A1%8C%E7%9A%84%E8%8A%82%E6%AE%B5%E5%AD%98%E5%82%A8%E5%8A%A0%E5%AF%86%E5%87%BD%E6%95%B0"><span class="toc-text">2.新建可执行的节段存储加密函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3"><span class="toc-text">3.</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CTF%E5%87%BA%E9%A2%98%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-text">CTF出题中的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-text">,</span></a></li></ol></li></ol></li></ol>
+    </div>
+</aside>
+                
+                
+  <aside id="krw-categories" class="widget widget-kratos-categories clearfix">
+    <h4 class="widget-title"><i class="fa fa-folder"></i>分类目录</h4>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%80%86%E5%90%91/">逆向</a><span class="category-list-count">7</span></li></ul>
+  </aside>
+
+
+            
+                
+  <aside id="krw-tags" class="widget widget-kratos-tags clearfix">
+    <h4 class="widget-title"><i class="fa fa-tags"></i>标签聚合</h4>
+      <div class="tag-clouds">
+        <a href="/tags/%E7%A0%B4%E8%A7%A3/" style="font-size: 0.6em;">破解</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 0.8em;">笔记</a>
+      </div>
+  </aside>
+
+            
+                
+  <aside id="krw-posts" class="widget widget-kratos-posts">
+  <h4 class="widget-title"><i class="fa fa-file"></i>最新文章</h4>
+  <div class="tab-content">
+      <ul class="list-group">
+        
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/Rookie%20diary/"><i class="fa  fa-book"></i> Rookie diary</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/c++/"><i class="fa  fa-book"></i> c++笔记</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/smc%E6%80%BB%E7%BB%93/"><i class="fa  fa-book"></i> smc总结</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/"><i class="fa  fa-book"></i> PE文件笔记</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/"><i class="fa  fa-book"></i> windows内核开发</a>
+            
+          
+        
+          
+            
+          
+            
+          
+            
+          
+            
+      </ul>
+  </div>
+  </aside>
+
+            
+    </div>
+</section>
+        
+        </div>
+    </div>
+</div>
+<footer>
+    <div id="footer"  class="ap-lrc"  >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                    <ul class="kratos-social-icons">
+                        <!-- Keep for compatibility -->
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <!-- New links -->
+                        
+                    </ul>
+                    <ul class="kratos-copyright">
+                        <div>
+                            <li>&copy; 2024 Kvancy 版权所有.</li>
+                            <li>本站已运行<span id="span_dt">Loading...</span></li>
+                        </div>
+                        <div>
+                            <li>Theme <a href="https://github.com/Candinya/Kratos-Rebirth" target="_blank">Kratos:Rebirth</a></li>
+                            <li>Site built with&nbsp;<i class="fa fa-heart throb" style="color:#d43f57"></i>&nbsp;by Kvancy.</li>
+                        </div>
+                        <div>
+                            <li>Powered by <a href="https://hexo.io" target="_blank" rel="nofollow">Hexo</a></li>
+                            <li>Hosted on <a href="https://github.io" target="_blank">Github Pages</a></li>
+                        </div>
+                        <div>
+                            
+                            
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="kr-tool text-center">
+            <div class="tool">
+                
+                    <div class="box search-box">
+                        <a href="/search/">
+                            <span class="fa fa-search"></span>
+                        </a>
+                    </div>
+                
+                
+                
+                    <div class="box theme-box" id="snow-switch">
+                        <span class="fa fa-snowflake-o"></span>
+                    </div>
+                
+                
+            </div>
+            <div class="box gotop-box">
+                <span class="fa fa-chevron-up"></span>
+            </div>
+        </div>
+    </div>
+</footer>
+</div>
+</div>
+
+        <script defer src="/vendors/bootstrap@3.3.4/dist/js/bootstrap.min.js"></script>
+<script defer src="/vendors/nprogress@0.2.0/nprogress.js"></script>
+<script>
+    if (!window.kr) {
+        window.kr = {};
+    }
+    window.kr.notMobile = (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));
+    window.kr.siteRoot = "/";
+</script>
+
+    <div>
+        <canvas id="snow"></canvas>
+        <script async src="/js/snow.min.js"></script>
+    </div>
+
+
+    <div>
+        <script async src="/js/boom.min.js"></script>
+    </div>
+
+
+    <div>
+        <canvas id="Suzhi"></canvas>
+        <script async src="/js/Suzhi.min.js"></script>
+    </div>
+
+
+    <script defer src="/vendors/aplayer@1.10.1/dist/APlayer.min.js"></script>
+    
+    <script defer src="/vendors/meting@2.0.1/dist/Meting.min.js"></script>
+    <meting-js
+        server="netease"
+        type="playlist"
+        id="3204190542"
+        order="random"
+        fixed="true"
+    >
+    </meting-js>
+
+
+
+    <script defer src="/vendors/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+<script defer src="/js/kratosr.min.js"></script>
+<script defer src="/js/pjax.min.js"></script>
+
+
+
+<!-- Extra support for third-party plguins  -->
+
+
+    </body>
+</html>
