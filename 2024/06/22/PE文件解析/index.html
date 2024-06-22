@@ -17,16 +17,16 @@
   
     <meta name="keywords" content="笔记" />
   
-  <meta name="description" content="PE文件笔记[TOC] 文件结构图：  1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL） PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下">
+  <meta name="description" content="PE文件笔记文件结构图：  1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL） PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下几个部分组成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PE文件笔记">
 <meta property="og:url" content="https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="Kvancy">
-<meta property="og:description" content="PE文件笔记[TOC] 文件结构图：  1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL） PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下">
+<meta property="og:description" content="PE文件笔记文件结构图：  1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL） PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下几个部分组成">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kvancy.github.io/images/favicon.ico">
 <meta property="article:published_time" content="2024-06-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-22T13:34:44.588Z">
+<meta property="article:modified_time" content="2024-06-22T15:21:12.986Z">
 <meta property="article:author" content="Kvancy">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -175,7 +175,7 @@
                         <i class="fa fa-edit"></i> 
                         
                         
-                            ~12.10K
+                            ~12.09K
                         
                         字
                     </li>
@@ -187,7 +187,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1719063284588"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1719069672986"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -197,9 +197,8 @@
                 </div>
             
             <hr />
-            <div itemprop="articleBody"><h1 id="PE文件笔记"><a href="#PE文件笔记" class="headerlink" title="PE文件笔记"></a>PE文件笔记</h1><p>[TOC]</p>
-<p>文件结构图：</p>
-<p><img src="K:/NormalApps/Typora/images/1379525-20191026162634249-935893360.jpg" alt="1379525-20191026162634249-935893360"></p>
+            <div itemprop="articleBody"><h1 id="PE文件笔记"><a href="#PE文件笔记" class="headerlink" title="PE文件笔记"></a>PE文件笔记</h1><p>文件结构图：</p>
+<p><img src="https://s2.loli.net/2024/06/22/4MsNZS1VOXFxH3e.jpg" alt="1379525-20191026162634249-935893360"></p>
 <h2 id="1-PE文件简介"><a href="#1-PE文件简介" class="headerlink" title="1. PE文件简介"></a>1. PE文件简介</h2><p>PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL）</p>
 <p>PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下几个部分组成：</p>
 <ul>
@@ -472,10 +471,9 @@
             const twitterBase   = "https://twitter.com/intent/tweet?";
             const hostUrl       = "https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/";
             const title         = "「PE文件笔记」";
-            const excerpt       = `PE文件笔记[TOC]
-文件结构图：
+            const excerpt       = `PE文件笔记文件结构图：
 
-1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统...`;
+1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件...`;
             let _URL;
             switch (dest) {
                 case "qq"       : _URL = qqBase+"url="+hostUrl+"&title="+title+"&desc=&summary="+excerpt+"&site=cxpy";     break;
@@ -497,7 +495,7 @@
                     <a class="tag-none-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-06-22T13:34:44.588Z" itemprop="dateModified">最后编辑：2024-06-22</time>
+                    <time datetime="2024-06-22T15:21:12.986Z" itemprop="dateModified">最后编辑：2024-06-22</time>
                 </div>
             </div>
         </footer>
@@ -511,7 +509,7 @@
             
             
             <div class="nav-next clearfix">
-                <a title=" smc总结" href="/2024/06/22/smc总结/">下一篇 &gt;</a>
+                <a title=" Rookie diary" href="/2024/06/22/Rookie diary/">下一篇 &gt;</a>
             </div>
             
         </nav>
@@ -616,7 +614,13 @@
         
           
           
-            <a class="list-group-item" href="/2024/06/22/c++/"><i class="fa  fa-book"></i> c++笔记</a>
+            <a class="list-group-item" href="/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/"><i class="fa  fa-book"></i> PE文件笔记</a>
+            
+          
+        
+          
+          
+            <a class="list-group-item" href="/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/"><i class="fa  fa-book"></i> windows内核开发</a>
             
           
         
@@ -628,13 +632,7 @@
         
           
           
-            <a class="list-group-item" href="/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/"><i class="fa  fa-book"></i> PE文件笔记</a>
-            
-          
-        
-          
-          
-            <a class="list-group-item" href="/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/"><i class="fa  fa-book"></i> windows内核开发</a>
+            <a class="list-group-item" href="/2024/06/22/re/"><i class="fa  fa-book"></i> 逆向笔记</a>
             
           
         
