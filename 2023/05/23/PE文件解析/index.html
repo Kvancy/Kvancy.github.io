@@ -6,7 +6,7 @@
   <link rel="icon" href="/images/favicon.ico">
   
   <title>PE文件笔记 | Kvancy</title>
-  <link rel="canonical" href="https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/index.html">
+  <link rel="canonical" href="https://kvancy.github.io/2023/05/23/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/index.html">
   <meta name="author" content="Kvancy" />
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
@@ -20,13 +20,13 @@
   <meta name="description" content="PE文件笔记文件结构图：  1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL） PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下几个部分组成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PE文件笔记">
-<meta property="og:url" content="https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:url" content="https://kvancy.github.io/2023/05/23/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="Kvancy">
 <meta property="og:description" content="PE文件笔记文件结构图：  1. PE文件简介PE文件的全称是Portable Executable，意为可移植的可执行的文件，常见的EXE、DLL、OCX、SYS、COM都是PE文件，PE文件是微软Windows操作系统上的程序文件（可能是间接被执行，如DLL） PE文件有自己的一种文件格式，叫做PE文件格式，它包含了可执行文件的描述信息，以及程序运行时需要的数据。PE文件格式由以下几个部分组成">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://kvancy.github.io/images/favicon.ico">
-<meta property="article:published_time" content="2024-06-21T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-22T15:21:12.986Z">
+<meta property="article:published_time" content="2023-05-22T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-06-22T17:05:38.146Z">
 <meta property="article:author" content="Kvancy">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -158,7 +158,7 @@
 
             <article itemscope itemtype="https://schema.org/Article">
     
-    <link itemprop="mainEntityOfPage" href="https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://kvancy.github.io/2023/05/23/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/">
     <div class="kratos-hentry kratos-post-inner clearfix">
         <header class="kratos-entry-header">
             
@@ -166,7 +166,7 @@
             
             
             <ul class="kratos-post-meta text-center">
-                <li><time datetime="2024-06-21T16:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2024-06-22</time></li>
+                <li><time datetime="2023-05-22T16:00:00.000Z" itemprop="datePublished"><i class="fa fa-calendar"></i> 2023-05-23</time></li>
                 <li itemprop="author" itemscope itemtype="https://schema.org/Person">
                     <i class="fa fa-user"></i> 作者 <span itemprop="name">Kvancy</span>
                 </li>
@@ -187,7 +187,7 @@
             
             <div id="expire-alert" class="alert alert-warning hidden" role="alert">
                 <div class="icon"><i class="fa fa-warning"></i></div>
-                <div class="text"><p>本文最后编辑于 <time datetime="1719069672986"></time> 前，其中的内容可能需要更新。</p></div>
+                <div class="text"><p>本文最后编辑于 <time datetime="1719075938146"></time> 前，其中的内容可能需要更新。</p></div>
             </div>
             
             
@@ -236,9 +236,9 @@
 </ul>
 </blockquote>
 <p>在DOS头中比较重要的两个参数是e_magic和e_lfanew，前者是PE文件标识头，后者是PE文件头的相对文件起始地址的偏移。</p>
-<p><img src="D:/app/Typora/images/Mxd4qKRPvurzFk5.png" alt="Typora卸载程序的DOS头"></p>
+<p><img src="https://s2.loli.net/2024/06/23/3AX8hfVCqtcaS9r.png" alt="Typora卸载程序的DOS头"></p>
 <p>e_magic是前两个字节，对应的是字符串是MZ，e_ifanew是后四个字节，因为是小端序，所以对应的值是0x100，也就是说PE文件头对应偏移是0x100</p>
-<p><img src="D:/app/Typora/images/gEYiOwutNk7QfbT.png" alt="PE文件头偏移"></p>
+<p><img src="https://s2.loli.net/2024/06/23/WB6zye9vVgiomGl.png" alt="PE文件头偏移"></p>
 <p>在DOS头之后，还有一段DOS块，这段空间是由编译器生成，用来存储一些程序运行的信息，可以随意更改，对程序没有影响</p>
 <h2 id="3-PE头解析"><a href="#3-PE头解析" class="headerlink" title="3. PE头解析"></a>3. PE头解析</h2><p>PE头又叫NT头，是整个PE文件真正的头部，共有三个字段</p>
 <blockquote>
@@ -261,7 +261,7 @@
 </ol>
 </blockquote>
 <p>Typora卸载程序在DIE分析结果如下</p>
-<p><img src="D:/app/Typora/images/nDHEOiMP6CKJQXN.png" alt="在DIE下Typora卸载程序文件头"></p>
+<p><img src="https://s2.loli.net/2024/06/23/tuRvPNJUcBT1Fnm.png" alt="在DIE下Typora卸载程序文件头"></p>
 <p>64位下可选PE头包含以下字段</p>
 <blockquote>
 <ol>
@@ -298,9 +298,9 @@
 <li><code>struct IMAGE_DATA_DIRECTORY_ARRAY DataDirArray</code> <strong>数据目录表数组</strong>在导出表导入表里分析</li>
 </ol>
 </blockquote>
-<p><img src="D:/app/Typora/images/1dtKCPqBrWm3cNM.png" alt="可选头中动静态地址分析"></p>
+<p><img src="https://s2.loli.net/2024/06/23/SajxQtylMvhB24J.png" alt="可选头中动静态地址分析"></p>
 <p>在VS中控制该属性的地方：</p>
-<p><img src="D:/app/Typora/images/aEJT1tjZH73UK4L.png" alt="动态基址生成文件"></p>
+<p><img src="https://s2.loli.net/2024/06/23/4IHRYOuwKins9f3.png" alt="动态基址生成文件"></p>
 <p>数据目录表数组以及数据目录表结构体：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数据目录表数组</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Export<span class="comment">//导出表</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Import<span class="comment">//导入表</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Resource<span class="comment">//资源</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Exception<span class="comment">//异常</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Security<span class="comment">//安全</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> BaseRelocationTable<span class="comment">//重定位表</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> DebugDirectory<span class="comment">//调试信息</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> CopyrightOrArchitectureSpecificData<span class="comment">//版权信息</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> GlobalPtr<span class="comment">//RVA OF GP</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> TLSDirectory<span class="comment">//TLS directory</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> LoadConfigurationDirectory</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> BoundImportDirectory</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> ImportAddressTable<span class="comment">//导入函数地址表</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> DelayLoadImportDescriptors</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> COMRuntimedescriptor</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">IMAGE_DATA_DIRECTORY</span> Reserved</span><br><span class="line"></span><br><span class="line"><span class="comment">//表的结构体：</span></span><br><span class="line">    <span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    DWORD   VirtualAddress;<span class="comment">//真正表结构体的内存偏移</span></span><br><span class="line">    DWORD   Size;<span class="comment">//大小，可被修改，没什么用</span></span><br><span class="line">&#125; IMAGE_DATA_DIRECTORY;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -310,7 +310,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    BYTE    Name[<span class="number">8</span>] &lt;comment=<span class="string">&quot;can end without zero&quot;</span>&gt;;</span><br><span class="line">    <span class="comment">//区段名称，字符串不用以0结尾</span></span><br><span class="line">    <span class="keyword">union</span></span><br><span class="line">    &#123;</span><br><span class="line">        DWORD PhysicalAddress;</span><br><span class="line">        DWORD VirtualSize;</span><br><span class="line">    &#125; Misc;<span class="comment">//该区段在内存中的真实大小</span></span><br><span class="line">    DWORD   VirtualAddress;     <span class="comment">//区段在内存中的偏移地址    </span></span><br><span class="line">    DWORD   SizeOfRawData;    <span class="comment">//区段在对齐后的大小      </span></span><br><span class="line">    DWORD   PointerToRawData; <span class="comment">//区段在文件中的偏移位置       </span></span><br><span class="line">    DWORD   PointerToRelocations;<span class="comment">//</span></span><br><span class="line">    DWORD   PointerToLinenumbers;</span><br><span class="line">    WORD    NumberOfRelocations;</span><br><span class="line">    WORD    NumberOfLinenumbers;</span><br><span class="line">    SECTION_CHARACTERISTICS Characteristics;<span class="comment">//区段属性</span></span><br><span class="line">&#125; IMAGE_SECTION_HEADER </span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>在010中区段头数量和名称分析如下</p>
-<p><img src="D:/app/Typora/images/image-20230920194909946.png" alt="image-20230920194909946"></p>
+<p><img src="https://s2.loli.net/2024/06/23/l8pyL6dSfEg5ZH3.png" alt="image-20230920194909946"></p>
 <h2 id="5-导出表分析"><a href="#5-导出表分析" class="headerlink" title="5. 导出表分析"></a>5. 导出表分析</h2><p>导出表结构体：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span></span><br><span class="line">&#123;</span><br><span class="line">    DWORD   Characteristics;</span><br><span class="line">    <span class="type">time_t</span>  TimeDateStamp;<span class="comment">//时间戳</span></span><br><span class="line">    WORD    MajorVersion;</span><br><span class="line">    WORD    MinorVersion;</span><br><span class="line">    DWORD   Name;<span class="comment">//导出表名称</span></span><br><span class="line">    DWORD   Base;<span class="comment">//导出表起始序号</span></span><br><span class="line">    DWORD   NumberOfFunctions;<span class="comment">//导出函数数量 = 终止序号-起始序号+1</span></span><br><span class="line">    DWORD   NumberOfNames;<span class="comment">//以名称导出函数的个数</span></span><br><span class="line">    DWORD   AddressOfFunctions;<span class="comment">//EAT 导出函数地址表 </span></span><br><span class="line">    DWORD   AddressOfNames;<span class="comment">//ENT 导出函数名称表         </span></span><br><span class="line">    DWORD   AddressOfNameOrdinals; <span class="comment">//EOT 导出函数序号表  </span></span><br><span class="line">&#125; IMAGE_EXPORT_DIRECTORY ;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -457,7 +457,7 @@
     <script type="text/javascript">
         $(()=>{
             new QRCode("wechat-qr", {
-                text: "https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/",
+                text: "https://kvancy.github.io/2023/05/23/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/",
                 width: 150,
                 height: 150,
                 correctLevel : QRCode.CorrectLevel.H
@@ -469,7 +469,7 @@
             const qzoneBase     = "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?";
             const facebookBase  = "https://www.facebook.com/sharer/sharer.php?";
             const twitterBase   = "https://twitter.com/intent/tweet?";
-            const hostUrl       = "https://kvancy.github.io/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/";
+            const hostUrl       = "https://kvancy.github.io/2023/05/23/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/";
             const title         = "「PE文件笔记」";
             const excerpt       = `PE文件笔记文件结构图：
 
@@ -495,7 +495,7 @@
                     <a class="tag-none-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
                 </div>
                 <div class="pull-date">
-                    <time datetime="2024-06-22T15:21:12.986Z" itemprop="dateModified">最后编辑：2024-06-22</time>
+                    <time datetime="2024-06-22T17:05:38.146Z" itemprop="dateModified">最后编辑：2024-06-23</time>
                 </div>
             </div>
         </footer>
@@ -504,12 +504,12 @@
         <nav class="navigation post-navigation clearfix" role="navigation">
             
             <div class="nav-previous clearfix">
-                <a title=" windows内核开发" href="/2024/06/22/windows内核开发/">&lt; 上一篇</a>
+                <a title=" 逆向笔记" href="/2023/04/09/re/">&lt; 上一篇</a>
             </div>
             
             
             <div class="nav-next clearfix">
-                <a title=" Rookie diary" href="/2024/06/22/Rookie diary/">下一篇 &gt;</a>
+                <a title=" Rookie diary" href="/2023/07/08/Rookie diary/">下一篇 &gt;</a>
             </div>
             
         </nav>
@@ -608,31 +608,31 @@
         
           
           
-            <a class="list-group-item" href="/2024/06/22/Rookie%20diary/"><i class="fa  fa-book"></i> Rookie diary</a>
+            <a class="list-group-item" href="/2024/05/10/c++/"><i class="fa  fa-book"></i> c++笔记</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2024/06/22/PE%E6%96%87%E4%BB%B6%E8%A7%A3%E6%9E%90/"><i class="fa  fa-book"></i> PE文件笔记</a>
+            <a class="list-group-item" href="/2024/05/08/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/"><i class="fa  fa-book"></i> windows内核开发</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2024/06/22/windows%E5%86%85%E6%A0%B8%E5%BC%80%E5%8F%91/"><i class="fa  fa-book"></i> windows内核开发</a>
+            <a class="list-group-item" href="/2024/05/01/%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/"><i class="fa  fa-book"></i> 驱动开发</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2024/06/22/smc%E6%80%BB%E7%BB%93/"><i class="fa  fa-book"></i> smc总结</a>
+            <a class="list-group-item" href="/2024/04/27/%E6%89%AB%E9%9B%B7%E8%BE%85%E5%8A%A9/"><i class="fa  fa-book"></i> 扫雷辅助制作</a>
             
           
         
           
           
-            <a class="list-group-item" href="/2024/06/22/re/"><i class="fa  fa-book"></i> 逆向笔记</a>
+            <a class="list-group-item" href="/2024/03/17/smc%E6%80%BB%E7%BB%93/"><i class="fa  fa-book"></i> smc总结</a>
             
           
         
