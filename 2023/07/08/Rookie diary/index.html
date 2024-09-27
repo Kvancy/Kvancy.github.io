@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Rookie diary - Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Hexo"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="除了编程和逆向之外的常用工具的使用，记载一些其他常用的工具的使用过程防止自己继续花时间找解决办法"><meta property="og:type" content="blog"><meta property="og:title" content="Rookie diary"><meta property="og:url" content="http://example.com/2023/07/08/Rookie%20diary/"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="除了编程和逆向之外的常用工具的使用，记载一些其他常用的工具的使用过程防止自己继续花时间找解决办法"><meta property="og:locale" content="en_US"><meta property="og:image" content="http://example.com/img/og_image.png"><meta property="article:published_time" content="2023-07-07T16:00:00.000Z"><meta property="article:modified_time" content="2024-09-27T13:55:53.052Z"><meta property="article:author" content="John Doe"><meta property="article:tag" content="杂记"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="http://example.com/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/2023/07/08/Rookie%20diary/"},"headline":"Rookie diary","image":["http://example.com/img/og_image.png"],"datePublished":"2023-07-07T16:00:00.000Z","dateModified":"2024-09-27T13:55:53.052Z","author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"除了编程和逆向之外的常用工具的使用，记载一些其他常用的工具的使用过程防止自己继续花时间找解决办法"}</script><link rel="canonical" href="http://example.com/2023/07/08/Rookie%20diary/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Kvancy"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="Catalogue" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-07-07T16:00:00.000Z" title="2023/7/8 00:00:00">2023-07-08</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-09-27T13:55:53.052Z" title="2024/9/27 21:55:53">2024-09-27</time></span><span class="level-item"><a class="link-muted" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></span><span class="level-item">39 minutes read (About 5791 words)</span></div></div><h1 class="title is-3 is-size-4-mobile">Rookie diary</h1><div class="content"><p>除了编程和逆向之外的常用工具的使用，记载一些其他常用的工具的使用过程防止自己继续花时间找解决办法<span id="more"></span></p>
+<h2 id="1-GitHub"><a href="#1-GitHub" class="headerlink" title="1. GitHub:"></a>1. GitHub:</h2><blockquote>
+<p>github已经创建仓库后，将本地文件上传：</p>
+<ol>
+<li>在本地文件夹中右键 <code>Git Bash Here</code></li>
+<li>输入 <code>git init</code> 在本地建立.git文件夹</li>
+<li>输入 <code>git remote add origin git@github.com:Kvancy/GameHall.git</code> 设置远程仓库，origin后面地址从仓库SSH块复制</li>
+<li>输入 <code>git add .</code> </li>
+<li>输入 <code>git commit -m &quot;版本号&quot;</code> </li>
+<li>输入 <code>git checkout -b main</code> 将上传分支设置为main(也可以是其他，自定义)</li>
+<li>输入 <code>git push -u origin main</code> 上传文件到main分支</li>
+</ol>
+<p>删除分支</p>
+<ol>
+<li>远端分支 <code>git push origin --delete [branch_name]</code></li>
+<li>本地分支 <code>git branch [branch_name] -d</code></li>
+</ol>
+</blockquote>
+<!-- more -->
+<blockquote>
+<p>查看分支</p>
+<ol>
+<li>查看本地分支 <code>git branch</code></li>
+<li>查看远程分支 <code>git branch -r</code></li>
+<li>查看本地和远程分支 <code>git branch -a</code></li>
+</ol>
+<p>更换远程仓库地址</p>
+<ol>
+<li><code>git remote -v</code>  #查看远端地址</li>
+<li><code>git remote</code> #查看远端仓库名</li>
+<li><code>git remote set-url origin https://gitee.com/xx/xx.git</code> (新地址)</li>
+</ol>
+<p>git push报错，显示仓库中有一部分代码，要先pull </p>
+<p>参考链接 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/qingheshiguang/p/14777557.html"></a></p>
+<ul>
+<li>方法一：</li>
+</ul>
+<ol>
+<li><p><code>git pull origin [main]</code>分支名 </p>
+</li>
+<li><p>重新<code>add</code>和<code>commit</code>相应文件 </p>
+</li>
+<li><p><code>git push origin [main]</code> 分支名</p>
+</li>
+</ol>
+<ul>
+<li>方法二：</li>
+</ul>
+<ol>
+<li>强推： <code>git push -f origin [main]</code> 分支名</li>
+</ol>
+</blockquote>
+<h2 id="2-VScode的环境配置："><a href="#2-VScode的环境配置：" class="headerlink" title="2. VScode的环境配置："></a>2. VScode的环境配置：</h2><ol>
+<li><p>launch.json文件配置（调试的配置，必须先编译得到exe）</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C/C++: g++.exe 生成和调试活动文件&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppdbg&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;request&quot;</span><span class="punctuation">:</span> <span class="string">&quot;launch&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;program&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;stopAtEntry&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;fileDirname&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;environment&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;externalConsole&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span><span class="comment">//设置成true才能调试</span></span><br><span class="line">      <span class="attr">&quot;MIMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gdb&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;miDebuggerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\MinGW\\bin\\gdb.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;setupCommands&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;为 gdb 启用整齐打印&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;-enable-pretty-printing&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;ignoreFailures&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">        <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">          <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;将反汇编风格设置为 Intel&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;text&quot;</span><span class="punctuation">:</span> <span class="string">&quot;-gdb-set disassembly-flavor intel&quot;</span><span class="punctuation">,</span></span><br><span class="line">          <span class="attr">&quot;ignoreFailures&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;preLaunchTask&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C/C++: g++.exe 生成活动文件&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>tasks.json文件配置（编译作用）,这里默认g++，不需要动，在终端-配置任务中修改</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;tasks&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;cppbuild&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;label&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C/C++: g++.exe 生成活动文件&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;command&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:\\MinGW\\bin\\g++.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;args&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;-fdiagnostics-color=always&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-g&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;file&#125;&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;-o&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="string">&quot;$&#123;fileDirname&#125;\\$&#123;fileBasenameNoExtension&#125;.exe&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;options&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;cwd&quot;</span><span class="punctuation">:</span> <span class="string">&quot;$&#123;fileDirname&#125;&quot;</span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;problemMatcher&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;$gcc&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;group&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">                <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> <span class="string">&quot;build&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="attr">&quot;isDefault&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line">            <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;detail&quot;</span><span class="punctuation">:</span> <span class="string">&quot;调试器生成的任务。&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="string">&quot;2.0.0&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>setting.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.cCompilerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/MinGW/bin/g++.exe&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.cppCompilerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;g++&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.debuggerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gdb&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.cStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c11&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.cppStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gnu++14&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.msvcBatchPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.useMsvc&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.warnings&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;-Wall&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;-Wextra&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;-Wpedantic&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;-Wshadow&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;-Wformat=2&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;-Wcast-align&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;-Wconversion&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;-Wsign-conversion&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;-Wnull-dereference&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.msvcWarnings&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;/W4&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/permissive-&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14242&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14287&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14296&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14311&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14826&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w44062&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w44242&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14905&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14906&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14263&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w44265&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;/w14928&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.enableWarnings&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.warningsAsError&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.compilerArgs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.linkerArgs&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.includePaths&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.includeSearch&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;*&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;**/*&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.excludeSearch&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="string">&quot;**/build&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;**/build/**&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;**/.*&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;**/.*/**&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;**/.vscode&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="string">&quot;**/.vscode/**&quot;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.useAddressSanitizer&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.useUndefinedSanitizer&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.useLeakSanitizer&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.showCompilationTime&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.useLinkTimeOptimization&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;C_Cpp_Runner.msvcSecureNoWarnings&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>c_cpp_properties</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;windows-clang-x86&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;includePath&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;defines&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="string">&quot;_DEBUG&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;UNICODE&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="string">&quot;_UNICODE&quot;</span></span><br><span class="line">      <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;cStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c11&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;cppStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;gnu++14&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;intelliSenseMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;windows-clang-x86&quot;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;compilerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;C:/MinGW/bin/g++.exe&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">4</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-虚拟机配置："><a href="#3-虚拟机配置：" class="headerlink" title="3. 虚拟机配置："></a>3. 虚拟机配置：</h2><p><code>bcdedit /set hypervisorlaunchtype off</code></p>
+<h2 id="4-服务器博客搭建"><a href="#4-服务器博客搭建" class="headerlink" title="4. 服务器博客搭建"></a>4. 服务器博客搭建</h2><h3 id="1-登录宝塔面板"><a href="#1-登录宝塔面板" class="headerlink" title="1. 登录宝塔面板"></a>1. 登录宝塔面板</h3><blockquote>
+<ol>
+<li><p><code>远程连接云服务器的控制台</code></p>
+</li>
+<li><p><code>访问宝塔面板的安全入口，可通过控制台 su root  bt default 查询网址，</code></p>
+<p> <code>目前设置成了 47.97.68.254:1111/Kvancy</code></p>
+</li>
+<li><p><code>用户名是Kvancy</code></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="2-本地下载hexo博客系统"><a href="#2-本地下载hexo博客系统" class="headerlink" title="2. 本地下载hexo博客系统"></a>2. 本地下载hexo博客系统</h3><blockquote>
+<ol>
+<li><code>curl --silent --location https://rpm.nodesource.com/setup_14.x|sudo bash</code></li>
+<li><code>yum -y install nodejs</code></li>
+<li><code>npm install hexo-cli -g</code></li>
+<li><code>hexo init blog</code></li>
+<li><code>cd blog/</code></li>
+<li><code>npm install</code> </li>
+<li><code>hexo server</code></li>
+</ol>
+<ul>
+<li><input disabled="" type="checkbox"> 默认4000端口没用的话，使用 <code>hexo server -p5000</code>指定端口，如果想直接通过ip访问博客，可以通过 <code>hexo server -p80</code>设置端口。也可以通过 <code>/blog/node_modules/hexo-server/index.js</code>修改port值从而修改默认端口号</li>
+<li><input disabled="" type="checkbox"> 有时候开启多个端口设置hexio会访问失败，通过 <code>netstat -nultp</code>查看所有端口号，<code>kill -9 id</code>  id为进程id，杀死进程即可，kill - num 代表的意思如下</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>num</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>9</th>
+<th>15</th>
+<th>18</th>
+<th>19</th>
+<th>20</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>含义</td>
+<td>进程重新被加载</td>
+<td>删除进程在内存中的数据</td>
+<td>删除鼠标在内存中的数据</td>
+<td>强行结束单个进程</td>
+<td>正常关闭进程</td>
+<td>运行暂停的进程</td>
+<td>暂停某个进程</td>
+<td>把进程打入后台</td>
+</tr>
+</tbody></table>
+</blockquote>
+<h3 id="3-本地Hexo一键部署到远程服务器"><a href="#3-本地Hexo一键部署到远程服务器" class="headerlink" title="3. 本地Hexo一键部署到远程服务器"></a>3. 本地Hexo一键部署到远程服务器</h3><blockquote>
+<p>参考链接 <a target="_blank" rel="noopener" href="https://blog.51cto.com/u_16213710/7330478"></a></p>
+<ol>
+<li><p><code>yum install -y wget &amp;&amp; wget -O install.sh https://download.bt.cn/install/install_6.0.sh &amp;&amp; sh install.sh ed8484bec</code> 安装宝塔面板</p>
+</li>
+<li><p><code>yum install git</code> 安装git</p>
+</li>
+<li><p><code>adduser git</code> 配置git用户</p>
+</li>
+<li><p><code>chmod 740 /etc/sudoers</code>  赋予用户权限 &#96;&#96;vi &#x2F;etc&#x2F;sudoers<code> </code> 进入权限管理文件</p>
+</li>
+<li><p><code>root  ALL=(ALL)  ALL</code>      </p>
+<p> <code>git  ALL=(ALL)   ALL</code>   在这条上面加上这行</p>
+</li>
+<li><p><code>chmod 400 /etc/sudoers</code> 修改sudoers文件权限</p>
+</li>
+<li><p><code>sudo passwd git </code> 设置git 用户的密码，这里设置了 ‘root’</p>
+</li>
+<li><p><code>su - git </code> 给用户添加ssh密钥，git</p>
+<p> <code>mkdir -p ~/.ssh </code></p>
+<p> <code>touch ~/.ssh/authorized_keys </code></p>
+<p> <code>chmod 600 ~/.ssh/authorzied_keys </code></p>
+<p> <code>chmod 700 ~/.ssh vim ~/.ssh/authorized_keys    </code> 将ssh密钥粘贴进去，用于远程登录服务器</p>
+</li>
+<li><p><code>ssh -v git@你的 ip 地址</code>   输入密码 即可成功登录云服务器</p>
+</li>
+<li><p><code>su root</code> 创建一个git仓库，新建一个 post-receive 文件，用来存储本地的提交</p>
+<p> <code>cd /home/git</code></p>
+<p><code>git init --bare blog.git</code>  #在&#x2F;home&#x2F;git下创建新仓库blog.git </p>
+<p><code>chown git:git -R blog.git</code> #给予git用户权限</p>
+</li>
+<li><p><code>cd blog.git/hooks vim post-receive</code> 配置钩子文件，使得每次本地上传时，远程自动同步下载</p>
+</li>
+<li><p><code>#!/bin/bash</code></p>
+</li>
+</ol>
+<pre><code>`git --work-tree=/home/hexo --git-dir=/home/git/blog.git checkout -f`  写入钩子代码
+</code></pre>
+<ol start="12">
+<li><code>chmod +x /home/git/blog.git/hooks/post-receive</code> 授予钩子可执行权限</li>
+</ol>
+<pre><code>以上是服务器配置
+
+------
+</code></pre>
+<ol start="13">
+<li><pre><code class="js">deploy: #配置本地hexo的_config.yml文件
+    type: git
+    repo: root@你的ip地址:/home/git/blog.git    #仓库地址
+    branch: master    #分支
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">14. ```js</span><br><span class="line">	#上传到远程服务器端git仓库，远程通过钩子自动下载同步    #这些也是部署之后每次上传时执行的命令</span><br><span class="line">	hexo clean </span><br><span class="line">	hexo g -d  #编译并部署，</span><br><span class="line">	hexo s #本地用来测效果</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ol>
+<hr>
+<p>结束撒花，哦对了，如果有nginx需求，参考这个链接，可以设置默认访问80端口，输入ip默认到博客界面 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/120743882"></a> </p>
+</blockquote>
+<h3 id="4-针对Kratos-Rebirth主题的配置"><a href="#4-针对Kratos-Rebirth主题的配置" class="headerlink" title="4. 针对Kratos-Rebirth主题的配置"></a>4. 针对Kratos-Rebirth主题的配置</h3><p>参考链接 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration.html"></a></p>
+<blockquote>
+<h4 id="根目录下-config-yml"><a href="#根目录下-config-yml" class="headerlink" title="根目录下_config.yml"></a>根目录下_config.yml</h4><ol>
+<li><p>先理清两个概念，根目录下的deploy配置repo是对应仓库地址用http或者ssh地址都行，但是http协议下的 <code>hexo -d</code>容易报错，可能延迟太高了，建议使用ssh地址举例如下：<code>git@github.com:Kvancy/Kvancy.github.io.git</code> 根目录下url的配置是远程部署的网站地址，不是仓库地址，所以可以这样填  <code>url: https://kvancy.github.io/</code></p>
+</li>
+<li><p>还有一个叫做文章永久链接格式，permalink的配置，默认配置如下：<code>:year/:month/:day/:title/</code></p>
+<p> 意思是，在每次 <code>hexo -g</code>生成html时，默认文章目录结构是按照年月日文章名排布的，因为这个我一直以为是我commit版本加了’&#x2F;‘导致的错误，弄了半天没弄明白，搞得我放弃云服务器转到github上来，现在明白了，但是想想还是就到github上吧</p>
+</li>
+<li><p><code>index_generator:</code>属性配置，这个的per-page属性是指主页面下最多几个文章，也就是说几个文章之后需要进入下一个page，这个主题调成4个我个人感觉最好的</p>
+</li>
+<li><p><code>index: post_type: false </code> 这个设置成false可以让主页上的文章预览时有自定义的图片</p>
+</li>
+</ol>
+<h4 id="主题文件夹下-config-yml配置"><a href="#主题文件夹下-config-yml配置" class="headerlink" title="主题文件夹下_config.yml配置"></a>主题文件夹下_config.yml配置</h4><p>关于特效，参考链接 <a target="_blank" rel="noopener" href="https://juejin.cn/post/7106018120036253710"></a></p>
+<ol>
+<li><p>先说第一个，也是搞了我很久的一个问题，关于网站havicon标志的配置。我一直在根目录下对havicon进行部署，一度以为我的路径或者图片有问题，因为其中没有havicon的有关配置，我就像其他主题一样自己加上去，甚至去查过可以直接在服务器根目录下放着havicon.ico文件，浏览器会自己查找，试过了发现在 <code>hexo -g</code>的时候根目录结构会改变，行不通，后来翻阅作者的配置说明得知，在主题文件夹下site_logo处配置 <code>site_logo: /images/favicon.ico #网站的favicon</code></p>
+</li>
+<li><p>snow下雪动画设置成true，enable_dark设置成false，亮色主题。</p>
+</li>
+<li><p>去除主页上栏图片改用一整个图片做背景是在customStyles下吧images的banner属性地址设置成空，在src&#x2F;scss&#x2F;kr-color&#x2F;default.css文件有有关对应默认设置的图片地址，把resource文件下该图片名改一下即可，独留background属性，地址为&#x2F;images&#x2F;bg.jpg，这个相对路径判断：”hexo -g”生成public文件后，进入public文件，这个是浏览器的根目录，在根目录下的images文件夹即对应了这个相对路径，下面的avatar也是如此寻址设图</p>
+</li>
+<li><p><code>siteLeaveEvent: true</code>这个设置成true可以有监控离开和进入网页的动作，从而做出动效</p>
+</li>
+<li><p>引入了鼠标跟踪特效，<a target="_blank" rel="noopener" href="https://1keven1.github.io/2021/01/20/%E3%80%90JS%E3%80%91%E7%BD%91%E9%A1%B5%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%8A%A8%E6%8B%96%E5%B0%BE%E7%89%B9%E6%95%88/">源js代码链接</a> 并对该特效进行修改，<code>characters = [&quot;0&quot;, &quot;1&quot;];</code> 把音符改成了二进制；引入步骤是，copy并自定义修改js代码后，把文件名改成Suzhi.js（博主名），再copy一份到Suzhi.min.js，前者放在src&#x2F;js目录下，后者放到source&#x2F;js代码下；在layout&#x2F;_partial找到after-footer.ejs文件，进去对照id &#x3D; snow的写法复制一个对应id&#x3D; Suzhi的（前端不是很懂，就是copy就完了！），参考如下：</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;% <span class="keyword">if</span>(theme.<span class="property">mouse_trace_js</span>)&#123; %&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;Suzhi&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &lt;%- js_theme_cdn(&#x27;js/Suzhi.min.js&#x27;, &#123;async: true&#125;) %&gt;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 然后在theme主题下的config_yml文件加一个 <code>mouse_trace_js: true #鼠标跟踪动画</code>就行</p>
+</li>
+<li><p>引入boom.js，text.js，更改了鼠标点击特效，前者是爆炸烟花波纹，后者是文字特效</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="5-关于Typora"><a href="#5-关于Typora" class="headerlink" title="5. 关于Typora"></a>5. 关于Typora</h2><h3 id="1-YAML-Front-Matter的使用"><a href="#1-YAML-Front-Matter的使用" class="headerlink" title="1. YAML Front Matter的使用"></a>1. YAML Front Matter的使用</h3><blockquote>
+<ol>
+<li><p>每次上传md文件到博客时，都需要给文章起个标题，并且配置文章属性，如下是属性配置格式</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title</span>: c++笔记</span><br><span class="line"><span class="attr">date</span>: <span class="number">2023</span>/<span class="number">9</span>/<span class="number">18</span></span><br><span class="line"><span class="attr">categories</span>: 笔记</span><br><span class="line"><span class="attr">tags</span>:</span><br><span class="line">  - 笔记</span><br><span class="line"><span class="attr">sticky</span>: <span class="number">100</span></span><br><span class="line"><span class="attr">pic</span>:</span><br><span class="line"><span class="attr">comments</span>: <span class="literal">false</span></span><br><span class="line"><span class="attr">toc</span>: <span class="literal">true</span></span><br><span class="line"><span class="attr">expire</span>: <span class="literal">true</span></span><br><span class="line"><span class="attr">only</span>:</span><br><span class="line">  - home</span><br><span class="line">  - category</span><br><span class="line">  - tag</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>pic</strong> : 可以指定这篇文章是否使用自定义的缩略图名称（在文章资源文件夹内），而不是使用随机化的图标</p>
+</li>
+<li><p><strong>sticky</strong> : (<em>number</em>)重要的文章，把它们置顶吧！数字越大优先级越高哦~</p>
+</li>
+<li><p><strong>comments</strong> : (<em>true&#x2F;false</em>)是否为单篇文章指定开启或关闭评论区</p>
+</li>
+<li><p><strong>toc：</strong> (<em>true&#x2F;false</em>)该文章是否需要生成目录</p>
+</li>
+<li><p><strong>only：</strong> 指定文章显示的位置，有以下关键词：</p>
+</li>
+<li><p>home: 在首页显示</p>
+<ul>
+<li>category: 在分类页显示</li>
+<li>tag: 在标签页显示<br>  <em>留空</em>或是<em>不配置</em>此项，则文章在所有该出现的位置都会显示。<br>  层级之间相互平等，没有覆盖关系。<br>  特别地，如果配置了此项，但是使用的并不是以上的关键词（例如只留了一个<code>- none</code>，那么文章就被隐藏起来了）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h3 id="2-控制文章预览字数"><a href="#2-控制文章预览字数" class="headerlink" title="2. 控制文章预览字数"></a>2. 控制文章预览字数</h3><blockquote>
+<ol>
+<li>在你想要预览结束的地方添加markdown源代码</li>
+</ol>
+<p>&#96;&#96;</p>
+</blockquote>
+<h3 id="3-图片的插入与上传"><a href="#3-图片的插入与上传" class="headerlink" title="3. 图片的插入与上传"></a>3. 图片的插入与上传</h3><blockquote>
+<ol>
+<li><p>在偏好设置的图像位置设置，插入图片时—-上传图片；勾选对本地位置的图片应用上述规则；上传服务—-PicGo(app), 路径找到Picgo的exe程序路径；在smms上注册一个账号，获得账号API token，作为接下来的密钥；下载PicGo(app)之后，在图床设置里将密钥填入SM.MS图床，SM.MS-登录用户；</p>
+<p> 在插件设置那里搜索smms-user，下载之后点击插件右下角的设置，点击配置plugin,配置uploader,把密钥填入后重启；在Typora偏好设置里有验证图片上传的选项</p>
+<hr>
+<p> 现在的话就可以在每次插入图片时实现自动上传到SMMS图床，并直接更改md文件中图片地址为远程图片地址，如果有大量没处理的本地图片，可以通过格式–图像–上传所有本地图片操作实现自动上传图片并更改图片路径</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="6-python学习积累"><a href="#6-python学习积累" class="headerlink" title="6. python学习积累:"></a>6. python学习积累:</h2><p>pyenv - python环境转换,参考链接: <a target="_blank" rel="noopener" href="https://github.com/pyenv-win/pyenv-win">https://github.com/pyenv-win/pyenv-win</a></p>
+<ol>
+<li><p>Run <code>pyenv install &lt;version&gt;</code> to install the supported version</p>
+</li>
+<li><p>Run <code>pyenv global &lt;version&gt;</code> to set a Python version as the global version</p>
+</li>
+<li><p>Check which Python version you are using and its path</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; pyenv version</span><br><span class="line">&lt;version&gt; (set by \path\to\.pyenv\pyenv-win\.python-version)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<p>   <em>commands</em>     List all available pyenv commands<br>   <em>local</em>        Set or show the local application-specific Python version<br>   <em>global</em>       Set or show the global Python version<br>   <em>shell</em>        Set or show the shell-specific Python version<br>   <em>install</em>      Install 1 or more versions of Python<br>   <em>uninstall</em>    Uninstall 1 or more versions of Python<br>   <em>update</em>       Update the cached version DB<br>   <em>rehash</em>       Rehash pyenv shims (run this after switching Python versions)<br>   <em>vname</em>        Show the current Python version<br>   <em>version</em>      Show the current Python version and its origin<br>   version-name Show the current Python version<br>   <em>versions</em>     List all Python versions available to pyenv<br>   <em>exec</em>         Runs an executable by first preparing PATH so that the selected Python<br>   <em>which</em>        Display the full path to an executable<br>   <em>whence</em>       List all Python versions that contain the given executable</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#list转变字符串</span></span><br><span class="line">a = [<span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;Q&#x27;</span>, <span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;S&#x27;</span>, <span class="string">&#x27;T&#x27;</span>, <span class="string">&#x27;U&#x27;</span>, <span class="string">&#x27;V&#x27;</span>, <span class="string">&#x27;W&#x27;</span>, <span class="string">&#x27;X&#x27;</span>, <span class="string">&#x27;Y&#x27;</span>, <span class="string">&#x27;Z&#x27;</span>, <span class="string">&#x27;[&#x27;</span>, <span class="string">&#x27;\\&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;F&#x27;</span>, <span class="string">&#x27;G&#x27;</span>, <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;J&#x27;</span>, <span class="string">&#x27;K&#x27;</span>, <span class="string">&#x27;L&#x27;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="string">&#x27;N&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;\\&#x27;</span>, <span class="string">&#x27;]&#x27;</span>, <span class="string">&#x27;^&#x27;</span>, <span class="string">&#x27;_&#x27;</span>, <span class="string">&#x27;`&#x27;</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;p&#x27;</span>, <span class="string">&#x27;q&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27;u&#x27;</span>, <span class="string">&#x27;v&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;z&#x27;</span>, <span class="string">&#x27;&#123;&#x27;</span>, <span class="string">&#x27;|&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;j&#x27;</span>, <span class="string">&#x27;k&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;n&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;|&#x27;</span>, <span class="string">&#x27;&#125;&#x27;</span>, <span class="string">&#x27;~&#x27;</span>, <span class="string">&#x27;\x7f&#x27;</span>]</span><br><span class="line">T = <span class="string">&#x27;&#x27;</span>.join(a)</span><br><span class="line"><span class="built_in">print</span>(T)</span><br><span class="line"><span class="comment">#list转bytes数组</span></span><br><span class="line">enc = [<span class="number">0x25</span>, <span class="number">0x6F</span>, <span class="number">0x3D</span>, <span class="number">0x6C</span>, <span class="number">0xF9</span>, <span class="number">0xE0</span>, <span class="number">0xCF</span>, <span class="number">0x3F</span>, <span class="number">0x2E</span>, <span class="number">0x24</span>, <span class="number">0xC6</span>, <span class="number">0x7B</span>, <span class="number">0x81</span>, <span class="number">0xBF</span>, <span class="number">0x55</span>, <span class="number">0x4F</span>, <span class="number">0x0D</span>, <span class="number">0x99</span>, <span class="number">0x87</span>, <span class="number">0x47</span>, <span class="number">0x48</span>, <span class="number">0xF7</span>, <span class="number">0xB9</span>, <span class="number">0x98</span>, <span class="number">0xFB</span>, <span class="number">0x1B</span>, <span class="number">0x22</span>, <span class="number">0xEC</span>, <span class="number">0x84</span>, <span class="number">0x23</span>, <span class="number">0xFD</span>, <span class="number">0xB2</span>]</span><br><span class="line">my_bytearray = <span class="built_in">bytearray</span>()</span><br><span class="line">my_bytearray.extend(enc)</span><br><span class="line">my_bytes = <span class="built_in">bytes</span>(my_bytearray)</span><br><span class="line"><span class="built_in">print</span>(my_bytes) </span><br><span class="line"><span class="comment">#b&#x27;%o=l\xf9\xe0\xcf?.$\xc6&#123;\x81\xbfUO\r\x99\x87GH\xf7\xb9\x98\xfb\x1b&quot;\xec\x84#\xfd\xb2&#x27;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="7"><a href="#7" class="headerlink" title="7. &lt;&lt;深入理解计算机系统&gt;&gt;"></a>7. &lt;&lt;深入理解计算机系统&gt;&gt;</h2><h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><blockquote>
+<p>程序的局部性有两种不同的形式-时间局部性和空间局部性</p>
+<p>一般而言,良好局部性的程序比局部性差的程序运行的更快</p>
+<p>理解: 在一个具有良好局部性的程序中,如果一个内存位置被引用了一次,那么程序很可能在不远的将来引用附近的一个内存位置</p>
+<p>原因: 在硬件层,局部性原理允许计算机设计者通过引入称为<em>高速缓存存储器</em>的小而快速的存储器来保存最近被引用的指令和数据项,从而提高对主存的访问速度</p>
+</blockquote>
+<p>例如下面代码,func1会比func2更快</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">func1</span><span class="params">(<span class="type">int</span> a[M[N]])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i,j,sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;M;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j&lt;<span class="number">0</span>;j&lt;N;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += a[M][N];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">func2</span><span class="params">(<span class="type">int</span> a[M[N]])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> i,j,sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;N;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j&lt;<span class="number">0</span>;j&lt;M;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += a[M][N];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其实就是遍历二维数组的时候从行遍历变成了列遍历,从而破坏了函数的空间局限性</p>
+<p>存储器层次架构:</p>
+<table>
+<thead>
+<tr>
+<th align="center">速度</th>
+<th align="center">存储器</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><em>高速</em></td>
+<td align="center">寄存器</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">L1高速缓存(SRAM)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">L2高速缓存(SRAM)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">L3高速缓存(SRAM)</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">主存</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">本地磁盘</td>
+</tr>
+<tr>
+<td align="center"><em>低速</em></td>
+<td align="center">远程二级存储(分布式文件系统,web服务器)</td>
+</tr>
+</tbody></table>
+<h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p>源程序main.c到可执行文件的几个步骤</p>
+<ol>
+<li>生成Ascii码的中间文件main.i</li>
+<li>翻译成汇编语言文件main.s</li>
+<li>运行汇编器,生成一个可重定位目标文件main.o</li>
+<li>最后运行链接器程序生成可执行文件main.exe</li>
+</ol>
+<p>gcc编译生成各种文件的几种指令 <code>gcc --help</code>可查询</p>
+<blockquote>
+<p>gcc -E test.c -o test.i</p>
+<p>gcc -S test.c -o test.i</p>
+<p>gcc -c test.c -o test.o</p>
+<p>gcc test.o -o test</p>
+</blockquote>
+<p>linux下从应用程序中加载和链接动态链接共享库</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;dlfcn.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span>* <span class="title">dlopen</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* filename,<span class="type">int</span> flag)</span> <span class="comment">//成功返回指向句柄的指针,flag可取RTLD_NOW或者RTLD_LAZY,指示链接器立即/延迟解析,JNI基本思想就是使用dlopen来调用.so共享库</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">dlsym</span><span class="params">(<span class="type">void</span>* handle <span class="type">char</span> *symbol)</span></span>; <span class="comment">//成功返回指向符号的指针,若出错则为NULL,symbol为调用的函数名称</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">dlclose</span><span class="params">(<span class="type">void</span>* handle)</span></span>; <span class="comment">//不用时卸载该库</span></span><br></pre></td></tr></table></figure>
+
+<p>共享库的一个主要目的就是允许多个进程共享内存中相同的库代码,但是又<strong>不希望各个进程消耗过多的内存和时间加载完整的共享库</strong></p>
+<p>所以现代系统通过生成<strong>PIC</strong>(位置无关代码)代码来解决这个问题,无限多个进程可以共享一个共享模块的代码段的单一副本</p>
+<p>gcc使用-fpic选项指示GNU编译系统生成PIC代码,编译共享库时总是使用该选项</p>
+<p><strong>未防止程序对整个共享库内导出函数进行重定位</strong>,引入了PLT表和GOT表两个概念</p>
+<blockquote>
+<p>PLT表和GOT表是动态链接过程中的重要部分，它们可以实现程序在运行时按需加载外部库函数，提高程序的效率和安全性。我来给你讲讲它们的作用和原理。</p>
+<p>PLT表（Procedure Linkage Table）是程序链接表，它包含了调用外部库函数的跳转指令，每个指令都会跳转到GOT表中的一个地址。PLT表的第一个条目是一个特殊的入口，它会调用动态链接器（ld）来解析函数的真实地址，并将其写入GOT表中。这个过程称为运行时重定位或惰性绑定，它可以避免在程序启动时就进行所有的重定位，从而减少启动时间和内存占用。</p>
+<p>GOT表（Global Offset Table）是全局偏移表，它是一个存储外部库函数地址的数据段，每个条目对应一个PLT表中的条目。GOT表的前三个条目是特殊的，它们分别存储了动态段（.dynamic）的地址、链接映射对象（link_map）的地址和运行时解析函数（_dl_runtime_resolve）的地址。这些信息是动态链接器进行重定位所需要的。当程序第一次调用一个外部库函数时，GOT表中对应的条目会被重定位为真实的函数地址，并被缓存起来。当程序再次调用同一个函数时，就可以直接从GOT表中读取地址并跳转过去，无需再次进行重定位。</p>
+</blockquote>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><h3 id="获取容器-IP："><a href="#获取容器-IP：" class="headerlink" title="获取容器 IP："></a>获取容器 IP：</h3><p>如果你需要使用容器的 IP 地址连接，可以使用 <code>docker inspect</code> 命令获取容器的 IP 地址：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker inspect <span class="operator">-</span>f <span class="string">&#x27;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&#x27;</span> mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h3><p>启动mysql,必须指定<code>MYSQL_ROOT_PASSWORD1</code>属性</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="operator">-</span>p <span class="number">3306</span>:<span class="number">3306</span> <span class="comment">--name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="phpmyadmin"><a href="#phpmyadmin" class="headerlink" title="phpmyadmin"></a>phpmyadmin</h3><p>phpmyadmin连接mysql进行管理,指定<code>PMA_HOST</code>来指定mysql容器ip, <code>-e PMA_USER=root -e PMA_PASSWORD=root</code>为mysql账号密码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="comment">--name phpmyadmin -d -p 8080:80 -e PMA_HOST=172.17.0.3 -e PMA_PORT=3306 -e PMA_USER=root -e PMA_PASSWORD=root phpmyadmin</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="部署可执行jar包"><a href="#部署可执行jar包" class="headerlink" title="部署可执行jar包"></a>部署可执行jar包</h3><p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/255143.htm">https://www.jb51.net/article/255143.htm</a></p>
+<h4 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h4><h5 id="1、创建存放docker配置文件、jar包的文件夹"><a href="#1、创建存放docker配置文件、jar包的文件夹" class="headerlink" title="1、创建存放docker配置文件、jar包的文件夹"></a>1、<strong>创建存放docker配置文件、jar包的文件夹</strong></h5><p>在宿主机上，创建文件夹：&#x2F;home&#x2F;admin&#x2F;app，用于存放bash文件和jar包。然后在该文件夹下，创建bash文件和容器配置文件</p>
+<h5 id="2、创建bash文件"><a href="#2、创建bash文件" class="headerlink" title="2、创建bash文件"></a>2、<strong>创建bash文件</strong></h5><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi run.sh</span><br><span class="line">java -jar /usr/data/app-<span class="number">1.0</span>.<span class="number">0</span>.jar</span><br></pre></td></tr></table></figure>
+
+<p>&#x2F;usr&#x2F;data是docker容器内的路径</p>
+<p>我们不必真的到容器内创建这个路径</p>
+<p>后面会将此路径挂载到当前文件夹：&#x2F;home&#x2F;admin&#x2F;app</p>
+<h5 id="3、创建容器配置文件"><a href="#3、创建容器配置文件" class="headerlink" title="3、创建容器配置文件"></a>3、<strong>创建容器配置文件</strong></h5><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vi Dockerfile</span><br><span class="line"><span class="keyword">FROM</span> java:<span class="number">8</span> </span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">8081</span> </span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="language-bash"> [<span class="string">&quot;sh&quot;</span>,<span class="string">&quot;/usr/data/run.sh&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<p>8081是我们这个jar包的对外端口</p>
+<h4 id="二、构建镜像"><a href="#二、构建镜像" class="headerlink" title="二、构建镜像"></a>二、构建镜像</h4><p>仍然在&#x2F;home&#x2F;admin&#x2F;app下，构建镜像。注意最后一个“.”，表示 Dockerfile 文件在当前目录下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t myapp:1.0.0 .</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、创建容器并运行"><a href="#三、创建容器并运行" class="headerlink" title="三、创建容器并运行"></a>三、创建容器并运行</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -it --name=myapp -p 8081:8081 -v /home/admin/app:/usr/data myapp:1.0.0</span><br></pre></td></tr></table></figure>
+
+<p>docker引擎重启后自动运行（也可以理解为操作系统重启后自动运行，如果docker是开机自动运行的话）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --restart=always -d -it --name=myapp -p 8082:8081 -v /home/admin/app:/usr/data myapp:1.0.0</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>-v，将容器内的&#x2F;usr&#x2F;data挂载到宿主机的&#x2F;home&#x2F;admin&#x2F;app。以后jar包有更新，丢到宿主机的&#x2F;home&#x2F;admin&#x2F;app，然后重启容器即可。</p>
+<p>-d: 后台运行容器，并返回容器ID；</p>
+<p>-d, –detach&#x3D;false Run container in background and print container ID</p>
+<p>-i: 以交互模式运行容器，通常与 -t 同时使用；</p>
+<p>-i, –interactive&#x3D;false Keep STDIN open even if not attached</p>
+<p>-t: 为容器重新分配一个伪输入终端，通常与 -i 同时使用；</p>
+<p>-t, –tty&#x3D;false Allocate a pseudo-TTY</p>
+</blockquote>
+<h4 id="四、删除多余或失败的容器、镜像"><a href="#四、删除多余或失败的容器、镜像" class="headerlink" title="四、删除多余或失败的容器、镜像"></a>四、删除多余或失败的容器、镜像</h4><p>以上步骤，可能存在波折，不小心就创建了许多并不称心如意的容器和镜像，占用了心水名称和端口，必先删之而后快。</p>
+<h5 id="1、观察已经有哪些容器"><a href="#1、观察已经有哪些容器" class="headerlink" title="1、观察已经有哪些容器"></a>1、观察已经有哪些容器</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps -a</span><br></pre></td></tr></table></figure>
+
+<p>加上 -a 参数，可以列出没有在运行的容器。</p>
+<h5 id="2、删除指定容器"><a href="#2、删除指定容器" class="headerlink" title="2、删除指定容器"></a>2、删除指定容器</h5><p>docker rm $name 或者 容器ID</p>
+<h5 id="3、观察已经有哪些镜像"><a href="#3、观察已经有哪些镜像" class="headerlink" title="3、观察已经有哪些镜像"></a>3、观察已经有哪些镜像</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<h5 id="4、删除指定镜像"><a href="#4、删除指定镜像" class="headerlink" title="4、删除指定镜像"></a>4、删除指定镜像</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f $name 或者 镜像ID</span><br></pre></td></tr></table></figure>
+
+<p>要删除镜像，首先要删除它派生的容器。</p>
+<h2 id="Mysql-1"><a href="#Mysql-1" class="headerlink" title="Mysql"></a>Mysql</h2><p>连接mysql数据库注意事项:</p>
+<h3 id="修改root用户远程连接权限"><a href="#修改root用户远程连接权限" class="headerlink" title="修改root用户远程连接权限:"></a>修改root用户远程连接权限:</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> PRIVILEGES <span class="keyword">ON</span> <span class="operator">*</span>.<span class="operator">*</span> <span class="keyword">TO</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> <span class="keyword">WITH</span> <span class="keyword">GRANT</span> OPTION;</span><br></pre></td></tr></table></figure>
+
+<h3 id="查看是否修改成功"><a href="#查看是否修改成功" class="headerlink" title="查看是否修改成功"></a>查看是否修改成功</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line"><span class="keyword">select</span> host,<span class="keyword">user</span> <span class="keyword">from</span> <span class="keyword">user</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="刷新权限"><a href="#刷新权限" class="headerlink" title="刷新权限"></a>刷新权限</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="更新用户密码"><a href="#更新用户密码" class="headerlink" title="更新用户密码:"></a>更新用户密码:</h3><p>使用 <code>ALTER USER</code> 语句来更新用户密码。例如，如果你想要更新用户名为 <code>user</code> 的密码</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">USER</span> <span class="string">&#x27;user&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;newpassword&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建新用户："><a href="#创建新用户：" class="headerlink" title="创建新用户："></a>创建新用户：</h4><p>使用 <code>CREATE USER</code> 语句创建新用户。例如，创建一个用户名为 <code>user</code> 的新用户：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">USER</span> <span class="string">&#x27;user&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">&#x27;yourpassword&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Navicat连接"><a href="#Navicat连接" class="headerlink" title="Navicat连接"></a>Navicat连接</h3><p>在docker的mysql创建用户,设置连接权限后,Navicat设置主机127.0.0.1&#x2F;localhost(mysql容器的ip虽然本地ping不通,但是可以连上)</p>
+<h2 id="java文件打包jar"><a href="#java文件打包jar" class="headerlink" title="java文件打包jar"></a>java文件打包jar</h2><ol>
+<li><p><strong>编译Java源文件</strong>: 打开终端或命令提示符，然后使用<code>javac</code>命令编译你的Java源文件。例如，如果你的主类是<code>Main.java</code>，你可以使用以下命令：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac Main.java</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>检查编译结果</strong>: 编译后，你应该在相同的目录下看到<code>Main.class</code>文件（以及可能的任何内部类文件，例如<code>Main$1.class</code>等）。</p>
+</li>
+<li><p><strong>创建JAR文件</strong>: 使用<code>jar</code>命令来创建JAR文件。如果你的主类是<code>Main</code>，并且你想创建一个名为<code>MyApplication.jar</code>的JAR文件，你可以使用以下命令：(注意Main后有个空格,指将所有以Main为前缀的class都选上)</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar cvfe MyApplication.jar Main *.class</span><br></pre></td></tr></table></figure>
+
+<p> 这里的<code>c</code>表示创建新的JAR文件，<code>v</code>表示在创建过程中显示详细输出，<code>f</code>指定JAR文件的名称，<code>e</code>表示指定应用程序的入口点（主类），后面跟着主类的名称和<code>.class</code>文件的通配符。</p>
+</li>
+<li><p><strong>确保JAR文件的可执行性</strong>: 如果你的JAR文件中包含的是应用程序的主类，你可能还需要在JAR文件的清单（MANIFEST.MF）中指定主类。这可以通过以下命令完成：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;Main-Class: Main&quot; &gt; manifest.txt</span><br><span class="line">jar cvfm MyApplication.jar manifest.txt *.class</span><br></pre></td></tr></table></figure>
+
+<p> 这里<code>m</code>表示指定清单文件，<code>manifest.txt</code>是包含<code>Main-Class</code>属性的文件。</p>
+</li>
+<li><p><strong>运行JAR文件</strong>: 一旦JAR文件创建完成，你可以通过以下命令来运行它：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar MyApplication.jar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>清理</strong>: 如果你不需要<code>.class</code>文件了，可以删除它们以节省空间：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm *.class</span><br></pre></td></tr></table></figure></li>
+</ol>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/%E6%9D%82%E8%AE%B0/">杂记</a></div><!--!--></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-prev level level-item link-muted" href="/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">Typora破解复现</span></a></div><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2023/05/23/CS2/"><span class="level-item">CS2透视</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/avatar.png" alt="Kvancy"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Kvancy</p><p class="is-size-6 is-block">CTFer / Reverser</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Chinese</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Kvancy" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/Kvancy"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">Catalogue</h3><ul class="menu-list"><li><a class="level is-mobile" href="#1-GitHub"><span class="level-left"><span class="level-item">1</span><span class="level-item">1. GitHub:</span></span></a></li><li><a class="level is-mobile" href="#2-VScode的环境配置："><span class="level-left"><span class="level-item">2</span><span class="level-item">2. VScode的环境配置：</span></span></a></li><li><a class="level is-mobile" href="#3-虚拟机配置："><span class="level-left"><span class="level-item">3</span><span class="level-item">3. 虚拟机配置：</span></span></a></li><li><a class="level is-mobile" href="#4-服务器博客搭建"><span class="level-left"><span class="level-item">4</span><span class="level-item">4. 服务器博客搭建</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-登录宝塔面板"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">1. 登录宝塔面板</span></span></a></li><li><a class="level is-mobile" href="#2-本地下载hexo博客系统"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">2. 本地下载hexo博客系统</span></span></a></li><li><a class="level is-mobile" href="#3-本地Hexo一键部署到远程服务器"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">3. 本地Hexo一键部署到远程服务器</span></span></a></li><li><a class="level is-mobile" href="#4-针对Kratos-Rebirth主题的配置"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">4. 针对Kratos-Rebirth主题的配置</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#根目录下-config-yml"><span class="level-left"><span class="level-item">4.4.1</span><span class="level-item">根目录下_config.yml</span></span></a></li><li><a class="level is-mobile" href="#主题文件夹下-config-yml配置"><span class="level-left"><span class="level-item">4.4.2</span><span class="level-item">主题文件夹下_config.yml配置</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#5-关于Typora"><span class="level-left"><span class="level-item">5</span><span class="level-item">5. 关于Typora</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#1-YAML-Front-Matter的使用"><span class="level-left"><span class="level-item">5.1</span><span class="level-item">1. YAML Front Matter的使用</span></span></a></li><li><a class="level is-mobile" href="#2-控制文章预览字数"><span class="level-left"><span class="level-item">5.2</span><span class="level-item">2. 控制文章预览字数</span></span></a></li><li><a class="level is-mobile" href="#3-图片的插入与上传"><span class="level-left"><span class="level-item">5.3</span><span class="level-item">3. 图片的插入与上传</span></span></a></li></ul></li><li><a class="level is-mobile" href="#6-python学习积累"><span class="level-left"><span class="level-item">6</span><span class="level-item">6. python学习积累:</span></span></a></li><li><a class="level is-mobile" href="#7"><span class="level-left"><span class="level-item">7</span><span class="level-item">7. &lt;&lt;深入理解计算机系统&gt;&gt;</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#存储器"><span class="level-left"><span class="level-item">7.1</span><span class="level-item">存储器</span></span></a></li><li><a class="level is-mobile" href="#链接"><span class="level-left"><span class="level-item">7.2</span><span class="level-item">链接</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Docker"><span class="level-left"><span class="level-item">8</span><span class="level-item">Docker</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#获取容器-IP："><span class="level-left"><span class="level-item">8.1</span><span class="level-item">获取容器 IP：</span></span></a></li><li><a class="level is-mobile" href="#Mysql"><span class="level-left"><span class="level-item">8.2</span><span class="level-item">Mysql</span></span></a></li><li><a class="level is-mobile" href="#phpmyadmin"><span class="level-left"><span class="level-item">8.3</span><span class="level-item">phpmyadmin</span></span></a></li><li><a class="level is-mobile" href="#部署可执行jar包"><span class="level-left"><span class="level-item">8.4</span><span class="level-item">部署可执行jar包</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#一、准备工作"><span class="level-left"><span class="level-item">8.4.1</span><span class="level-item">一、准备工作</span></span></a></li><li><a class="level is-mobile" href="#二、构建镜像"><span class="level-left"><span class="level-item">8.4.2</span><span class="level-item">二、构建镜像</span></span></a></li><li><a class="level is-mobile" href="#三、创建容器并运行"><span class="level-left"><span class="level-item">8.4.3</span><span class="level-item">三、创建容器并运行</span></span></a></li><li><a class="level is-mobile" href="#四、删除多余或失败的容器、镜像"><span class="level-left"><span class="level-item">8.4.4</span><span class="level-item">四、删除多余或失败的容器、镜像</span></span></a></li></ul></li></ul></li><li><a class="level is-mobile" href="#Mysql-1"><span class="level-left"><span class="level-item">9</span><span class="level-item">Mysql</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#修改root用户远程连接权限"><span class="level-left"><span class="level-item">9.1</span><span class="level-item">修改root用户远程连接权限:</span></span></a></li><li><a class="level is-mobile" href="#查看是否修改成功"><span class="level-left"><span class="level-item">9.2</span><span class="level-item">查看是否修改成功</span></span></a></li><li><a class="level is-mobile" href="#刷新权限"><span class="level-left"><span class="level-item">9.3</span><span class="level-item">刷新权限</span></span></a></li><li><a class="level is-mobile" href="#更新用户密码"><span class="level-left"><span class="level-item">9.4</span><span class="level-item">更新用户密码:</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#创建新用户："><span class="level-left"><span class="level-item">9.4.1</span><span class="level-item">创建新用户：</span></span></a></li></ul></li><li><a class="level is-mobile" href="#Navicat连接"><span class="level-left"><span class="level-item">9.5</span><span class="level-item">Navicat连接</span></span></a></li></ul></li><li><a class="level is-mobile" href="#java文件打包jar"><span class="level-left"><span class="level-item">10</span><span class="level-item">java文件打包jar</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://www.52pojie.cn/thread-1954225-1-1.html" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">2023腾讯游戏安全PC决赛复现</span></span><span class="level-right"><span class="level-item tag">www.52pojie.cn</span></span></a></li><li><a class="level is-mobile" href="https://www.52pojie.cn/thread-1952072-1-1.html" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">2022腾讯游戏安全PC端初赛复现</span></span><span class="level-right"><span class="level-item tag">www.52pojie.cn</span></span></a></li><li><a class="level is-mobile" href="https://www.52pojie.cn/thread-1948904-1-1.html" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">2023年腾讯游戏安全竞赛PC端初赛复现</span></span><span class="level-right"><span class="level-item tag">www.52pojie.cn</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E5%AE%9E%E8%B7%B5/"><span class="level-start"><span class="level-item">实践</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">笔记</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-04-30T16:00:00.000Z">2024-05-01</time></p><p class="title"><a href="/2024/05/01/%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">驱动开发</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-04-26T16:00:00.000Z">2024-04-27</time></p><p class="title"><a href="/2024/04/27/%E6%89%AB%E9%9B%B7%E8%BE%85%E5%8A%A9/">扫雷辅助制作</a></p><p class="categories"><a href="/categories/%E5%AE%9E%E8%B7%B5/">实践</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-03-16T16:00:00.000Z">2024-03-17</time></p><p class="title"><a href="/2024/03/17/smc%E6%80%BB%E7%BB%93/">smc总结</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-03-11T16:00:00.000Z">2024-03-12</time></p><p class="title"><a href="/2024/03/12/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8%E6%9D%82%E4%BA%A4%E7%89%88/">植物大战僵尸杂交版辅助制作</a></p><p class="categories"><a href="/categories/%E5%AE%9E%E8%B7%B5/">实践</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-17T16:00:00.000Z">2023-09-18</time></p><p class="title"><a href="/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/">Typora破解复现</a></p><p class="categories"><a href="/categories/%E5%AE%9E%E8%B7%B5/">实践</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">April 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/09/"><span class="level-start"><span class="level-item">September 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/07/"><span class="level-start"><span class="level-item">July 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/05/"><span class="level-start"><span class="level-item">May 2023</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/04/"><span class="level-start"><span class="level-item">April 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9D%82%E8%AE%B0/"><span class="tag">杂记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%A0%B4%E8%A7%A3/"><span class="tag">破解</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%86%E5%90%91/"><span class="tag">逆向</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A9%B1%E5%8A%A8/"><span class="tag">驱动</span><span class="tag">1</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a><p class="is-size-7"><span>&copy; 2024 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>

@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>Hexo</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Hexo"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Hexo"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="CS2透视完整源代码：https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Kvancy&amp;#x2F;CS2-ESP-Cheat 先思考一个问题，如果要做透视，我们需要什么？  首先是敌人的世界坐标，有了敌人世界坐标我们才能进行转换和绘制；  其次是敌人和队友的标识符，有个这个我们才能过滤掉友军，只针对敌人进行绘制  还有一个就是血量，通过判断敌人是否存活来进行过滤掉死去的敌人，不对死去的进行绘制   按照惯例，做外挂功能的"><meta property="og:type" content="blog"><meta property="og:title" content="Hexo"><meta property="og:url" content="http://example.com/postLater/CS2.html"><meta property="og:site_name" content="Hexo"><meta property="og:description" content="CS2透视完整源代码：https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;Kvancy&amp;#x2F;CS2-ESP-Cheat 先思考一个问题，如果要做透视，我们需要什么？  首先是敌人的世界坐标，有了敌人世界坐标我们才能进行转换和绘制；  其次是敌人和队友的标识符，有个这个我们才能过滤掉友军，只针对敌人进行绘制  还有一个就是血量，通过判断敌人是否存活来进行过滤掉死去的敌人，不对死去的进行绘制   按照惯例，做外挂功能的"><meta property="og:locale" content="en_US"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816132931465.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816133110712.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816133526942.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816133810072.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816134615515.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816134723096.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816221716190.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816200004467.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816202311521.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816203020181.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816204316307.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816205421898.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816210704596.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816220135032.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816220248133.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816220401734.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816220500499.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816222533854.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816223153811.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816223504653.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816232138115.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816234452411.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240816234746538.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240817173447606.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240817173608316.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240817174309790.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240817175606456.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240817175928546.png"><meta property="og:image" content="k:/NormalApps/Typora/images/image-20240817180725647.png"><meta property="article:published_time" content="2024-08-17T10:36:50.724Z"><meta property="article:modified_time" content="2024-08-17T10:36:50.724Z"><meta property="article:author" content="John Doe"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="k:/NormalApps/Typora/images/image-20240816132931465.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"http://example.com/postLater/CS2.html"},"headline":"Hexo","image":["k:/NormalApps/Typora/images/image-20240816132931465.png","k:/NormalApps/Typora/images/image-20240816133110712.png","k:/NormalApps/Typora/images/image-20240816133526942.png","k:/NormalApps/Typora/images/image-20240816133810072.png","k:/NormalApps/Typora/images/image-20240816134615515.png","k:/NormalApps/Typora/images/image-20240816134723096.png","k:/NormalApps/Typora/images/image-20240816221716190.png","k:/NormalApps/Typora/images/image-20240816200004467.png","k:/NormalApps/Typora/images/image-20240816202311521.png","k:/NormalApps/Typora/images/image-20240816203020181.png","k:/NormalApps/Typora/images/image-20240816204316307.png","k:/NormalApps/Typora/images/image-20240816205421898.png","k:/NormalApps/Typora/images/image-20240816210704596.png","k:/NormalApps/Typora/images/image-20240816220135032.png","k:/NormalApps/Typora/images/image-20240816220248133.png","k:/NormalApps/Typora/images/image-20240816220401734.png","k:/NormalApps/Typora/images/image-20240816220500499.png","k:/NormalApps/Typora/images/image-20240816222533854.png","k:/NormalApps/Typora/images/image-20240816223153811.png","k:/NormalApps/Typora/images/image-20240816223504653.png","k:/NormalApps/Typora/images/image-20240816232138115.png","k:/NormalApps/Typora/images/image-20240816234452411.png","k:/NormalApps/Typora/images/image-20240816234746538.png","k:/NormalApps/Typora/images/image-20240817173447606.png","k:/NormalApps/Typora/images/image-20240817173608316.png","k:/NormalApps/Typora/images/image-20240817174309790.png","k:/NormalApps/Typora/images/image-20240817175606456.png","k:/NormalApps/Typora/images/image-20240817175928546.png","k:/NormalApps/Typora/images/image-20240817180725647.png"],"datePublished":"2024-08-17T10:36:50.724Z","dateModified":"2024-08-17T10:36:50.724Z","author":{"@type":"Person","name":"John Doe"},"publisher":{"@type":"Organization","name":"Hexo","logo":{"@type":"ImageObject","url":"http://example.com/img/logo.svg"}},"description":"CS2透视完整源代码：https:&#x2F;&#x2F;github.com&#x2F;Kvancy&#x2F;CS2-ESP-Cheat 先思考一个问题，如果要做透视，我们需要什么？  首先是敌人的世界坐标，有了敌人世界坐标我们才能进行转换和绘制；  其次是敌人和队友的标识符，有个这个我们才能过滤掉友军，只针对敌人进行绘制  还有一个就是血量，通过判断敌人是否存活来进行过滤掉死去的敌人，不对死去的进行绘制   按照惯例，做外挂功能的"}</script><link rel="canonical" href="http://example.com/postLater/CS2.html"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link data-pjax rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link data-pjax rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/Kvancy"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="content"><h1 id="CS2透视"><a href="#CS2透视" class="headerlink" title="CS2透视"></a>CS2透视</h1><p>完整源代码：<a target="_blank" rel="noopener" href="https://github.com/Kvancy/CS2-ESP-Cheat">https://github.com/Kvancy/CS2-ESP-Cheat</a></p>
+<p>先思考一个问题，如果要做透视，我们需要什么？</p>
+<ol>
+<li><p>首先是敌人的世界坐标，有了敌人世界坐标我们才能进行转换和绘制；</p>
+</li>
+<li><p>其次是敌人和队友的标识符，有个这个我们才能过滤掉友军，只针对敌人进行绘制</p>
+</li>
+<li><p>还有一个就是血量，通过判断敌人是否存活来进行过滤掉死去的敌人，不对死去的进行绘制</p>
+</li>
+</ol>
+<p>按照惯例，做外挂功能的第一步要先找到基址和偏移，哪些量的基址和偏移？上面分析的这三个至少要有吧</p>
+<h2 id="基址寻找"><a href="#基址寻找" class="headerlink" title="基址寻找"></a>基址寻找</h2><p>再思考一个问题，关于坐标，敌军友军的标识符，血量的内存布局可能是怎么样的？</p>
+<p>根据<strong>C++面向对象编程中的内存布局</strong>文档，我们能做一些猜测</p>
+<ol>
+<li>CS2这么大的游戏，大概率是面向对象编程</li>
+<li>根据编程经验，游戏世界往往会存在一个或多个抽象类，而我们要研究的角色，可能只是一个子类</li>
+<li>坐标，血量，标识符可能不尽是角色类的特有成员，内存布局可能存在较大差异</li>
+</ol>
+<p>揣着这些猜测，开始寻找基址和偏移</p>
+<p>进入练习模式打开控制台（~），输入如下指令</p>
+<ol>
+<li>sv_cheats ${0&#x2F;1}$; &#x2F;&#x2F;舞弊方式，0表明关掉，1表明开启(任意挪动指令必须开启舞弊方式)</li>
+<li>bot_stop ${0&#x2F;1}$; &#x2F;&#x2F;bot终止行为，0表明关掉BOT逐渐主题活动，1表明开启BOT终止主题活动</li>
+<li>mp_roundtime_defuse {n}$ ;&#x2F;&#x2F;设置每回合的时间</li>
+<li>mp_restartgame  1 &#x2F;&#x2F;重启该回合</li>
+</ol>
+<p>打开CE针对角色血量进行搜索，定位到血量地址，找到如下可能的地址。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816132931465.png" alt="image-20240816132931465"></p>
+<p>利用二分法锁定内存地址的值，打开控制台输入<code> hurtme 1</code>指令，观察哪一个地址锁定后血量不再下降，或者用修改数据的方法看看哪个是真实地址，哪些是随着真实地址变动的“虚假地址”。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816133110712.png" alt="image-20240816133110712"></p>
+<p>找到真实血量内存地址。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816133526942.png" alt="image-20240816133526942"></p>
+<p>进行指针扫描，设置最大偏移地址5560和最大偏移层数5，经验所得，大多数游戏可以用这两个值找到，找不到的时候适当调整即可。</p>
+<p><strong><img src="K:/NormalApps/Typora/images/image-20240816133810072.png" alt="image-20240816133810072"></strong></p>
+<p>找到294个指针路径，为了进一步筛选，继续hurt me 修改血量，通过指针扫描器-&gt;重新扫描内存-&gt;要查找的数值，设置当前血量值，重新扫描。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816134615515.png" alt="image-20240816134615515"></p>
+<p>得到235个指针路径，同理可以进行多次筛选，最终测得233个指针路径。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816134723096.png" alt="image-20240816134723096"></p>
+<p>此时关闭游戏（记得提前保存好ptr文件，一般扫描后就保存了），重新打开游戏。再次重新扫描内存，进一步筛选得到40个指针路径</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816221716190.png" alt="image-20240816221716190"></p>
+<p>可以看到第四层偏移全是2A8，对应的是血量在所属类的偏移值，到这我们基本就可以利用其中之一作为自己角色血量的基址和偏移了</p>
+<p>这里选择最后一条</p>
+<table>
+<thead>
+<tr>
+<th align="center">血量偏移</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x2A8</td>
+</tr>
+<tr>
+<td align="center">0xC0</td>
+</tr>
+<tr>
+<td align="center">0x8</td>
+</tr>
+<tr>
+<td align="center">0x10</td>
+</tr>
+<tr>
+<td align="center">0x50</td>
+</tr>
+<tr>
+<td align="center">“server.dll”+01343108</td>
+</tr>
+</tbody></table>
+<p>我们继续找人物坐标的基址和偏移，因为在三维世界里，二维坐标X，Y的方向不是很好确认，但是Z坐标一般都是一样的，往上走，Z坐标增加，往下走，Z坐标减小，有些游戏可能会反过来，但是不影响，只是稍微更麻烦一点。只要找到了三个坐标其中之一，另外两个也就在附近了（存放在一个结构体中），这里我们找Z坐标。</p>
+<p>我们到这个地点，有个上下坡的地方，方便修改Z坐标。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816200004467.png" alt="image-20240816200004467"></p>
+<p>接着就是一顿CE搜索，我这里最终筛到300多个地址，实在是筛选不下去了，都像是Z坐标，接着按照二分法，一半锁定一半不锁定，去找一个地址，锁定住之后角色跳不起来，筛选到如下地址</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816202311521.png" alt="image-20240816202311521"></p>
+<p>尝试修改数据测试真实性,修改成-20000</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816203020181.png" alt="image-20240816203020181"></p>
+<p>这tm给我干哪来了我擦了，准备下包！修改一下Z坐标回到地面</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816204316307.png" alt="image-20240816204316307"></p>
+<p>擦，修改多了，完了，掉下去就死了，寄。。。</p>
+<p>但是现在基本确认了这个地址是真实Z的坐标，其他的只是因变量，对这个地址进行指针扫描。扫描到93条指针路径，进一步按之前步骤筛选，找到一个能用的</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816205421898.png" alt="image-20240816205421898"></p>
+<p>接着我们在这个地址观察一下附近是否会出现X，Y坐标，发现前面两个就是X,Y坐标，基本确认了我们角色的基址和偏移</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816210704596.png" alt="image-20240816210704596"></p>
+<p>因为这个只是我们的坐标，其他角色的坐标还没去搜索，挨个搜索肯定不现实，那还有什么办法去快速找到其他角色的基址和偏移呢？</p>
+<p>根据我们的一点点开发经验可以猜测游戏里面大概有这么一份代码模型</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Game</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> time;<span class="comment">//随便举的例子</span></span><br><span class="line">    Player player[<span class="number">10</span>];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Player</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">float</span> blood;</span><br><span class="line">    <span class="type">int</span> TeamNum;</span><br><span class="line">    Point3D pos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据这个猜想，只要我们获得了Player的内存大小，我们就可以根据我们角色的地址枚举出其他角色的地址，从而获取其他角色的位置属性。嘶，但是这个角色类的内存大小貌似不好求。我又想到一个方法，如果角色内存大小不是很大的话，我们可以在CE中通过在我们的坐标附近去寻找，是否还有像坐标的地址，如果找到了，那么很可能是其他角色的坐标，我们就可以直接两个坐标地址相减获取角色内存大小，浅试一下。</p>
+<p>找了一下，并没有找到，显然这招对这游戏并不是一个好方法，可能CS2是用类指针数组去存十个人物地址的，也可能是用链表去存的，这方法还是太笨了。只能想另一种方式了。</p>
+<p>还记得我们最开始的C++内存布局揣测么，那既然我们已经找到了基地址和五层偏移，那就意味着我们角色的地址很可能就在这个基地址的相对四层或者三层（或者更少）偏移计算得到，那我们假设，游戏的十个角色是被new出来的，也就是用类指针数组存储十个人物地址的，那我们的角色地址找到之后，偏移8个字节（64位的游戏），那是不是就是其他角色的类指针？再试一次，如下是我们之前找到的基地址和偏移</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816220135032.png" alt="image-20240816220135032"></p>
+<p>试着修改第一层到第四层的偏移值，修改+8。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816220248133.png" alt="image-20240816220248133"></p>
+<p>到第二层偏移+8时，刚好对应浮点数-120，符合地图的Z坐标范围，点开内存看一眼之前是不是X,Y坐标</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816220401734.png" alt="image-20240816220401734"></p>
+<p>好像是，让机器人动起来试一试</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816220500499.png" alt="image-20240816220500499"></p>
+<p>没错了！继续+8或者-8定位另外八个角色的第二层偏移。</p>
+<p>直到第二层偏移为60时，内存指向空，所以十个人物的角色第二层偏移是10,18,20,28,30,38,40,48,50,58（十六进制）,刚好对应十个人物角色</p>
+<p>至此，人物位置分析完成，获取的基地址和偏移为</p>
+<table>
+<thead>
+<tr>
+<th align="center">坐标偏移</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x128</td>
+</tr>
+<tr>
+<td align="center">0x38</td>
+</tr>
+<tr>
+<td align="center">0x70</td>
+</tr>
+<tr>
+<td align="center">0x10</td>
+</tr>
+<tr>
+<td align="center">0x50</td>
+</tr>
+<tr>
+<td align="center">“server.dll”+01343108</td>
+</tr>
+</tbody></table>
+<p>突然忘了，其他人物血量还没定位，但是这样一看，其他人物的血量地址也出来了，因为血量的前两层偏移和坐标前两层偏移相同，也只需要在第二层偏移（m+8*n）即可。</p>
+<p>继续第三个地址寻找，队伍标识符，按经验推测，会将敌军还是友军置为bool类型，只需要判断01就可以区分保卫者和潜伏者，但是我在控制台输入的时候，他会告诉我这些信息。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816222533854.png" alt="image-20240816222533854"></p>
+<p>貌似就是队伍标识符了，但是我们海狮要确定这个的基地址和偏移，根据之前两个基地址和偏移，我们可以进行推测基地址和前两个偏移值都是相同的，只要获取后面的偏移即可。继续用CE进行搜索吧，这里要利用CS2的这个功能去转换阵营，要不然没法CE搜索</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816223153811.png" alt="image-20240816223153811"></p>
+<p>先假设潜伏者为2，保卫者为3，进行CE搜索，找到这些地址，</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816223504653.png" alt="image-20240816223504653"></p>
+<p>再尝试修改这些数据，修改一次攻击一下友军，看一下提示是否想同，直到出现这个画面</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816232138115.png" alt="image-20240816232138115"></p>
+<p>我穿着保卫服却显示我在潜伏者，并且视保卫者为敌人，对这个地址进行指针扫描</p>
+<p>进行指针扫描，找到前两层偏移一样的并进行记录<br><img src="K:/NormalApps/Typora/images/image-20240816234452411.png" alt="image-20240816234452411"></p>
+<p>发现前两层偏移并没有一样的，如果用这些基地址和偏移的话，我们就还得去找其他角色地址的偏移，那太麻烦了，根据这个最后的偏移都是314，试着将我们得到的两个基地址和偏移的最后一个偏移分别改成314看看是否对应结果3，发现带入血量的最后一个偏移时结果对应。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240816234746538.png" alt="image-20240816234746538"></p>
+<p>看来血量和队伍标识符是同属一个子类的，所以队伍标识符的基地址和偏移我们拿到了，这里做一下记录</p>
+<table>
+<thead>
+<tr>
+<th align="center">队伍标识符偏移</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x314</td>
+</tr>
+<tr>
+<td align="center">0xc0</td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+</tr>
+<tr>
+<td align="center">0x10</td>
+</tr>
+<tr>
+<td align="center">0x50</td>
+</tr>
+<tr>
+<td align="center">“server.dll”+01343108</td>
+</tr>
+</tbody></table>
+<p>接着进行视图矩阵的搜索，搜索方法也很简单，只要搜索矩阵中16个浮点数的其中之一就可以了。我们可以针对某个值进行搜索，这个值会在-1.0-1.0之间（也可能稍微超过一点点）,当视角朝向天空是，该值趋近于1.0，朝向地面时，该值趋近于-1.0，根据这个我们可以控制角色看向天空，然后搜索0.8-1.2之间的数值，同理朝向地面，我们搜索-0.8–1.2之间的数值，还可以变动视角搜索变动的值，我这里就是用这种方法进行搜索视图矩阵的。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240817173447606.png" alt="image-20240817173447606"></p>
+<p><img src="K:/NormalApps/Typora/images/image-20240817173608316.png" alt="image-20240817173608316"></p>
+<p>两次搜索就能筛选到40000数值，接着筛选。最后搜索到还剩1200个地址，</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240817174309790.png" alt="image-20240817174309790"></p>
+<p>但是我们看见了绿色的基址，把这些基址复制下来一一查看内存布局，看看是否有矩阵特征。</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240817175606456.png" alt="image-20240817175606456"></p>
+<p>看这三个矩阵，随着视角都是会变动的，但是都是不对的，比如第一个矩阵，有些数据保持不变，不显红色，排除；第二个矩阵，只是一个3*4的矩阵，排除；第三个矩阵，第一行和第二行的前三个数据不符合矩阵数据规范，超过了1.0，排除。一直到这个内存地址</p>
+<p><img src="K:/NormalApps/Typora/images/image-20240817175928546.png" alt="image-20240817175928546"></p>
+<p>发现数据刚好符合规范并且是4*4的矩阵，记录下该地址</p>
+<table>
+<thead>
+<tr>
+<th align="center">视图矩阵偏移</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">client.dll+19CB4D0</td>
+</tr>
+</tbody></table>
+<p>到这基址和偏移寻找就完成了，接着开始写我们的透视辅助代码</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>main.cpp</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kWindow.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kGame.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;kPlayerPawn.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> isWorldwide 1</span></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> isWorldwide</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> WINDOWNAME <span class="string">&quot;Counter-Strike 2&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">define WINDOWNAME <span class="string">&quot;反恐精英：全球攻势&quot;</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">kWindow* window = <span class="literal">nullptr</span>;</span><br><span class="line">kGame* game = <span class="literal">nullptr</span>;</span><br><span class="line">kRender* render = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    window = <span class="keyword">new</span> <span class="built_in">kWindow</span>(WINDOWNAME);</span><br><span class="line">    game = <span class="keyword">new</span> <span class="built_in">kGame</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;cs2.exe&quot;</span>), window-&gt;<span class="built_in">getRect</span>());</span><br><span class="line">	window-&gt;<span class="built_in">msgLoop</span>(game);	</span><br><span class="line">&#125;</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+
+<p>msgLoop</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">kWindow::msgLoop</span><span class="params">(kGame* game)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    kRender* render = <span class="keyword">new</span> <span class="built_in">kRender</span>(hWnd);</span><br><span class="line">    MSG msg;</span><br><span class="line">    <span class="built_in">ZeroMemory</span>(&amp;msg, <span class="built_in">sizeof</span>(msg));</span><br><span class="line">    <span class="keyword">while</span> (msg.message != WM_QUIT) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">PeekMessage</span>(&amp;msg, <span class="literal">NULL</span>, <span class="number">0U</span>, <span class="number">0U</span>, PM_REMOVE)) &#123;</span><br><span class="line">            <span class="built_in">TranslateMessage</span>(&amp;msg);</span><br><span class="line">            <span class="built_in">DispatchMessage</span>(&amp;msg);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">doCheat</span>(render,game);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>doCheat</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">kWindow::doCheat</span><span class="params">(kRender* render, kGame* game)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    game-&gt;<span class="built_in">refreshData</span>();</span><br><span class="line">    game-&gt;<span class="built_in">showAllPlayer</span>();</span><br><span class="line">    render-&gt;<span class="built_in">beginRender</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (game-&gt;m_playPawn[i].<span class="built_in">getTeamNum</span>() == game-&gt;m_playPawn[<span class="number">0</span>].<span class="built_in">getTeamNum</span>())</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (!game-&gt;m_playPawn[i].<span class="built_in">isAlive</span>())</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        point2D pos = game-&gt;<span class="built_in">world2screen</span>(game-&gt;<span class="built_in">getPlayerPawnPos</span>(i), game-&gt;<span class="built_in">getMatrix</span>());</span><br><span class="line">        point2D posHead = game-&gt;<span class="built_in">world2screen</span>(game-&gt;m_playPawn[i].<span class="built_in">getPosHead</span>(), game-&gt;<span class="built_in">getMatrix</span>());</span><br><span class="line">        render-&gt;<span class="built_in">drawRectangle</span>(pos.x, (pos.y + posHead.y) / <span class="number">2</span>, <span class="number">60</span>, posHead.y - pos.y);</span><br><span class="line">    &#125;</span><br><span class="line">    render-&gt;<span class="built_in">endRender</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>refreshData</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">kGame::refreshData</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">auto</span> server = cs2-&gt;<span class="built_in">get_module_handle</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;server.dll&quot;</span>));</span><br><span class="line">	<span class="keyword">auto</span> client = cs2-&gt;<span class="built_in">get_module_handle</span>(<span class="built_in">TEXT</span>(<span class="string">&quot;client.dll&quot;</span>));</span><br><span class="line">	DWORD64 player = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(server + <span class="number">0x1343108</span>, player)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(player + <span class="number">0x50</span>, player)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">	DWORD64 TeamNum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(player + <span class="number">0x10</span> + <span class="number">0x08</span>*i, TeamNum)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(TeamNum + <span class="number">0x08</span>, TeamNum)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(TeamNum + <span class="number">0xC0</span>, TeamNum)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;<span class="type">int</span>&gt;(TeamNum + <span class="number">0x314</span>, m_playPawn[i].m_iTeamNum)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	DWORD64 Pos = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(player + <span class="number">0x10</span> + <span class="number">0x08</span> * i, Pos)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(Pos + <span class="number">0x70</span>, Pos)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(Pos + <span class="number">0x38</span>, Pos)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;point3D&gt;(Pos + <span class="number">0x120</span>, m_playPawn[i].m_pPos)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	DWORD64 Health = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">size_t</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(player + <span class="number">0x10</span> + <span class="number">0x08</span> * i, Health)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(Health + <span class="number">0x08</span>, Health)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;DWORD64&gt;(Health + <span class="number">0xC0</span>, Health)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;<span class="type">int</span>&gt;(Health + <span class="number">0x2A8</span>, m_playPawn[i].m_iHealth)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (!cs2-&gt;<span class="built_in">read</span>&lt;Matrix4x4&gt;(client + <span class="number">0x19CB4D0</span>, m_mViewMatrix)) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="效果展示"><a href="#效果展示" class="headerlink" title="效果展示"></a>效果展示</h1><p><img src="K:/NormalApps/Typora/images/image-20240817180725647.png" alt="image-20240817180725647"></p>
+</div><!--!--></article></div><!--!--><!--!--></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/avatar.png" alt="Kvancy"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Kvancy</p><p class="is-size-6 is-block">CTFer / Reverser</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Chinese</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">10</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">5</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/Kvancy" target="_blank" rel="me noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="me noopener" title="Github" href="https://github.com/Kvancy"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://www.52pojie.cn/thread-1954225-1-1.html" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">2023腾讯游戏安全PC决赛复现</span></span><span class="level-right"><span class="level-item tag">www.52pojie.cn</span></span></a></li><li><a class="level is-mobile" href="https://www.52pojie.cn/thread-1952072-1-1.html" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">2022腾讯游戏安全PC端初赛复现</span></span><span class="level-right"><span class="level-item tag">www.52pojie.cn</span></span></a></li><li><a class="level is-mobile" href="https://www.52pojie.cn/thread-1948904-1-1.html" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">2023年腾讯游戏安全竞赛PC端初赛复现</span></span><span class="level-right"><span class="level-item tag">www.52pojie.cn</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/%E5%AE%9E%E8%B7%B5/"><span class="level-start"><span class="level-item">实践</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li><li><a class="level is-mobile" href="/categories/%E7%AC%94%E8%AE%B0/"><span class="level-start"><span class="level-item">笔记</span></span><span class="level-end"><span class="level-item tag">6</span></span></a></li></ul></div></div></div><div class="column-right-shadow is-hidden-widescreen is-sticky"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3 is-sticky"><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-04-30T16:00:00.000Z">2024-05-01</time></p><p class="title"><a href="/2024/05/01/%E9%A9%B1%E5%8A%A8%E5%BC%80%E5%8F%91/">驱动开发</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-04-26T16:00:00.000Z">2024-04-27</time></p><p class="title"><a href="/2024/04/27/%E6%89%AB%E9%9B%B7%E8%BE%85%E5%8A%A9/">扫雷辅助制作</a></p><p class="categories"><a href="/categories/%E5%AE%9E%E8%B7%B5/">实践</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-03-16T16:00:00.000Z">2024-03-17</time></p><p class="title"><a href="/2024/03/17/smc%E6%80%BB%E7%BB%93/">smc总结</a></p><p class="categories"><a href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2024-03-11T16:00:00.000Z">2024-03-12</time></p><p class="title"><a href="/2024/03/12/%E6%A4%8D%E7%89%A9%E5%A4%A7%E6%88%98%E5%83%B5%E5%B0%B8%E6%9D%82%E4%BA%A4%E7%89%88/">植物大战僵尸杂交版辅助制作</a></p><p class="categories"><a href="/categories/%E5%AE%9E%E8%B7%B5/">实践</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-09-17T16:00:00.000Z">2023-09-18</time></p><p class="title"><a href="/2023/09/18/Typora%E7%A0%B4%E8%A7%A3%E8%AE%B0%E5%BD%95/">Typora破解复现</a></p><p class="categories"><a href="/categories/%E5%AE%9E%E8%B7%B5/">实践</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2024/05/"><span class="level-start"><span class="level-item">May 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/04/"><span class="level-start"><span class="level-item">April 2024</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2024/03/"><span class="level-start"><span class="level-item">March 2024</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/09/"><span class="level-start"><span class="level-item">September 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/07/"><span class="level-start"><span class="level-item">July 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/05/"><span class="level-start"><span class="level-item">May 2023</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2023/04/"><span class="level-start"><span class="level-item">April 2023</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/C/"><span class="tag">C++</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E6%9D%82%E8%AE%B0/"><span class="tag">杂记</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E7%A0%B4%E8%A7%A3/"><span class="tag">破解</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%80%86%E5%90%91/"><span class="tag">逆向</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E9%A9%B1%E5%8A%A8/"><span class="tag">驱动</span><span class="tag">1</span></a></div></div></div></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Hexo" height="28"></a><p class="is-size-7"><span>&copy; 2024 John Doe</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script data-pjax src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script data-pjax src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script src="/js/pjax.js"></script><!--!--><!--!--><!--!--><script data-pjax src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
