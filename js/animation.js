@@ -1,6 +1,6 @@
 (function() {
     function $() {
-        //return Array.prototype.slice.call(document.querySelectorAll.apply(document, arguments));
+        return Array.prototype.slice.call(document.querySelectorAll.apply(document, arguments));
     }
 
     $('body > .navbar, body > .section, body > .footer').forEach(element => {
